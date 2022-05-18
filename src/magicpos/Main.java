@@ -5,6 +5,11 @@
  */
 package magicpos;
 
+import vistas.AgregarCategoria;
+import vistas.AgregarUsuario;
+import vistas.IniciarSesion;
+import vistas.PanelAdmin;
+
 /**
  *
  * @author MagicPOS
@@ -17,6 +22,12 @@ public class Main {
   public static void main(String[] args) {
     // TODO code application logic here
     System.out.println("MagicPOS is amazing!");
+
+//    IniciarSesion iniciar = new IniciarSesion();
+//    PanelAdmin iniciar = new PanelAdmin();
+//    AgregarUsuario iniciar = new AgregarUsuario();
+    AgregarCategoria iniciar = new AgregarCategoria();
+    iniciar.setVisible(true);
   }
-  
+
 }
