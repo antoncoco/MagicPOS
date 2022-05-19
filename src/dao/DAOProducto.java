@@ -6,31 +6,15 @@
 package dao;
 
 import java.util.List;
-import modelos.Usuario;
 
 /**
  *
  * @author MagicPOS
  */
-public class DAOUsuario implements DAO<Usuario, String>{
+public class DAOProducto implements DAO<DAOProducto, String>{
 
   @Override
-  public boolean actualizar(Usuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public boolean insertar(Usuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public List<Usuario> listarTodos() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public Usuario consultar(String id) {
+  public DAOProducto consultar(String id) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 
@@ -38,9 +22,20 @@ public class DAOUsuario implements DAO<Usuario, String>{
   public boolean eliminar(String id) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
-  
-  public boolean login(Usuario usuario){
-    boolean bandera = false;
-    return bandera;
+
+  @Override
+  public boolean actualizar(DAOProducto entidad) {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
+
+  @Override
+  public boolean insertar(DAOProducto entidad) {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public List<DAOProducto> listarTodos() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+  
 }

@@ -6,31 +6,16 @@
 package dao;
 
 import java.util.List;
-import modelos.Usuario;
+import modelos.Proveedor;
 
 /**
  *
  * @author MagicPOS
  */
-public class DAOUsuario implements DAO<Usuario, String>{
+public class DAOProveedor implements DAO<Proveedor, String>{
 
   @Override
-  public boolean actualizar(Usuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public boolean insertar(Usuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public List<Usuario> listarTodos() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public Usuario consultar(String id) {
+  public Proveedor consultar(String id) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 
@@ -38,9 +23,20 @@ public class DAOUsuario implements DAO<Usuario, String>{
   public boolean eliminar(String id) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
-  
-  public boolean login(Usuario usuario){
-    boolean bandera = false;
-    return bandera;
+
+  @Override
+  public boolean actualizar(Proveedor entidad) {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
+
+  @Override
+  public boolean insertar(Proveedor entidad) {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public List<Proveedor> listarTodos() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+  
 }

@@ -6,31 +6,16 @@
 package dao;
 
 import java.util.List;
-import modelos.Usuario;
+import modelos.ProductoAlmacen;
 
 /**
  *
  * @author MagicPOS
  */
-public class DAOUsuario implements DAO<Usuario, String>{
+public class DAOProductoAlmacen implements DAO<ProductoAlmacen, String>{
 
   @Override
-  public boolean actualizar(Usuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public boolean insertar(Usuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public List<Usuario> listarTodos() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public Usuario consultar(String id) {
+  public ProductoAlmacen consultar(String id) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 
@@ -38,9 +23,34 @@ public class DAOUsuario implements DAO<Usuario, String>{
   public boolean eliminar(String id) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
+
+  @Override
+  public boolean actualizar(ProductoAlmacen entidad) {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public boolean insertar(ProductoAlmacen entidad) {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public List<ProductoAlmacen> listarTodos() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
   
-  public boolean login(Usuario usuario){
+  public boolean validarDisponibilidad(ProductoAlmacen producto){
     boolean bandera = false;
     return bandera;
   }
+  
+  public void comprarProducto(ProductoAlmacen producto){}
+  
+  public int calcularMerma(ProductoAlmacen producto){
+    int merma = 0;
+    return merma;
+  }
+  
+  public void generarReporte(List<ProductoAlmacen> productos){}
+  
 }

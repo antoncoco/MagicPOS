@@ -9,16 +9,13 @@ package modelos;
  *
  * @author MagicPOS
  */
-public class Usuario {
-  private String folio;
+public class RolUsuario {
+  private int folioRol;
   private String nombre;
-  private String pwd;
-  private RolUsuario rol;
 
-  public Usuario(String folio, String nombre, String pwd, RolUsuario rol) {
-    this.folio = folio;
+  public RolUsuario(int folioRol, String nombre) {
+    this.folioRol = folioRol;
     this.nombre = nombre;
-    this.pwd = pwd;
-    this.rol = rol;
   }
+  
 }

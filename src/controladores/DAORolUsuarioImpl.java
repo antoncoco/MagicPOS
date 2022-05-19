@@ -5,12 +5,12 @@
  */
 package controladores;
 
-import modelos.Usuario;
+import modelos.RolUsuario;
 
 /**
  *
  * @author MagicPOS
  */
-public class DAOUsuarioImpl {
-  private Usuario usuario;
+public class DAORolUsuarioImpl {
+  private RolUsuario rol;
 }

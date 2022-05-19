@@ -5,10 +5,19 @@
  */
 package dao;
 
+import java.util.List;
+
+
 /**
  *
- * @author cocol
+ * @author MagicPOS
+ * @param <T>
+ * @param <K>
  */
-public class DAO {
-  
+public interface DAO<T,K>{
+  public T consultar(K id);
+  public boolean eliminar(K id);
+  public boolean actualizar(T entidad);
+  public boolean insertar(T entidad);
+  public List<T> listarTodos();
 }

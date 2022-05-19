@@ -6,31 +6,16 @@
 package dao;
 
 import java.util.List;
-import modelos.Usuario;
+import modelos.Venta;
 
 /**
  *
  * @author MagicPOS
  */
-public class DAOUsuario implements DAO<Usuario, String>{
+public class DAOVenta implements DAO<Venta, String>{
 
   @Override
-  public boolean actualizar(Usuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public boolean insertar(Usuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public List<Usuario> listarTodos() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public Usuario consultar(String id) {
+  public Venta consultar(String id) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 
@@ -38,9 +23,34 @@ public class DAOUsuario implements DAO<Usuario, String>{
   public boolean eliminar(String id) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
+
+  @Override
+  public boolean actualizar(Venta entidad) {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public boolean insertar(Venta entidad) {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public List<Venta> listarTodos() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
   
-  public boolean login(Usuario usuario){
+  public boolean validarVenta(Venta venta){
     boolean bandera = false;
     return bandera;
   }
+  
+  public boolean registrarVenta(Venta venta){
+    boolean bandera = false;
+    return bandera;
+  }
+  
+  public static void generarTicket(List<Venta> ventas){}
+  
+  public static void generarReporte(List<Venta> ventas){}
+  
 }
