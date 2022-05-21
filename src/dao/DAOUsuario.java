@@ -5,42 +5,18 @@
  */
 package dao;
 
+import java.sql.*;
+import database.Conexion;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelos.RolUsuario;
 import modelos.Usuario;
 
 /**
  *
  * @author MagicPOS
  */
-public class DAOUsuario implements DAO<Usuario, String>{
-
-  @Override
-  public boolean actualizar(Usuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public boolean insertar(Usuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public List<Usuario> listarTodos() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public Usuario consultar(String id) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public boolean eliminar(String id) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-  
-  public boolean login(Usuario usuario){
-    boolean bandera = false;
-    return bandera;
-  }
+public interface DAOUsuario extends DAO<Usuario, String>{
+  public boolean login(Usuario usuario);
 }

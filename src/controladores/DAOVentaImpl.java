@@ -5,6 +5,7 @@
  */
 package controladores;
 
+import java.util.List;
 import modelos.Venta;
 
 /**
@@ -13,4 +14,18 @@ import modelos.Venta;
  */
 public class DAOVentaImpl {
   private Venta venta;
+  
+  public boolean validarVenta(Venta venta){
+    boolean bandera = false;
+    return bandera;
+  }
+  
+  public boolean registrarVenta(Venta venta){
+    boolean bandera = false;
+    return bandera;
+  }
+  
+  public static void generarTicket(List<Venta> ventas){}
+  
+  public static void generarReporte(List<Venta> ventas){}
 }

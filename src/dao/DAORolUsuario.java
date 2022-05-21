@@ -5,39 +5,13 @@
  */
 package dao;
 
-import java.util.List;
+import javax.swing.JFrame;
 import modelos.RolUsuario;
 
 /**
  *
  * @author MagicPOS
  */
-public class DAORolUsuario implements DAO<RolUsuario,Integer>{
-
-  @Override
-  public RolUsuario consultar(Integer id) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public boolean eliminar(Integer id) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public boolean actualizar(RolUsuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public boolean insertar(RolUsuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-
-  @Override
-  public List<RolUsuario> listarTodos() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
-  
-  public void accesoPorRol(RolUsuario rol){}
+public interface DAORolUsuario extends DAO<RolUsuario,String>{
+  public void accesoPorRol(RolUsuario rol, JFrame anterior);
 }

@@ -21,4 +21,20 @@ public class Usuario {
     this.pwd = pwd;
     this.rol = rol;
   }
+  
+  public String getFolio() {
+    return folio;
+  }
+
+  public String getNombre() {
+    return nombre;
+  }
+
+  public String getPwd() {
+    return pwd;
+  }
+
+  public RolUsuario getRol() {
+    return rol;
+  }
 }
