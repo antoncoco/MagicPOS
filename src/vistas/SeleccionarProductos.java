@@ -29,7 +29,6 @@ public class SeleccionarProductos extends javax.swing.JFrame {
   public SeleccionarProductos() {
     this.setContentPane(fondo);
     initComponents();
-    this.setExtendedState(this.MAXIMIZED_BOTH);
     
     tablaListaProd.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
     tablaListaProd.getTableHeader().setOpaque(false);
@@ -67,6 +66,7 @@ public class SeleccionarProductos extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(1080, 720));
+    setResizable(false);
     setSize(new java.awt.Dimension(800, 550));
 
     panelOpciones.setBackground(new java.awt.Color(252, 168, 1));
@@ -144,7 +144,6 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     panelOpciones.add(campoCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 140, 30));
 
     etiquetaCantidad.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-    etiquetaCantidad.setForeground(new java.awt.Color(0, 0, 0));
     etiquetaCantidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     etiquetaCantidad.setText("Cantidad:");
     panelOpciones.add(etiquetaCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 213, 90, 40));
@@ -167,6 +166,7 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     panelOpciones.add(botonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 260, 30));
 
     botonRegresar.setBackground(getBackground());
+    botonRegresar.setForeground(new java.awt.Color(252, 168, 1));
     botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -210,7 +210,6 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     panelContenedor.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 117, 670, 490));
 
     etiquetaNombreList.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-    etiquetaNombreList.setForeground(new java.awt.Color(0, 0, 0));
     etiquetaNombreList.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
     etiquetaNombreList.setText("Lista de productos");
     etiquetaNombreList.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);

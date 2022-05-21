@@ -28,7 +28,6 @@ public class Reportes extends javax.swing.JFrame {
   public Reportes() {
     this.setContentPane(fondo);
     initComponents();
-    this.setExtendedState(this.MAXIMIZED_BOTH);
     
     
   }
@@ -63,6 +62,7 @@ public class Reportes extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(1080, 720));
+    setResizable(false);
     setSize(new java.awt.Dimension(800, 550));
 
     panelOpciones.setBackground(new java.awt.Color(252, 168, 1));
@@ -149,6 +149,7 @@ public class Reportes extends javax.swing.JFrame {
     campoRuta.setForeground(new java.awt.Color(150, 150, 150));
     campoRuta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     campoRuta.setBorder(null);
+    campoRuta.setEnabled(false);
     campoRuta.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mousePressed(java.awt.event.MouseEvent evt) {
         campoRutaMousePressed(evt);
