@@ -14,12 +14,12 @@ import java.util.logging.Logger;
  * @author MagicPOS
  */
 public class Conexion {
-  private String db = "bld9w4cxyecovqqpndrg";
-  private String user = "uch4ep8usc1dteku";
-  private String pwd = "e1L6iQOcwCspKYs4eQpt";
-  private String driver = "jdbc:mysql";
-  private String host = "bld9w4cxyecovqqpndrg-mysql.services.clever-cloud.com";
-  private String url = driver+"://"+host+"/"+db;
+  private final String db = "bld9w4cxyecovqqpndrg";
+  private final String user = "uch4ep8usc1dteku";
+  private final String pwd = "e1L6iQOcwCspKYs4eQpt";
+  private final String driver = "jdbc:mysql";
+  private final String host = "bld9w4cxyecovqqpndrg-mysql.services.clever-cloud.com";
+  private final String url = driver+"://"+host+"/"+db;
   private Connection con = null;
   
   public boolean conectar(){
@@ -32,4 +32,9 @@ public class Conexion {
     }
     return false;
   }
+
+  public Connection getCon() {
+    return con;
+  }
+  
 }

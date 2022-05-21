@@ -5,15 +5,7 @@
  */
 package magicpos;
 
-import database.Conexion;
-import vistas.AgregarCategoria;
-import vistas.AgregarInventario;
-import vistas.AgregarProducto;
-import vistas.AgregarProveedor;
-import vistas.AgregarUsuario;
-import vistas.GestionDeUsuarios;
 import vistas.IniciarSesion;
-import vistas.PanelAdmin;
 
 /**
  *
@@ -26,25 +18,9 @@ public class Main {
    */
   public static void main(String[] args) {
     // TODO code application logic here
-    System.out.println("MagicPOS is amazing!");
-
-//    IniciarSesion iniciar = new IniciarSesion();
-//    PanelAdmin iniciar = new PanelAdmin();
-//    AgregarUsuario iniciar = new AgregarUsuario();
-//    AgregarCategoria iniciar = new AgregarCategoria();
-//    AgregarInventario iniciar = new AgregarInventario();
-//    AgregarProveedor iniciar = new AgregarProveedor();
-//    AgregarProducto iniciar = new AgregarProducto();
-    GestionDeUsuarios iniciar = new GestionDeUsuarios();
-
-    Conexion con = new Conexion();
-    if(con.conectar()){
-      System.out.println("Estamos conectados");
-    }else{
-      System.out.println("Ya mamo");
-    }
-
-    iniciar.setVisible(true);
+    IniciarSesion login = new IniciarSesion();
+    login.setLocationRelativeTo(null);
+    login.setVisible(true);
   }
 
 }

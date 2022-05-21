@@ -1,15 +1,21 @@
 package vistas;
 
+import controladores.DAORolUsuarioImpl;
+import controladores.DAOUsuarioImpl;
+import dao.DAORolUsuario;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import modelos.RolUsuario;
+import modelos.Usuario;
 
 /**
  *
@@ -99,6 +105,11 @@ public class IniciarSesion extends javax.swing.JFrame {
         botonIngresarMouseExited(evt);
       }
     });
+    botonIngresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonIngresarActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout panelContenedorLayout = new javax.swing.GroupLayout(panelContenedor);
     panelContenedor.setLayout(panelContenedorLayout);
@@ -182,6 +193,23 @@ public class IniciarSesion extends javax.swing.JFrame {
       campoUsuario.setForeground(new Color(150, 150, 150));
     }
   }//GEN-LAST:event_campoContrasenaMousePressed
+
+  private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+    // TODO add your handling code here:
+    String nombre = this.campoUsuario.getText();
+    String pwd = new String(this.campoContrasena.getPassword());
+    System.out.println(nombre+" "+pwd);
+    DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
+    Usuario usu = usuImpl.consultar(nombre, pwd);
+    System.out.println();
+    if(usuImpl.login(usu)){
+      DAORolUsuarioImpl rolImpl = new DAORolUsuarioImpl();
+      RolUsuario rol = rolImpl.consultar(usu.getRol().getFolioRol());
+      rolImpl.accesoPorRol(rol, this);
+    }else{
+      System.out.println("Oh no");
+    }
+  }//GEN-LAST:event_botonIngresarActionPerformed
 
   /**
    * @param args the command line arguments

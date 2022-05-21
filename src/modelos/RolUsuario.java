@@ -10,12 +10,27 @@ package modelos;
  * @author MagicPOS
  */
 public class RolUsuario {
-  private int folioRol;
+  private String folioRol;
   private String nombre;
 
-  public RolUsuario(int folioRol, String nombre) {
+  public RolUsuario(String folioRol, String nombre) {
     this.folioRol = folioRol;
     this.nombre = nombre;
   }
+  
+  public RolUsuario(String folioRol) {
+    this.folioRol = folioRol;
+    this.nombre = "";
+  }
+
+  public String getFolioRol() {
+    return folioRol;
+  }
+
+  public String getNombre() {
+    return nombre;
+  }
+  
+  
   
 }
