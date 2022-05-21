@@ -34,7 +34,6 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
   public GestionDeUsuarios() {
     this.setContentPane(fondo);
     initComponents();
-    this.setExtendedState(this.MAXIMIZED_BOTH);
     DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
     tablaUsuario.setModel(usuImpl.listar());
     tablaUsuario.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
@@ -72,6 +71,7 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(1080, 720));
+    setResizable(false);
     setSize(new java.awt.Dimension(800, 550));
 
     panelOpciones.setBackground(new java.awt.Color(252, 168, 1));
@@ -175,7 +175,7 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
     });
     panelOpciones.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 300, 40));
 
-    botonRegresar.setBackground(getBackground());
+    botonRegresar.setBackground(new java.awt.Color(252, 168, 1));
     botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
