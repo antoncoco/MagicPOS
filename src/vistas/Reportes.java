@@ -43,21 +43,23 @@ public class Reportes extends javax.swing.JFrame {
   private void initComponents() {
 
     panelOpciones = new javax.swing.JPanel();
-    etiquetaLista = new javax.swing.JLabel();
-    etiquetaOpciones = new javax.swing.JLabel();
+    etiquetaFiltros = new javax.swing.JLabel();
+    etiquetaReporte = new javax.swing.JLabel();
     Separador = new javax.swing.JTextField();
     botonregresar2 = new RoundJButton(7);
-    jLabel2 = new javax.swing.JLabel();
-    comboRol = new RoundJComboBox(7);
-    jLabel3 = new javax.swing.JLabel();
-    comboRol1 = new RoundJComboBox(7);
+    etiquetaTipo = new javax.swing.JLabel();
+    comboTipo = new RoundJComboBox(7);
+    etiquetaFF = new javax.swing.JLabel();
+    dateFF = new rojeru_san.componentes.RSDateChooser();
+    etiquetaFI = new javax.swing.JLabel();
+    dateFI = new rojeru_san.componentes.RSDateChooser();
     panelContenedor = new javax.swing.JPanel();
     etiquetaLogo = new javax.swing.JLabel();
     etiquetaTitulo = new javax.swing.JLabel();
-    jLabel1 = new javax.swing.JLabel();
-    campoUsuario = new RoundJTextField(7);
-    botonregresar1 = new RoundJButton(7);
-    botonregresar3 = new RoundJButton(7);
+    etiquetaRuta = new javax.swing.JLabel();
+    campoRuta = new RoundJTextField(7);
+    botonDescargar = new RoundJButton(7);
+    botonGuardar = new RoundJButton(7);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(1080, 720));
@@ -66,15 +68,15 @@ public class Reportes extends javax.swing.JFrame {
     panelOpciones.setBackground(new java.awt.Color(252, 168, 1));
     panelOpciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-    etiquetaLista.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 40)); // NOI18N
-    etiquetaLista.setForeground(new java.awt.Color(255, 255, 255));
-    etiquetaLista.setText("Filtros del");
-    panelOpciones.add(etiquetaLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 220, -1));
+    etiquetaFiltros.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 40)); // NOI18N
+    etiquetaFiltros.setForeground(new java.awt.Color(255, 255, 255));
+    etiquetaFiltros.setText("Filtros del");
+    panelOpciones.add(etiquetaFiltros, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 220, -1));
 
-    etiquetaOpciones.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 40)); // NOI18N
-    etiquetaOpciones.setForeground(new java.awt.Color(255, 255, 255));
-    etiquetaOpciones.setText("reporte");
-    panelOpciones.add(etiquetaOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 160, -1));
+    etiquetaReporte.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 40)); // NOI18N
+    etiquetaReporte.setForeground(new java.awt.Color(255, 255, 255));
+    etiquetaReporte.setText("reporte");
+    panelOpciones.add(etiquetaReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 160, -1));
 
     Separador.setEditable(false);
     Separador.setBackground(new java.awt.Color(255, 212, 1));
@@ -89,27 +91,40 @@ public class Reportes extends javax.swing.JFrame {
     botonregresar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     panelOpciones.add(botonregresar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
 
-    jLabel2.setBackground(new java.awt.Color(252, 168, 1));
-    jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-    jLabel2.setText("Selec. el tipo de reporte");
-    panelOpciones.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+    etiquetaTipo.setBackground(new java.awt.Color(252, 168, 1));
+    etiquetaTipo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+    etiquetaTipo.setText("Selec. el tipo de reporte");
+    panelOpciones.add(etiquetaTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
-    comboRol.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    comboRol.setForeground(new java.awt.Color(150, 150, 150));
-    comboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cierre de caja", "Reporte de ventas", "Reporte de inventario", "Reporte de merma" }));
-    comboRol.setBorder(null);
-    panelOpciones.add(comboRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 290, 40));
+    comboTipo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    comboTipo.setForeground(new java.awt.Color(196, 196, 196));
+    comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cierre de caja", "Reporte de ventas", "Reporte de inventario", "Reporte de merma" }));
+    comboTipo.setBorder(null);
+    panelOpciones.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 290, 40));
 
-    jLabel3.setBackground(new java.awt.Color(252, 168, 1));
-    jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-    jLabel3.setText("Fecha de inicio");
-    panelOpciones.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, -1));
+    etiquetaFF.setBackground(new java.awt.Color(252, 168, 1));
+    etiquetaFF.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+    etiquetaFF.setText("Fecha final");
+    panelOpciones.add(etiquetaFF, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, -1, -1));
 
-    comboRol1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    comboRol1.setForeground(new java.awt.Color(150, 150, 150));
-    comboRol1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cierre de caja", "Reporte de ventas", "Reporte de inventario", "Reporte de merma" }));
-    comboRol1.setBorder(null);
-    panelOpciones.add(comboRol1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 290, 40));
+    dateFF.setColorBackground(new java.awt.Color(196, 196, 196));
+    dateFF.setColorButtonHover(new java.awt.Color(254, 163, 88));
+    dateFF.setColorDiaActual(new java.awt.Color(255, 80, 0));
+    dateFF.setColorForeground(new java.awt.Color(196, 196, 196));
+    dateFF.setFuente(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    panelOpciones.add(dateFF, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 290, -1));
+
+    etiquetaFI.setBackground(new java.awt.Color(252, 168, 1));
+    etiquetaFI.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+    etiquetaFI.setText("Fecha de inicio");
+    panelOpciones.add(etiquetaFI, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, -1));
+
+    dateFI.setColorBackground(new java.awt.Color(196, 196, 196));
+    dateFI.setColorButtonHover(new java.awt.Color(254, 163, 88));
+    dateFI.setColorDiaActual(new java.awt.Color(255, 80, 0));
+    dateFI.setColorForeground(new java.awt.Color(196, 196, 196));
+    dateFI.setFuente(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    panelOpciones.add(dateFI, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 290, -1));
 
     panelContenedor.setBackground(new java.awt.Color(255, 255, 255));
     panelContenedor.setMaximumSize(new java.awt.Dimension(653, 363));
@@ -125,34 +140,43 @@ public class Reportes extends javax.swing.JFrame {
     etiquetaTitulo.setText("Reportes");
     panelContenedor.add(etiquetaTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
 
-    jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-    jLabel1.setText("Indique la ruta de descarga:");
-    panelContenedor.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+    etiquetaRuta.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+    etiquetaRuta.setText("Indique la ruta de descarga:");
+    panelContenedor.add(etiquetaRuta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
-    campoUsuario.setBackground(new java.awt.Color(231, 231, 231));
-    campoUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoUsuario.setForeground(new java.awt.Color(150, 150, 150));
-    campoUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoUsuario.setBorder(null);
-    campoUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+    campoRuta.setBackground(new java.awt.Color(231, 231, 231));
+    campoRuta.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoRuta.setForeground(new java.awt.Color(150, 150, 150));
+    campoRuta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoRuta.setBorder(null);
+    campoRuta.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mousePressed(java.awt.event.MouseEvent evt) {
-        campoUsuarioMousePressed(evt);
+        campoRutaMousePressed(evt);
       }
     });
-    panelContenedor.add(campoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 550, 30));
+    panelContenedor.add(campoRuta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 550, 30));
 
-    botonregresar1.setBackground(new java.awt.Color(255, 185, 102));
-    botonregresar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/descargar.png"))); // NOI18N
-    botonregresar1.setText("Descargar reporte");
-    botonregresar1.setBorder(null);
-    botonregresar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    panelContenedor.add(botonregresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 190, 60));
+    botonDescargar.setBackground(new java.awt.Color(255, 185, 102));
+    botonDescargar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+    botonDescargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/descargar.png"))); // NOI18N
+    botonDescargar.setText("Descargar reporte");
+    botonDescargar.setBorder(null);
+    botonDescargar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonDescargar.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        botonDescargarMouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        botonDescargarMouseExited(evt);
+      }
+    });
+    panelContenedor.add(botonDescargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 230, 60));
 
-    botonregresar3.setBackground(new java.awt.Color(255, 255, 255));
-    botonregresar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/guardar.png"))); // NOI18N
-    botonregresar3.setBorder(null);
-    botonregresar3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    panelContenedor.add(botonregresar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, -1, -1));
+    botonGuardar.setBackground(new java.awt.Color(255, 255, 255));
+    botonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/guardar.png"))); // NOI18N
+    botonGuardar.setBorder(null);
+    botonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    panelContenedor.add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, -1, -1));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -178,9 +202,18 @@ public class Reportes extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  private void campoUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoUsuarioMousePressed
+  private void campoRutaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoRutaMousePressed
     
-  }//GEN-LAST:event_campoUsuarioMousePressed
+  }//GEN-LAST:event_campoRutaMousePressed
+
+  private void botonDescargarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDescargarMouseEntered
+    // TODO add your handling code here:
+    botonDescargar.setBackground(new Color(255, 109, 0));
+  }//GEN-LAST:event_botonDescargarMouseEntered
+
+  private void botonDescargarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDescargarMouseExited
+    botonDescargar.setBackground(new Color(255,185,102));
+  }//GEN-LAST:event_botonDescargarMouseExited
 
   /**
    * @param args the command line arguments
@@ -219,19 +252,21 @@ public class Reportes extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTextField Separador;
-  private javax.swing.JButton botonregresar1;
+  private javax.swing.JButton botonDescargar;
+  private javax.swing.JButton botonGuardar;
   private javax.swing.JButton botonregresar2;
-  private javax.swing.JButton botonregresar3;
-  private javax.swing.JTextField campoUsuario;
-  private javax.swing.JComboBox<String> comboRol;
-  private javax.swing.JComboBox<String> comboRol1;
-  private javax.swing.JLabel etiquetaLista;
+  private javax.swing.JTextField campoRuta;
+  private javax.swing.JComboBox<String> comboTipo;
+  private rojeru_san.componentes.RSDateChooser dateFF;
+  private rojeru_san.componentes.RSDateChooser dateFI;
+  private javax.swing.JLabel etiquetaFF;
+  private javax.swing.JLabel etiquetaFI;
+  private javax.swing.JLabel etiquetaFiltros;
   private javax.swing.JLabel etiquetaLogo;
-  private javax.swing.JLabel etiquetaOpciones;
+  private javax.swing.JLabel etiquetaReporte;
+  private javax.swing.JLabel etiquetaRuta;
+  private javax.swing.JLabel etiquetaTipo;
   private javax.swing.JLabel etiquetaTitulo;
-  private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel2;
-  private javax.swing.JLabel jLabel3;
   private javax.swing.JPanel panelContenedor;
   private javax.swing.JPanel panelOpciones;
   // End of variables declaration//GEN-END:variables
