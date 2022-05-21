@@ -10,6 +10,7 @@ import vistas.AgregarInventario;
 import vistas.AgregarProducto;
 import vistas.AgregarProveedor;
 import vistas.AgregarUsuario;
+import vistas.GestionDeUsuarios;
 import vistas.IniciarSesion;
 import vistas.PanelAdmin;
 
@@ -32,7 +33,8 @@ public class Main {
 //    AgregarCategoria iniciar = new AgregarCategoria();
 //    AgregarInventario iniciar = new AgregarInventario();
 //    AgregarProveedor iniciar = new AgregarProveedor();
-    AgregarProducto iniciar = new AgregarProducto();
+//    AgregarProducto iniciar = new AgregarProducto();
+    GestionDeUsuarios iniciar = new GestionDeUsuarios();
     iniciar.setVisible(true);
   }
 
