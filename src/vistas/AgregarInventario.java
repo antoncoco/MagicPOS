@@ -51,7 +51,7 @@ public class AgregarInventario extends javax.swing.JFrame {
     etiquetaCaducidad = new javax.swing.JLabel();
     campoCaducidad = new RoundJTextField(7);
     comboProducto = new javax.swing.JComboBox<>();
-    botonregresar1 = new RoundJButton(7);
+    botonRegresar = new RoundJButton(7);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(800, 550));
@@ -126,10 +126,10 @@ public class AgregarInventario extends javax.swing.JFrame {
 
     comboProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-    botonregresar1.setBackground(new java.awt.Color(255, 255, 255));
-    botonregresar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
-    botonregresar1.setBorder(null);
-    botonregresar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.setBackground(new java.awt.Color(255, 255, 255));
+    botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
+    botonRegresar.setBorder(null);
+    botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     javax.swing.GroupLayout panelContenedorLayout = new javax.swing.GroupLayout(panelContenedor);
     panelContenedor.setLayout(panelContenedorLayout);
@@ -142,7 +142,7 @@ public class AgregarInventario extends javax.swing.JFrame {
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(panelContenedorLayout.createSequentialGroup()
             .addGap(240, 617, Short.MAX_VALUE)
-            .addComponent(botonregresar1))
+            .addComponent(botonRegresar))
           .addGroup(panelContenedorLayout.createSequentialGroup()
             .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(panelContenedorLayout.createSequentialGroup()
@@ -213,7 +213,7 @@ public class AgregarInventario extends javax.swing.JFrame {
             .addGap(0, 30, Short.MAX_VALUE))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
             .addGap(0, 0, Short.MAX_VALUE)
-            .addComponent(botonregresar1)))
+            .addComponent(botonRegresar)))
         .addContainerGap())
     );
 
@@ -282,7 +282,7 @@ public class AgregarInventario extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton botonIngresar;
-  private javax.swing.JButton botonregresar1;
+  private javax.swing.JButton botonRegresar;
   private javax.swing.JTextField campoCaducidad;
   private javax.swing.JTextField campoCantidad;
   private javax.swing.JTextField campoFechaReg;

@@ -31,9 +31,9 @@ public class Venta extends javax.swing.JFrame {
     initComponents();
     this.setExtendedState(this.MAXIMIZED_BOTH);
     
-    tablaUsuario.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
-    tablaUsuario.getTableHeader().setOpaque(false);
-    tablaUsuario.getTableHeader().setBackground(Color.WHITE);
+    tablaVenta.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
+    tablaVenta.getTableHeader().setOpaque(false);
+    tablaVenta.getTableHeader().setBackground(Color.WHITE);
     
 //    tablaUsuario.setPreferredSize(new Dimension(panelContenedor.getSize()));
   }
@@ -51,27 +51,28 @@ public class Venta extends javax.swing.JFrame {
     Separador = new javax.swing.JTextField();
     botonSeleccionar = new RoundJButton(7);
     botonTerminarComp = new RoundJButton(7);
-    etiquetaLista = new javax.swing.JLabel();
+    etiquetaTotalPag = new javax.swing.JLabel();
     jPanel1 = new javax.swing.JPanel();
     Separador1 = new javax.swing.JTextField();
-    etiquetaLista1 = new javax.swing.JLabel();
-    etiquetaLista3 = new javax.swing.JLabel();
-    campoContrasena = new RoundJPasswordField(7);
-    etiquetaLista4 = new javax.swing.JLabel();
-    campoContrasena1 = new RoundJPasswordField(7);
-    etiquetaLista5 = new javax.swing.JLabel();
-    campoContrasena2 = new RoundJPasswordField(7);
-    etiquetaLista2 = new javax.swing.JLabel();
+    etiquetaTicket = new javax.swing.JLabel();
+    etiquetaTotalTick = new javax.swing.JLabel();
+    campoTotal = new RoundJPasswordField(7);
+    etiquetaEfectivo = new javax.swing.JLabel();
+    campoEfectivo = new RoundJPasswordField(7);
+    etiquetaCambio = new javax.swing.JLabel();
+    campoCambio = new RoundJPasswordField(7);
+    etiquetaTotal = new javax.swing.JLabel();
     botonEliminar = new RoundJButton(7);
+    botonRegresar = new RoundJButton(7);
     panelContenedor = new javax.swing.JPanel();
     etiquetaLogo = new javax.swing.JLabel();
     etiquetaTitulo = new javax.swing.JLabel();
     jScrollPane1 = new javax.swing.JScrollPane();
-    tablaUsuario = new javax.swing.JTable();
-    etiquetaLista6 = new javax.swing.JLabel();
-    campoContrasena3 = new RoundJPasswordField(7);
-    etiquetaLista7 = new javax.swing.JLabel();
-    campoContrasena4 = new RoundJPasswordField(7);
+    tablaVenta = new javax.swing.JTable();
+    etiquetaFolioVent = new javax.swing.JLabel();
+    campoFolio = new RoundJPasswordField(7);
+    etiquetaFechaReg = new javax.swing.JLabel();
+    campoFechaReg = new RoundJPasswordField(7);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(1080, 720));
@@ -119,13 +120,13 @@ public class Venta extends javax.swing.JFrame {
         botonTerminarCompMouseExited(evt);
       }
     });
-    panelOpciones.add(botonTerminarComp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 300, 40));
+    panelOpciones.add(botonTerminarComp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 260, 30));
 
-    etiquetaLista.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 40)); // NOI18N
-    etiquetaLista.setForeground(new java.awt.Color(255, 255, 255));
-    etiquetaLista.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    etiquetaLista.setText("0.0");
-    panelOpciones.add(etiquetaLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 250, -1));
+    etiquetaTotalPag.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 40)); // NOI18N
+    etiquetaTotalPag.setForeground(new java.awt.Color(255, 255, 255));
+    etiquetaTotalPag.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    etiquetaTotalPag.setText("0.0");
+    panelOpciones.add(etiquetaTotalPag, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 250, -1));
 
     jPanel1.setBackground(new java.awt.Color(255, 255, 255));
     jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -136,47 +137,47 @@ public class Venta extends javax.swing.JFrame {
     Separador1.setBorder(null);
     Separador1.setMinimumSize(new java.awt.Dimension(0, 0));
 
-    etiquetaLista1.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-    etiquetaLista1.setForeground(new java.awt.Color(0, 0, 0));
-    etiquetaLista1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    etiquetaLista1.setText("Ticket");
-    etiquetaLista1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+    etiquetaTicket.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+    etiquetaTicket.setForeground(new java.awt.Color(0, 0, 0));
+    etiquetaTicket.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    etiquetaTicket.setText("Ticket");
+    etiquetaTicket.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-    etiquetaLista3.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-    etiquetaLista3.setForeground(new java.awt.Color(0, 0, 0));
-    etiquetaLista3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    etiquetaLista3.setText("Total MXN $:");
-    etiquetaLista3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+    etiquetaTotalTick.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+    etiquetaTotalTick.setForeground(new java.awt.Color(0, 0, 0));
+    etiquetaTotalTick.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    etiquetaTotalTick.setText("Total MXN $:");
+    etiquetaTotalTick.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-    campoContrasena.setBackground(new java.awt.Color(208, 208, 208));
-    campoContrasena.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoContrasena.setForeground(new java.awt.Color(150, 150, 150));
-    campoContrasena.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoContrasena.setBorder(null);
+    campoTotal.setBackground(new java.awt.Color(208, 208, 208));
+    campoTotal.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoTotal.setForeground(new java.awt.Color(150, 150, 150));
+    campoTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoTotal.setBorder(null);
 
-    etiquetaLista4.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-    etiquetaLista4.setForeground(new java.awt.Color(0, 0, 0));
-    etiquetaLista4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    etiquetaLista4.setText("Efectivo:");
-    etiquetaLista4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+    etiquetaEfectivo.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+    etiquetaEfectivo.setForeground(new java.awt.Color(0, 0, 0));
+    etiquetaEfectivo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    etiquetaEfectivo.setText("Efectivo:");
+    etiquetaEfectivo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-    campoContrasena1.setBackground(new java.awt.Color(208, 208, 208));
-    campoContrasena1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoContrasena1.setForeground(new java.awt.Color(150, 150, 150));
-    campoContrasena1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoContrasena1.setBorder(null);
+    campoEfectivo.setBackground(new java.awt.Color(208, 208, 208));
+    campoEfectivo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoEfectivo.setForeground(new java.awt.Color(150, 150, 150));
+    campoEfectivo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoEfectivo.setBorder(null);
 
-    etiquetaLista5.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-    etiquetaLista5.setForeground(new java.awt.Color(0, 0, 0));
-    etiquetaLista5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    etiquetaLista5.setText("Cambio:");
-    etiquetaLista5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+    etiquetaCambio.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+    etiquetaCambio.setForeground(new java.awt.Color(0, 0, 0));
+    etiquetaCambio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    etiquetaCambio.setText("Cambio:");
+    etiquetaCambio.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-    campoContrasena2.setBackground(new java.awt.Color(208, 208, 208));
-    campoContrasena2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoContrasena2.setForeground(new java.awt.Color(150, 150, 150));
-    campoContrasena2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoContrasena2.setBorder(null);
+    campoCambio.setBackground(new java.awt.Color(208, 208, 208));
+    campoCambio.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoCambio.setForeground(new java.awt.Color(150, 150, 150));
+    campoCambio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoCambio.setBorder(null);
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
@@ -187,53 +188,53 @@ public class Venta extends javax.swing.JFrame {
         .addGap(0, 0, Short.MAX_VALUE))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(etiquetaLista1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(etiquetaTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(24, 24, 24))
       .addGroup(jPanel1Layout.createSequentialGroup()
         .addGap(21, 21, 21)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(etiquetaLista5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(etiquetaCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(campoContrasena2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(campoCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(etiquetaLista4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(etiquetaEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(campoContrasena1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(campoEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(etiquetaLista3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(etiquetaTotalTick, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(campoContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(jPanel1Layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(etiquetaLista1)
+        .addComponent(etiquetaTicket)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(Separador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(etiquetaLista3)
-          .addComponent(campoContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(etiquetaTotalTick)
+          .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(etiquetaLista4)
-          .addComponent(campoContrasena1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(etiquetaEfectivo)
+          .addComponent(campoEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(etiquetaLista5)
-          .addComponent(campoContrasena2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(etiquetaCambio)
+          .addComponent(campoCambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addContainerGap(23, Short.MAX_VALUE))
     );
 
     panelOpciones.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 300, 170));
 
-    etiquetaLista2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 40)); // NOI18N
-    etiquetaLista2.setForeground(new java.awt.Color(255, 255, 255));
-    etiquetaLista2.setText("Total MXN $:");
-    panelOpciones.add(etiquetaLista2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 250, -1));
+    etiquetaTotal.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 40)); // NOI18N
+    etiquetaTotal.setForeground(new java.awt.Color(255, 255, 255));
+    etiquetaTotal.setText("Total MXN $:");
+    panelOpciones.add(etiquetaTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 250, -1));
 
     botonEliminar.setBackground(new java.awt.Color(255, 255, 255));
     botonEliminar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
@@ -252,6 +253,12 @@ public class Venta extends javax.swing.JFrame {
     });
     panelOpciones.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 300, 40));
 
+    botonRegresar.setBackground(getBackground());
+    botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
+    botonRegresar.setBorder(null);
+    botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    panelOpciones.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
+
     panelContenedor.setBackground(new java.awt.Color(255, 255, 255));
     panelContenedor.setMaximumSize(new java.awt.Dimension(653, 363));
     panelContenedor.setMinimumSize(new java.awt.Dimension(653, 363));
@@ -266,9 +273,9 @@ public class Venta extends javax.swing.JFrame {
     etiquetaTitulo.setText("Venta");
     panelContenedor.add(etiquetaTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
 
-    tablaUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 150, 150)));
-    tablaUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    tablaUsuario.setModel(new javax.swing.table.DefaultTableModel(
+    tablaVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 150, 150)));
+    tablaVenta.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    tablaVenta.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
         {null, null, null, null, null},
         {null, null, null, null, null},
@@ -279,43 +286,43 @@ public class Venta extends javax.swing.JFrame {
         "Cantidad", "Producto", "Precio unitario", "Descuento", "Importe"
       }
     ));
-    tablaUsuario.setFocusable(false);
-    tablaUsuario.setGridColor(new java.awt.Color(150, 150, 150));
-    tablaUsuario.setIntercellSpacing(new java.awt.Dimension(0, 0));
-    tablaUsuario.setRowHeight(25);
-    tablaUsuario.setSelectionBackground(new java.awt.Color(254, 163, 88));
-    tablaUsuario.getTableHeader().setReorderingAllowed(false);
-    jScrollPane1.setViewportView(tablaUsuario);
+    tablaVenta.setFocusable(false);
+    tablaVenta.setGridColor(new java.awt.Color(150, 150, 150));
+    tablaVenta.setIntercellSpacing(new java.awt.Dimension(0, 0));
+    tablaVenta.setRowHeight(25);
+    tablaVenta.setSelectionBackground(new java.awt.Color(254, 163, 88));
+    tablaVenta.getTableHeader().setReorderingAllowed(false);
+    jScrollPane1.setViewportView(tablaVenta);
 
     panelContenedor.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 117, 670, 490));
 
-    etiquetaLista6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-    etiquetaLista6.setForeground(new java.awt.Color(0, 0, 0));
-    etiquetaLista6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    etiquetaLista6.setText("Folio de venta:");
-    etiquetaLista6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-    panelContenedor.add(etiquetaLista6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 150, -1));
+    etiquetaFolioVent.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+    etiquetaFolioVent.setForeground(new java.awt.Color(0, 0, 0));
+    etiquetaFolioVent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    etiquetaFolioVent.setText("Folio de venta:");
+    etiquetaFolioVent.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+    panelContenedor.add(etiquetaFolioVent, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 150, -1));
 
-    campoContrasena3.setBackground(new java.awt.Color(208, 208, 208));
-    campoContrasena3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoContrasena3.setForeground(new java.awt.Color(150, 150, 150));
-    campoContrasena3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoContrasena3.setBorder(null);
-    panelContenedor.add(campoContrasena3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 100, -1));
+    campoFolio.setBackground(new java.awt.Color(208, 208, 208));
+    campoFolio.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoFolio.setForeground(new java.awt.Color(150, 150, 150));
+    campoFolio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoFolio.setBorder(null);
+    panelContenedor.add(campoFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 100, -1));
 
-    etiquetaLista7.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-    etiquetaLista7.setForeground(new java.awt.Color(0, 0, 0));
-    etiquetaLista7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    etiquetaLista7.setText("Fecha de registro:");
-    etiquetaLista7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-    panelContenedor.add(etiquetaLista7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 180, -1));
+    etiquetaFechaReg.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+    etiquetaFechaReg.setForeground(new java.awt.Color(0, 0, 0));
+    etiquetaFechaReg.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    etiquetaFechaReg.setText("Fecha de registro:");
+    etiquetaFechaReg.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+    panelContenedor.add(etiquetaFechaReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 180, -1));
 
-    campoContrasena4.setBackground(new java.awt.Color(208, 208, 208));
-    campoContrasena4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoContrasena4.setForeground(new java.awt.Color(150, 150, 150));
-    campoContrasena4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoContrasena4.setBorder(null);
-    panelContenedor.add(campoContrasena4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 110, -1));
+    campoFechaReg.setBackground(new java.awt.Color(208, 208, 208));
+    campoFechaReg.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoFechaReg.setForeground(new java.awt.Color(150, 150, 150));
+    campoFechaReg.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoFechaReg.setBorder(null);
+    panelContenedor.add(campoFechaReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 110, -1));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -404,28 +411,29 @@ public class Venta extends javax.swing.JFrame {
   private javax.swing.JTextField Separador;
   private javax.swing.JTextField Separador1;
   private javax.swing.JButton botonEliminar;
+  private javax.swing.JButton botonRegresar;
   private javax.swing.JButton botonSeleccionar;
   private javax.swing.JButton botonTerminarComp;
-  private javax.swing.JPasswordField campoContrasena;
-  private javax.swing.JPasswordField campoContrasena1;
-  private javax.swing.JPasswordField campoContrasena2;
-  private javax.swing.JPasswordField campoContrasena3;
-  private javax.swing.JPasswordField campoContrasena4;
-  private javax.swing.JLabel etiquetaLista;
-  private javax.swing.JLabel etiquetaLista1;
-  private javax.swing.JLabel etiquetaLista2;
-  private javax.swing.JLabel etiquetaLista3;
-  private javax.swing.JLabel etiquetaLista4;
-  private javax.swing.JLabel etiquetaLista5;
-  private javax.swing.JLabel etiquetaLista6;
-  private javax.swing.JLabel etiquetaLista7;
+  private javax.swing.JPasswordField campoCambio;
+  private javax.swing.JPasswordField campoEfectivo;
+  private javax.swing.JPasswordField campoFechaReg;
+  private javax.swing.JPasswordField campoFolio;
+  private javax.swing.JPasswordField campoTotal;
+  private javax.swing.JLabel etiquetaCambio;
+  private javax.swing.JLabel etiquetaEfectivo;
+  private javax.swing.JLabel etiquetaFechaReg;
+  private javax.swing.JLabel etiquetaFolioVent;
   private javax.swing.JLabel etiquetaLogo;
+  private javax.swing.JLabel etiquetaTicket;
   private javax.swing.JLabel etiquetaTitulo;
+  private javax.swing.JLabel etiquetaTotal;
+  private javax.swing.JLabel etiquetaTotalPag;
+  private javax.swing.JLabel etiquetaTotalTick;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JPanel panelContenedor;
   private javax.swing.JPanel panelOpciones;
-  private javax.swing.JTable tablaUsuario;
+  private javax.swing.JTable tablaVenta;
   // End of variables declaration//GEN-END:variables
 
   class FondoPanel extends JPanel {

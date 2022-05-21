@@ -1,5 +1,6 @@
 package vistas;
 
+import controladores.DAOUsuarioImpl;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,12 +8,16 @@ import java.awt.Image;
 import java.awt.Shape;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
+import java.util.List;
+import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
+import modelos.Usuario;
 
 
 /**
@@ -30,10 +35,12 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
     this.setContentPane(fondo);
     initComponents();
     this.setExtendedState(this.MAXIMIZED_BOTH);
-    
+    DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
+    tablaUsuario.setModel(usuImpl.listar());
     tablaUsuario.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
     tablaUsuario.getTableHeader().setOpaque(false);
     tablaUsuario.getTableHeader().setBackground(Color.WHITE);
+    
     
 //    tablaUsuario.setPreferredSize(new Dimension(panelContenedor.getSize()));
   }
@@ -56,6 +63,7 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
     botonAgregar = new RoundJButton(7);
     botonEliminar = new RoundJButton(7);
     botonActualizar = new RoundJButton(7);
+    botonRegresar = new RoundJButton(7);
     panelContenedor = new javax.swing.JPanel();
     etiquetaLogo = new javax.swing.JLabel();
     etiquetaTitulo = new javax.swing.JLabel();
@@ -82,7 +90,6 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
     botonBuscar.setBackground(new java.awt.Color(196, 196, 196));
     botonBuscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     botonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buscador.png"))); // NOI18N
-    botonBuscar.setText("");
     botonBuscar.setBorder(null);
     botonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     botonBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -167,6 +174,12 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
       }
     });
     panelOpciones.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 300, 40));
+
+    botonRegresar.setBackground(getBackground());
+    botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
+    botonRegresar.setBorder(null);
+    botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    panelOpciones.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
 
     panelContenedor.setBackground(new java.awt.Color(255, 255, 255));
     panelContenedor.setMaximumSize(new java.awt.Dimension(653, 363));
@@ -309,6 +322,7 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
   private javax.swing.JButton botonAgregar;
   private javax.swing.JButton botonBuscar;
   private javax.swing.JButton botonEliminar;
+  private javax.swing.JButton botonRegresar;
   private javax.swing.JTextField campoBuscar;
   private javax.swing.JLabel etiquetaLista;
   private javax.swing.JLabel etiquetaLogo;

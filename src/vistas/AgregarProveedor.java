@@ -67,7 +67,7 @@ public class AgregarProveedor extends javax.swing.JFrame {
     etiquetaNumInt = new javax.swing.JLabel();
     campoSitioWeb = new RoundJTextField(7);
     etiquetaSitioWeb = new javax.swing.JLabel();
-    botonregresar1 = new RoundJButton(7);
+    botonRegresar = new RoundJButton(7);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(800, 550));
@@ -243,10 +243,10 @@ public class AgregarProveedor extends javax.swing.JFrame {
     etiquetaSitioWeb.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     etiquetaSitioWeb.setText("Sitio web:");
 
-    botonregresar1.setBackground(new java.awt.Color(255, 255, 255));
-    botonregresar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
-    botonregresar1.setBorder(null);
-    botonregresar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.setBackground(new java.awt.Color(255, 255, 255));
+    botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
+    botonRegresar.setBorder(null);
+    botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     javax.swing.GroupLayout panelContenedorLayout = new javax.swing.GroupLayout(panelContenedor);
     panelContenedor.setLayout(panelContenedorLayout);
@@ -301,7 +301,7 @@ public class AgregarProveedor extends javax.swing.JFrame {
                     .addComponent(campoEstado)
                     .addComponent(campoCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addComponent(campoCP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-        .addContainerGap(38, Short.MAX_VALUE))
+        .addContainerGap(34, Short.MAX_VALUE))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
         .addGap(0, 0, Short.MAX_VALUE)
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,7 +311,7 @@ public class AgregarProveedor extends javax.swing.JFrame {
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
             .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(187, 187, 187)
-            .addComponent(botonregresar1)
+            .addComponent(botonRegresar)
             .addContainerGap())))
     );
     panelContenedorLayout.setVerticalGroup(
@@ -383,7 +383,7 @@ public class AgregarProveedor extends javax.swing.JFrame {
         .addGap(15, 15, 15))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
         .addGap(0, 0, Short.MAX_VALUE)
-        .addComponent(botonregresar1)
+        .addComponent(botonRegresar)
         .addContainerGap())
     );
 
@@ -472,7 +472,7 @@ public class AgregarProveedor extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton botonIngresar;
-  private javax.swing.JButton botonregresar1;
+  private javax.swing.JButton botonRegresar;
   private javax.swing.JTextField campoCP;
   private javax.swing.JTextField campoCalle;
   private javax.swing.JTextField campoCiudad;

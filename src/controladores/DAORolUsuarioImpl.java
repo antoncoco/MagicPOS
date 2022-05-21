@@ -16,7 +16,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import modelos.RolUsuario;
+import vistas.IniciarSesion;
+import vistas.Inventario;
 import vistas.PanelAdmin;
+import vistas.Reportes;
+import vistas.Venta;
 
 /**
  *
@@ -34,14 +38,16 @@ public class DAORolUsuarioImpl implements DAORolUsuario{
         siguiente = new PanelAdmin();
         break;
       case "ROL-00002":
-        
+        siguiente = new Venta();
         break;
       case "ROL-00003":
+        siguiente = new Inventario();
         break;
       case "ROL-00004":
+        siguiente = new Reportes();
         break;
-      case "ROL-00005":
-        break;
+      default:
+        siguiente = new IniciarSesion();
     }
     siguiente.setLocationRelativeTo(anterior);
     anterior.dispose();
