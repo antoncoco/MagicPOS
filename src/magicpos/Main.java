@@ -5,6 +5,7 @@
  */
 package magicpos;
 
+import database.Conexion;
 import vistas.AgregarCategoria;
 import vistas.AgregarInventario;
 import vistas.AgregarProducto;
@@ -35,6 +36,14 @@ public class Main {
 //    AgregarProveedor iniciar = new AgregarProveedor();
 //    AgregarProducto iniciar = new AgregarProducto();
     GestionDeUsuarios iniciar = new GestionDeUsuarios();
+
+    Conexion con = new Conexion();
+    if(con.conectar()){
+      System.out.println("Estamos conectados");
+    }else{
+      System.out.println("Ya mamo");
+    }
+
     iniciar.setVisible(true);
   }
 
