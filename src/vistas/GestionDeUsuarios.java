@@ -139,6 +139,11 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
         botonAgregarMouseExited(evt);
       }
     });
+    botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonAgregarActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 300, 40));
 
     botonEliminar.setBackground(new java.awt.Color(255, 255, 255));
@@ -154,6 +159,11 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
       }
       public void mouseExited(java.awt.event.MouseEvent evt) {
         botonEliminarMouseExited(evt);
+      }
+    });
+    botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonEliminarActionPerformed(evt);
       }
     });
     panelOpciones.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 300, 40));
@@ -179,6 +189,11 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
     botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonRegresarActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
 
     panelContenedor.setBackground(new java.awt.Color(255, 255, 255));
@@ -280,6 +295,34 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
   private void botonActualizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseExited
     botonActualizar.setBackground(Color.WHITE);
   }//GEN-LAST:event_botonActualizarMouseExited
+
+  private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+    // TODO add your handling code here:
+    AgregarUsuario agregarUsu = new AgregarUsuario();
+    agregarUsu.setLocationRelativeTo(this);
+    agregarUsu.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonAgregarActionPerformed
+
+  private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+    // TODO add your handling code here:
+    PanelAdmin panelAdmin = new PanelAdmin();
+    panelAdmin.setLocationRelativeTo(this);
+    panelAdmin.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonRegresarActionPerformed
+
+  private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+    // TODO add your handling code here:
+    int filaSeleccionada = this.tablaUsuario.getSelectedRow();
+    if(filaSeleccionada == -1){
+      System.out.println("No se seleccionó nada");
+    }else{
+      String folioUsu = this.tablaUsuario.getValueAt(filaSeleccionada, 0).toString();
+      System.out.println(folioUsu);
+    }
+    
+  }//GEN-LAST:event_botonEliminarActionPerformed
 
   /**
    * @param args the command line arguments

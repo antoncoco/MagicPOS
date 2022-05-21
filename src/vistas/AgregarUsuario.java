@@ -1,16 +1,24 @@
 package vistas;
 
+import controladores.DAORolUsuarioImpl;
+import controladores.DAOUsuarioImpl;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import modelos.RolUsuario;
+import modelos.Usuario;
+import utils.Util;
 
 /**
  *
@@ -26,6 +34,13 @@ public class AgregarUsuario extends javax.swing.JFrame {
   public AgregarUsuario() {
     this.setContentPane(fondo);
     initComponents();
+    DAORolUsuarioImpl rolImpl = new DAORolUsuarioImpl();
+    List<RolUsuario> list = rolImpl.listarTodos();
+    ArrayList<String> arrlist = new ArrayList();
+    for(RolUsuario rol: list){
+      arrlist.add(rol.getNombre());
+    }
+    this.comboRol.setModel(new DefaultComboBoxModel(arrlist.toArray(new String[arrlist.size()])));
   }
 
   /**
@@ -84,6 +99,11 @@ public class AgregarUsuario extends javax.swing.JFrame {
         botonIngresarMouseExited(evt);
       }
     });
+    botonIngresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonIngresarActionPerformed(evt);
+      }
+    });
 
     etiquetaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logoHorizontal.png"))); // NOI18N
 
@@ -112,6 +132,11 @@ public class AgregarUsuario extends javax.swing.JFrame {
     botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonRegresarActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout panelContenedorLayout = new javax.swing.GroupLayout(panelContenedor);
     panelContenedor.setLayout(panelContenedorLayout);
@@ -143,7 +168,7 @@ public class AgregarUsuario extends javax.swing.JFrame {
                   .addComponent(etiquetaRol)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                   .addComponent(comboRol, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
             .addComponent(botonRegresar)))
         .addContainerGap())
     );
@@ -201,6 +226,37 @@ public class AgregarUsuario extends javax.swing.JFrame {
   private void botonIngresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIngresarMouseExited
     botonIngresar.setBackground(new Color(254, 163, 88));
   }//GEN-LAST:event_botonIngresarMouseExited
+
+  private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+    // TODO add your handling code here:
+    GestionDeUsuarios gestion = new GestionDeUsuarios();
+    gestion.setLocationRelativeTo(this);
+    gestion.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonRegresarActionPerformed
+
+  private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+    // TODO add your handling code here:
+    String nombre = this.campoUsuario.getText();
+    String pwd = new String(this.campoContrasena.getPassword());
+    String pwdEncriptado = Util.encriptar(pwd);
+    int rol = this.comboRol.getSelectedIndex() + 1;
+    String folioRol = Util.generarFolio("ROL", String.valueOf(rol));
+    
+    DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
+    List<Usuario> lista = usuImpl.listarTodos();
+    int cantidadUsuarios = lista.size();
+    int siguiente = cantidadUsuarios + 1;
+    String folioUsu = Util.generarFolio("USU", String.valueOf(siguiente));
+    Usuario usu = new Usuario(folioUsu, nombre, pwdEncriptado,new RolUsuario(folioRol));
+    
+    if(usuImpl.insertar(usu)){
+      System.out.println("YES");
+    }else{
+      System.out.println("Oh no");
+    }
+    
+  }//GEN-LAST:event_botonIngresarActionPerformed
 
   /**
    * @param args the command line arguments

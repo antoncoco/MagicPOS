@@ -97,7 +97,23 @@ public class DAOUsuarioImpl implements DAOUsuario{
 
   @Override
   public boolean insertar(Usuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      stmt.executeUpdate("INSERT INTO Usuario "
+              + "VALUES ('"+entidad.getFolio()+"', "
+              + "'"+entidad.getNombre()+"', "
+              + "'"+entidad.getRol().getFolioRol()+"', "
+              + "'"+entidad.getPwd()+"')");
+      
+      return true;
+    } catch (SQLException ex) {
+      Logger.getLogger(DAORolUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return false;
   }
 
   @Override
@@ -140,14 +156,14 @@ public class DAOUsuarioImpl implements DAOUsuario{
       ResultSetMetaData metaData = resultado.getMetaData();
       Vector<String> columnNames = new Vector<String>();
       int columnCount = metaData.getColumnCount();
-      for (int column = 1; column <= columnCount; column++) {
+      for (int column = 2; column <= columnCount; column++) {
           columnNames.add(metaData.getColumnName(column));
       }
 
       Vector<Vector<Object>> data = new Vector<Vector<Object>>();
       while (resultado.next()) {
         Vector<Object> vector = new Vector<Object>();
-        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+        for (int columnIndex = 2; columnIndex <= columnCount; columnIndex++) {
             vector.add(resultado.getObject(columnIndex));
         }
         data.add(vector);
