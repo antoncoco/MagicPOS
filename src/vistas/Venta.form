@@ -151,7 +151,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="etiquetaLista">
+        <Component class="javax.swing.JLabel" name="etiquetaTotalPag">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial Rounded MT Bold" size="40" style="0"/>
@@ -192,26 +192,26 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="etiquetaLista1" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="etiquetaTicket" min="-2" pref="250" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="etiquetaLista5" min="-2" pref="136" max="-2" attributes="0"/>
+                              <Component id="etiquetaCambio" min="-2" pref="136" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="campoContrasena2" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="campoCambio" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="etiquetaLista4" min="-2" pref="136" max="-2" attributes="0"/>
+                              <Component id="etiquetaEfectivo" min="-2" pref="136" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="campoContrasena1" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="campoEfectivo" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="etiquetaLista3" min="-2" pref="136" max="-2" attributes="0"/>
+                              <Component id="etiquetaTotalTick" min="-2" pref="136" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="campoContrasena" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="campoTotal" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -222,23 +222,23 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="etiquetaLista1" min="-2" max="-2" attributes="0"/>
+                      <Component id="etiquetaTicket" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="Separador1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="etiquetaLista3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoContrasena" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="etiquetaTotalTick" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoTotal" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="etiquetaLista4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoContrasena1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="etiquetaEfectivo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoEfectivo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="etiquetaLista5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoContrasena2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="etiquetaCambio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoCambio" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="23" max="32767" attributes="0"/>
                   </Group>
@@ -263,7 +263,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="etiquetaLista1">
+            <Component class="javax.swing.JLabel" name="etiquetaTicket">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Bahnschrift" size="18" style="0"/>
@@ -276,7 +276,7 @@
                 <Property name="verticalAlignment" type="int" value="3"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="etiquetaLista3">
+            <Component class="javax.swing.JLabel" name="etiquetaTotalTick">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Bahnschrift" size="18" style="0"/>
@@ -289,7 +289,7 @@
                 <Property name="verticalAlignment" type="int" value="3"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="campoContrasena">
+            <Component class="javax.swing.JPasswordField" name="campoTotal">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d0" green="d0" red="d0" type="rgb"/>
@@ -309,7 +309,7 @@
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundJPasswordField(7)"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="etiquetaLista4">
+            <Component class="javax.swing.JLabel" name="etiquetaEfectivo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Bahnschrift" size="18" style="0"/>
@@ -322,7 +322,7 @@
                 <Property name="verticalAlignment" type="int" value="3"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="campoContrasena1">
+            <Component class="javax.swing.JPasswordField" name="campoEfectivo">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d0" green="d0" red="d0" type="rgb"/>
@@ -342,7 +342,7 @@
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundJPasswordField(7)"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="etiquetaLista5">
+            <Component class="javax.swing.JLabel" name="etiquetaCambio">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Bahnschrift" size="18" style="0"/>
@@ -355,7 +355,7 @@
                 <Property name="verticalAlignment" type="int" value="3"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="campoContrasena2">
+            <Component class="javax.swing.JPasswordField" name="campoCambio">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d0" green="d0" red="d0" type="rgb"/>
@@ -377,7 +377,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="etiquetaLista2">
+        <Component class="javax.swing.JLabel" name="etiquetaTotal">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial Rounded MT Bold" size="40" style="0"/>
@@ -426,10 +426,10 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="botonregresar1">
+        <Component class="javax.swing.JButton" name="botonRegresar">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection component="Form" name="background" type="property"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/assets/regresar.png"/>
@@ -510,7 +510,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tablaUsuario">
+            <Component class="javax.swing.JTable" name="tablaVenta">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -578,7 +578,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="etiquetaLista6">
+        <Component class="javax.swing.JLabel" name="etiquetaFolioVent">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial Rounded MT Bold" size="18" style="1"/>
@@ -596,7 +596,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="campoContrasena3">
+        <Component class="javax.swing.JPasswordField" name="campoFolio">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="d0" green="d0" red="d0" type="rgb"/>
@@ -621,7 +621,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="etiquetaLista7">
+        <Component class="javax.swing.JLabel" name="etiquetaFechaReg">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial Rounded MT Bold" size="18" style="1"/>
@@ -639,7 +639,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="campoContrasena4">
+        <Component class="javax.swing.JPasswordField" name="campoFechaReg">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="d0" green="d0" red="d0" type="rgb"/>

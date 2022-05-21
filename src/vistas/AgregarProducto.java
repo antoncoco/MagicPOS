@@ -57,7 +57,7 @@ public class AgregarProducto extends javax.swing.JFrame {
     etiquetaDescont = new javax.swing.JLabel();
     campoCantLim = new RoundJTextField(7);
     etiquetaCantLim = new javax.swing.JLabel();
-    botonregresar1 = new RoundJButton(7);
+    botonRegresar = new RoundJButton(7);
     comboProveedor = new RoundJComboBox(7);
     comboCategoria = new RoundJComboBox(7);
 
@@ -162,10 +162,10 @@ public class AgregarProducto extends javax.swing.JFrame {
     etiquetaCantLim.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     etiquetaCantLim.setText("Cantidad límite:");
 
-    botonregresar1.setBackground(new java.awt.Color(255, 255, 255));
-    botonregresar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
-    botonregresar1.setBorder(null);
-    botonregresar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.setBackground(new java.awt.Color(255, 255, 255));
+    botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
+    botonRegresar.setBorder(null);
+    botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     comboProveedor.setBackground(new java.awt.Color(208, 208, 208));
     comboProveedor.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
@@ -199,7 +199,7 @@ public class AgregarProducto extends javax.swing.JFrame {
           .addGroup(panelContenedorLayout.createSequentialGroup()
             .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(botonregresar1)
+            .addComponent(botonRegresar)
             .addContainerGap())
           .addGroup(panelContenedorLayout.createSequentialGroup()
             .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -282,7 +282,7 @@ public class AgregarProducto extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
-            .addComponent(botonregresar1)
+            .addComponent(botonRegresar)
             .addContainerGap())
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
             .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -354,7 +354,7 @@ public class AgregarProducto extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton botonIngresar;
-  private javax.swing.JButton botonregresar1;
+  private javax.swing.JButton botonRegresar;
   private javax.swing.JTextField campoCantLim;
   private javax.swing.JTextField campoCantPedProv;
   private javax.swing.JTextField campoClave;
