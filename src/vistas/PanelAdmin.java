@@ -79,6 +79,11 @@ public class PanelAdmin extends javax.swing.JFrame {
         botonIngresarMouseExited(evt);
       }
     });
+    botonIngresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonIngresarActionPerformed(evt);
+      }
+    });
 
     etiquetaUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
     etiquetaUsuario.setText("Usuarios");
@@ -96,6 +101,11 @@ public class PanelAdmin extends javax.swing.JFrame {
       }
       public void mouseExited(java.awt.event.MouseEvent evt) {
         botonInventarioMouseExited(evt);
+      }
+    });
+    botonInventario.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonInventarioActionPerformed(evt);
       }
     });
 
@@ -118,6 +128,11 @@ public class PanelAdmin extends javax.swing.JFrame {
       }
       public void mouseExited(java.awt.event.MouseEvent evt) {
         botonReporteMouseExited(evt);
+      }
+    });
+    botonReporte.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonReporteActionPerformed(evt);
       }
     });
 
@@ -166,7 +181,7 @@ public class PanelAdmin extends javax.swing.JFrame {
                   .addGroup(panelContenedorLayout.createSequentialGroup()
                     .addGap(66, 66, 66)
                     .addComponent(etiquetaReporte)))))
-            .addGap(0, 82, Short.MAX_VALUE))
+            .addGap(0, 78, Short.MAX_VALUE))
           .addGroup(panelContenedorLayout.createSequentialGroup()
             .addGap(0, 0, Short.MAX_VALUE)
             .addComponent(botonregresar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -192,7 +207,7 @@ public class PanelAdmin extends javax.swing.JFrame {
             .addComponent(botonReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(etiquetaReporte)))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
         .addComponent(botonregresar)
         .addContainerGap())
     );
@@ -244,6 +259,30 @@ public class PanelAdmin extends javax.swing.JFrame {
   private void botonregresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonregresarActionPerformed
     // TODO add your handling code here:
   }//GEN-LAST:event_botonregresarActionPerformed
+
+  private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+    // TODO add your handling code here:
+    GestionDeUsuarios gestion = new GestionDeUsuarios();
+    gestion.setLocationRelativeTo(this);
+    gestion.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonIngresarActionPerformed
+
+  private void botonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInventarioActionPerformed
+    // TODO add your handling code here:
+    Inventario inventario = new Inventario();
+    inventario.setLocationRelativeTo(this);
+    inventario.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonInventarioActionPerformed
+
+  private void botonReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReporteActionPerformed
+    // TODO add your handling code here:
+    Reportes reportes = new Reportes();
+    reportes.setLocationRelativeTo(this);
+    reportes.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonReporteActionPerformed
 
   /**
    * @param args the command line arguments

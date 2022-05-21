@@ -1,5 +1,6 @@
 package vistas;
 
+import controladores.DAOUsuarioImpl;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,12 +8,16 @@ import java.awt.Image;
 import java.awt.Shape;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
+import java.util.List;
+import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
+import modelos.Usuario;
 
 
 /**
@@ -30,10 +35,12 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
     this.setContentPane(fondo);
     initComponents();
     this.setExtendedState(this.MAXIMIZED_BOTH);
-    
+    DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
+    tablaUsuario.setModel(usuImpl.listar());
     tablaUsuario.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
     tablaUsuario.getTableHeader().setOpaque(false);
     tablaUsuario.getTableHeader().setBackground(Color.WHITE);
+    
     
 //    tablaUsuario.setPreferredSize(new Dimension(panelContenedor.getSize()));
   }
