@@ -63,6 +63,7 @@ public class Venta extends javax.swing.JFrame {
     campoContrasena2 = new RoundJPasswordField(7);
     etiquetaLista2 = new javax.swing.JLabel();
     botonEliminar = new RoundJButton(7);
+    botonregresar1 = new RoundJButton(7);
     panelContenedor = new javax.swing.JPanel();
     etiquetaLogo = new javax.swing.JLabel();
     etiquetaTitulo = new javax.swing.JLabel();
@@ -119,7 +120,7 @@ public class Venta extends javax.swing.JFrame {
         botonTerminarCompMouseExited(evt);
       }
     });
-    panelOpciones.add(botonTerminarComp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 300, 40));
+    panelOpciones.add(botonTerminarComp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 260, 30));
 
     etiquetaLista.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 40)); // NOI18N
     etiquetaLista.setForeground(new java.awt.Color(255, 255, 255));
@@ -251,6 +252,12 @@ public class Venta extends javax.swing.JFrame {
       }
     });
     panelOpciones.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 300, 40));
+
+    botonregresar1.setBackground(new java.awt.Color(255, 255, 255));
+    botonregresar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
+    botonregresar1.setBorder(null);
+    botonregresar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    panelOpciones.add(botonregresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
 
     panelContenedor.setBackground(new java.awt.Color(255, 255, 255));
     panelContenedor.setMaximumSize(new java.awt.Dimension(653, 363));
@@ -406,6 +413,7 @@ public class Venta extends javax.swing.JFrame {
   private javax.swing.JButton botonEliminar;
   private javax.swing.JButton botonSeleccionar;
   private javax.swing.JButton botonTerminarComp;
+  private javax.swing.JButton botonregresar1;
   private javax.swing.JPasswordField campoContrasena;
   private javax.swing.JPasswordField campoContrasena1;
   private javax.swing.JPasswordField campoContrasena2;

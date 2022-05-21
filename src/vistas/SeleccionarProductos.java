@@ -54,13 +54,16 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     Separador = new javax.swing.JTextField();
     campoBuscar = new RoundJTextField(7);
     botonAgregar = new RoundJButton(7);
-    botonEliminar = new RoundJButton(7);
-    botonActualizar = new RoundJButton(7);
+    campoContrasena = new RoundJPasswordField(7);
+    etiquetaLista3 = new javax.swing.JLabel();
+    botonTerminarComp = new RoundJButton(7);
+    botonregresar1 = new RoundJButton(7);
     panelContenedor = new javax.swing.JPanel();
     etiquetaLogo = new javax.swing.JLabel();
     etiquetaTitulo = new javax.swing.JLabel();
     jScrollPane1 = new javax.swing.JScrollPane();
     tablaUsuario = new javax.swing.JTable();
+    etiquetaLista6 = new javax.swing.JLabel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(1080, 720));
@@ -107,7 +110,7 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     campoBuscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
     campoBuscar.setForeground(new java.awt.Color(196, 196, 196));
     campoBuscar.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-    campoBuscar.setText("Buscar");
+    campoBuscar.setText("Buscar producto");
     campoBuscar.setBorder(null);
     campoBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -118,7 +121,7 @@ public class SeleccionarProductos extends javax.swing.JFrame {
 
     botonAgregar.setBackground(new java.awt.Color(255, 255, 255));
     botonAgregar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-    botonAgregar.setText("Agregar usuario");
+    botonAgregar.setText("Agregar producto");
     botonAgregar.setBorder(null);
     botonAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     botonAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -131,41 +134,43 @@ public class SeleccionarProductos extends javax.swing.JFrame {
         botonAgregarMouseExited(evt);
       }
     });
-    panelOpciones.add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 300, 40));
+    panelOpciones.add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 300, 40));
 
-    botonEliminar.setBackground(new java.awt.Color(255, 255, 255));
-    botonEliminar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-    botonEliminar.setText("Eliminar usuario");
-    botonEliminar.setBorder(null);
-    botonEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    botonEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    botonEliminar.setPreferredSize(new java.awt.Dimension(71, 20));
-    botonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+    campoContrasena.setBackground(new java.awt.Color(208, 208, 208));
+    campoContrasena.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoContrasena.setForeground(new java.awt.Color(150, 150, 150));
+    campoContrasena.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoContrasena.setBorder(null);
+    panelOpciones.add(campoContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 140, 30));
+
+    etiquetaLista3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+    etiquetaLista3.setForeground(new java.awt.Color(0, 0, 0));
+    etiquetaLista3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    etiquetaLista3.setText("Cantidad:");
+    panelOpciones.add(etiquetaLista3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 213, 90, 40));
+
+    botonTerminarComp.setBackground(new java.awt.Color(174, 33, 0));
+    botonTerminarComp.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    botonTerminarComp.setForeground(new java.awt.Color(255, 255, 255));
+    botonTerminarComp.setText("Aceptar");
+    botonTerminarComp.setBorder(null);
+    botonTerminarComp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonTerminarComp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    botonTerminarComp.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseEntered(java.awt.event.MouseEvent evt) {
-        botonEliminarMouseEntered(evt);
+        botonTerminarCompMouseEntered(evt);
       }
       public void mouseExited(java.awt.event.MouseEvent evt) {
-        botonEliminarMouseExited(evt);
+        botonTerminarCompMouseExited(evt);
       }
     });
-    panelOpciones.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 300, 40));
+    panelOpciones.add(botonTerminarComp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 260, 30));
 
-    botonActualizar.setBackground(new java.awt.Color(255, 255, 255));
-    botonActualizar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-    botonActualizar.setText("Actualizar");
-    botonActualizar.setBorder(null);
-    botonActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    botonActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    botonActualizar.setPreferredSize(new java.awt.Dimension(71, 20));
-    botonActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        botonActualizarMouseEntered(evt);
-      }
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        botonActualizarMouseExited(evt);
-      }
-    });
-    panelOpciones.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 300, 40));
+    botonregresar1.setBackground(new java.awt.Color(255, 255, 255));
+    botonregresar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
+    botonregresar1.setBorder(null);
+    botonregresar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    panelOpciones.add(botonregresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
 
     panelContenedor.setBackground(new java.awt.Color(255, 255, 255));
     panelContenedor.setMaximumSize(new java.awt.Dimension(653, 363));
@@ -178,20 +183,20 @@ public class SeleccionarProductos extends javax.swing.JFrame {
 
     etiquetaTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 44)); // NOI18N
     etiquetaTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    etiquetaTitulo.setText("Gestión de usuarios");
-    panelContenedor.add(etiquetaTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+    etiquetaTitulo.setText("Seleccionar productos");
+    panelContenedor.add(etiquetaTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
 
     tablaUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 150, 150)));
     tablaUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     tablaUsuario.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
-        {null, null, null},
-        {null, null, null},
-        {null, null, null},
-        {null, null, null}
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null}
       },
       new String [] {
-        "Usuario", "Rol", "Contraseña"
+        "Folio", "Producto", "Cantidad", "Precio", "FechaRegistro", "Caducidad"
       }
     ));
     tablaUsuario.setFocusable(false);
@@ -203,6 +208,13 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     jScrollPane1.setViewportView(tablaUsuario);
 
     panelContenedor.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 117, 670, 490));
+
+    etiquetaLista6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+    etiquetaLista6.setForeground(new java.awt.Color(0, 0, 0));
+    etiquetaLista6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+    etiquetaLista6.setText("Lista de productos");
+    etiquetaLista6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+    panelContenedor.add(etiquetaLista6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 190, -1));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -251,21 +263,13 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     botonAgregar.setBackground(Color.WHITE);
   }//GEN-LAST:event_botonAgregarMouseExited
 
-  private void botonEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMouseEntered
-    botonEliminar.setBackground(new Color(254, 163, 88));
-  }//GEN-LAST:event_botonEliminarMouseEntered
+  private void botonTerminarCompMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonTerminarCompMouseEntered
+    botonTerminarComp.setBackground(new Color(208, 75, 42));
+  }//GEN-LAST:event_botonTerminarCompMouseEntered
 
-  private void botonEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMouseExited
-    botonEliminar.setBackground(Color.WHITE);
-  }//GEN-LAST:event_botonEliminarMouseExited
-
-  private void botonActualizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseEntered
-    botonActualizar.setBackground(new Color(254, 163, 88));
-  }//GEN-LAST:event_botonActualizarMouseEntered
-
-  private void botonActualizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseExited
-    botonActualizar.setBackground(Color.WHITE);
-  }//GEN-LAST:event_botonActualizarMouseExited
+  private void botonTerminarCompMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonTerminarCompMouseExited
+    botonTerminarComp.setBackground(new Color(174, 33, 0));
+  }//GEN-LAST:event_botonTerminarCompMouseExited
 
   /**
    * @param args the command line arguments
@@ -304,12 +308,15 @@ public class SeleccionarProductos extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTextField Separador;
-  private javax.swing.JButton botonActualizar;
   private javax.swing.JButton botonAgregar;
   private javax.swing.JButton botonBuscar;
-  private javax.swing.JButton botonEliminar;
+  private javax.swing.JButton botonTerminarComp;
+  private javax.swing.JButton botonregresar1;
   private javax.swing.JTextField campoBuscar;
+  private javax.swing.JPasswordField campoContrasena;
   private javax.swing.JLabel etiquetaLista;
+  private javax.swing.JLabel etiquetaLista3;
+  private javax.swing.JLabel etiquetaLista6;
   private javax.swing.JLabel etiquetaLogo;
   private javax.swing.JLabel etiquetaOpciones;
   private javax.swing.JLabel etiquetaTitulo;
