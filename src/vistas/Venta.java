@@ -29,7 +29,6 @@ public class Venta extends javax.swing.JFrame {
   public Venta() {
     this.setContentPane(fondo);
     initComponents();
-    this.setExtendedState(this.MAXIMIZED_BOTH);
     
     tablaVenta.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
     tablaVenta.getTableHeader().setOpaque(false);
@@ -76,6 +75,7 @@ public class Venta extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(1080, 720));
+    setResizable(false);
     setSize(new java.awt.Dimension(800, 550));
 
     panelOpciones.setBackground(new java.awt.Color(252, 168, 1));
@@ -138,13 +138,11 @@ public class Venta extends javax.swing.JFrame {
     Separador1.setMinimumSize(new java.awt.Dimension(0, 0));
 
     etiquetaTicket.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-    etiquetaTicket.setForeground(new java.awt.Color(0, 0, 0));
     etiquetaTicket.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     etiquetaTicket.setText("Ticket");
     etiquetaTicket.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
     etiquetaTotalTick.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-    etiquetaTotalTick.setForeground(new java.awt.Color(0, 0, 0));
     etiquetaTotalTick.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     etiquetaTotalTick.setText("Total MXN $:");
     etiquetaTotalTick.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -156,7 +154,6 @@ public class Venta extends javax.swing.JFrame {
     campoTotal.setBorder(null);
 
     etiquetaEfectivo.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-    etiquetaEfectivo.setForeground(new java.awt.Color(0, 0, 0));
     etiquetaEfectivo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     etiquetaEfectivo.setText("Efectivo:");
     etiquetaEfectivo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -168,7 +165,6 @@ public class Venta extends javax.swing.JFrame {
     campoEfectivo.setBorder(null);
 
     etiquetaCambio.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-    etiquetaCambio.setForeground(new java.awt.Color(0, 0, 0));
     etiquetaCambio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     etiquetaCambio.setText("Cambio:");
     etiquetaCambio.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -253,7 +249,7 @@ public class Venta extends javax.swing.JFrame {
     });
     panelOpciones.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 300, 40));
 
-    botonRegresar.setBackground(getBackground());
+    botonRegresar.setBackground(new java.awt.Color(252, 168, 1));
     botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -297,7 +293,6 @@ public class Venta extends javax.swing.JFrame {
     panelContenedor.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 117, 670, 490));
 
     etiquetaFolioVent.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-    etiquetaFolioVent.setForeground(new java.awt.Color(0, 0, 0));
     etiquetaFolioVent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     etiquetaFolioVent.setText("Folio de venta:");
     etiquetaFolioVent.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -311,7 +306,6 @@ public class Venta extends javax.swing.JFrame {
     panelContenedor.add(campoFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 100, -1));
 
     etiquetaFechaReg.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-    etiquetaFechaReg.setForeground(new java.awt.Color(0, 0, 0));
     etiquetaFechaReg.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     etiquetaFechaReg.setText("Fecha de registro:");
     etiquetaFechaReg.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);

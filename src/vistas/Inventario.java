@@ -27,21 +27,20 @@ public class Inventario extends javax.swing.JFrame {
   public Inventario() {
     this.setContentPane(fondo);
     initComponents();
-    this.setExtendedState(this.MAXIMIZED_BOTH);
     
-    tablaCategoria.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
+    tablaCategoria.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 14));
     tablaCategoria.getTableHeader().setOpaque(false);
     tablaCategoria.getTableHeader().setBackground(Color.WHITE);
     
-    tablaProveedor.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
+    tablaProveedor.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 14));
     tablaProveedor.getTableHeader().setOpaque(false);
     tablaProveedor.getTableHeader().setBackground(Color.WHITE);
     
-    tablaProducto.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
+    tablaProducto.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 14));
     tablaProducto.getTableHeader().setOpaque(false);
     tablaProducto.getTableHeader().setBackground(Color.WHITE);
     
-    tablaInventario.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
+    tablaInventario.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 14));
     tablaInventario.getTableHeader().setOpaque(false);
     tablaInventario.getTableHeader().setBackground(Color.WHITE);    
   }
@@ -83,6 +82,7 @@ public class Inventario extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(1080, 720));
+    setResizable(false);
     setSize(new java.awt.Dimension(800, 550));
 
     panelOpciones.setBackground(new java.awt.Color(252, 168, 1));
@@ -137,7 +137,7 @@ public class Inventario extends javax.swing.JFrame {
 
     botonAgregar.setBackground(new java.awt.Color(255, 255, 255));
     botonAgregar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-    botonAgregar.setText("Agregar usuario");
+    botonAgregar.setText("Agregar");
     botonAgregar.setBorder(null);
     botonAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     botonAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -154,7 +154,7 @@ public class Inventario extends javax.swing.JFrame {
 
     botonEliminar.setBackground(new java.awt.Color(255, 255, 255));
     botonEliminar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-    botonEliminar.setText("Eliminar usuario");
+    botonEliminar.setText("Eliminar");
     botonEliminar.setBorder(null);
     botonEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     botonEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -186,7 +186,7 @@ public class Inventario extends javax.swing.JFrame {
     });
     panelOpciones.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 300, 40));
 
-    botonRegresar.setBackground(getBackground());
+    botonRegresar.setBackground(new java.awt.Color(252, 168, 1));
     botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -206,8 +206,10 @@ public class Inventario extends javax.swing.JFrame {
     etiquetaTitulo.setText("Inventario");
     panelContenedor.add(etiquetaTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
+    tabbedInventario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+
     tablaCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 150, 150)));
-    tablaCategoria.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    tablaCategoria.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
     tablaCategoria.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
         {null, null, null},
@@ -230,7 +232,7 @@ public class Inventario extends javax.swing.JFrame {
     tabbedInventario.addTab("Categorias", jScrollPane1);
 
     tablaProveedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 150, 150)));
-    tablaProveedor.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    tablaProveedor.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
     tablaProveedor.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
         {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -274,7 +276,7 @@ public class Inventario extends javax.swing.JFrame {
     tabbedInventario.addTab("Proveedores", jPanel1);
 
     tablaProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 150, 150)));
-    tablaProducto.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    tablaProducto.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
     tablaProducto.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
         {null, null, null, null, null, null, null, null, null},
@@ -318,7 +320,7 @@ public class Inventario extends javax.swing.JFrame {
     tabbedInventario.addTab("Productos", jPanel2);
 
     tablaInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 150, 150)));
-    tablaInventario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    tablaInventario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
     tablaInventario.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
         {null, null, null, null, null},
