@@ -85,7 +85,7 @@
                       <Group type="102" attributes="0">
                           <Component id="botonIngresar" min="-2" pref="171" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="botonregresar1" min="-2" max="-2" attributes="0"/>
+                          <Component id="botonRegresar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -194,7 +194,7 @@
                   <EmptySpace pref="9" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="botonregresar1" min="-2" max="-2" attributes="0"/>
+                          <Component id="botonRegresar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -463,7 +463,7 @@
             <Property name="text" type="java.lang.String" value="Cantidad l&#xed;mite:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="botonregresar1">
+        <Component class="javax.swing.JButton" name="botonRegresar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
