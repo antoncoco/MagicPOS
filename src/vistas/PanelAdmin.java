@@ -68,7 +68,6 @@ public class PanelAdmin extends javax.swing.JFrame {
     botonIngresar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     botonIngresar.setForeground(new java.awt.Color(255, 255, 255));
     botonIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/usuarios.png"))); // NOI18N
-    botonIngresar.setText("");
     botonIngresar.setBorder(new MatteBorder(0, 0, 1, 0, new Color(204,204,204)));
     botonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     botonIngresar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -126,6 +125,11 @@ public class PanelAdmin extends javax.swing.JFrame {
     botonregresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonregresar.setBorder(null);
     botonregresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonregresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonregresarActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout panelContenedorLayout = new javax.swing.GroupLayout(panelContenedor);
     panelContenedor.setLayout(panelContenedorLayout);
@@ -162,7 +166,7 @@ public class PanelAdmin extends javax.swing.JFrame {
                   .addGroup(panelContenedorLayout.createSequentialGroup()
                     .addGap(66, 66, 66)
                     .addComponent(etiquetaReporte)))))
-            .addGap(0, 78, Short.MAX_VALUE))
+            .addGap(0, 82, Short.MAX_VALUE))
           .addGroup(panelContenedorLayout.createSequentialGroup()
             .addGap(0, 0, Short.MAX_VALUE)
             .addComponent(botonregresar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -188,7 +192,7 @@ public class PanelAdmin extends javax.swing.JFrame {
             .addComponent(botonReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(etiquetaReporte)))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
         .addComponent(botonregresar)
         .addContainerGap())
     );
@@ -236,6 +240,10 @@ public class PanelAdmin extends javax.swing.JFrame {
   private void botonReporteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonReporteMouseExited
     botonReporte.setBackground(Color.WHITE);
   }//GEN-LAST:event_botonReporteMouseExited
+
+  private void botonregresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonregresarActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_botonregresarActionPerformed
 
   /**
    * @param args the command line arguments

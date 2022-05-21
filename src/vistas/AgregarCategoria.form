@@ -74,8 +74,10 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="240" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="botonIngresar" min="-2" pref="171" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
+                          <Component id="botonregresar1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
@@ -83,25 +85,26 @@
                               <Component id="etiquetaTitulo" min="-2" pref="295" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="etiquetaUsuario" min="-2" max="-2" attributes="0"/>
+                                      <Component id="etiquetaFolio" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="campoUsuario" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <Component id="campoFolio" min="-2" pref="171" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="etiquetaUsuario1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="etiquetaNombre" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="campoUsuario1" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <Component id="campoNombre" min="-2" pref="171" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="etiquetaUsuario2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="etiquetaDescripcion" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="campoUsuario2" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <Component id="campoDescripcion" min="-2" pref="171" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
+                          <EmptySpace min="0" pref="175" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="181" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -113,22 +116,27 @@
                   <Component id="etiquetaTitulo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoUsuario" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="etiquetaUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoFolio" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="etiquetaFolio" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoUsuario1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="etiquetaUsuario1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoNombre" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="etiquetaNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoUsuario2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="etiquetaUsuario2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoDescripcion" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="etiquetaDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <EmptySpace pref="37" max="32767" attributes="0"/>
                   <Component id="botonIngresar" min="-2" pref="31" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="botonregresar1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -143,7 +151,7 @@
             <Property name="text" type="java.lang.String" value="Agregar categoria"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoUsuario">
+        <Component class="javax.swing.JTextField" name="campoFolio">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="d0" green="d0" red="d0" type="rgb"/>
@@ -198,7 +206,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="etiquetaUsuario">
+        <Component class="javax.swing.JLabel" name="etiquetaFolio">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial Rounded MT Bold" size="16" style="0"/>
@@ -206,7 +214,7 @@
             <Property name="text" type="java.lang.String" value="Folio:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="etiquetaUsuario1">
+        <Component class="javax.swing.JLabel" name="etiquetaNombre">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial Rounded MT Bold" size="16" style="0"/>
@@ -214,7 +222,7 @@
             <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoUsuario1">
+        <Component class="javax.swing.JTextField" name="campoNombre">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="d0" green="d0" red="d0" type="rgb"/>
@@ -234,7 +242,7 @@
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundJTextField(7)"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoUsuario2">
+        <Component class="javax.swing.JTextField" name="campoDescripcion">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="d0" green="d0" red="d0" type="rgb"/>
@@ -254,13 +262,32 @@
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundJTextField(7)"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="etiquetaUsuario2">
+        <Component class="javax.swing.JLabel" name="etiquetaDescripcion">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial Rounded MT Bold" size="16" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Descripci&#xf3;n:"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonregresar1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/assets/regresar.png"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundJButton(7)"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

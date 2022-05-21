@@ -39,14 +39,15 @@ public class AgregarCategoria extends javax.swing.JFrame {
 
     panelContenedor = new javax.swing.JPanel();
     etiquetaTitulo = new javax.swing.JLabel();
-    campoUsuario = new RoundJTextField(7);
+    campoFolio = new RoundJTextField(7);
     botonIngresar = new RoundJButton(7);
     etiquetaLogo = new javax.swing.JLabel();
-    etiquetaUsuario = new javax.swing.JLabel();
-    etiquetaUsuario1 = new javax.swing.JLabel();
-    campoUsuario1 = new RoundJTextField(7);
-    campoUsuario2 = new RoundJTextField(7);
-    etiquetaUsuario2 = new javax.swing.JLabel();
+    etiquetaFolio = new javax.swing.JLabel();
+    etiquetaNombre = new javax.swing.JLabel();
+    campoNombre = new RoundJTextField(7);
+    campoDescripcion = new RoundJTextField(7);
+    etiquetaDescripcion = new javax.swing.JLabel();
+    botonregresar1 = new RoundJButton(7);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(800, 550));
@@ -62,11 +63,11 @@ public class AgregarCategoria extends javax.swing.JFrame {
     etiquetaTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     etiquetaTitulo.setText("Agregar categoria");
 
-    campoUsuario.setBackground(new java.awt.Color(208, 208, 208));
-    campoUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoUsuario.setForeground(new java.awt.Color(150, 150, 150));
-    campoUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoUsuario.setBorder(null);
+    campoFolio.setBackground(new java.awt.Color(208, 208, 208));
+    campoFolio.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoFolio.setForeground(new java.awt.Color(150, 150, 150));
+    campoFolio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoFolio.setBorder(null);
 
     botonIngresar.setBackground(new java.awt.Color(254, 163, 88));
     botonIngresar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
@@ -86,26 +87,31 @@ public class AgregarCategoria extends javax.swing.JFrame {
 
     etiquetaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logoHorizontal.png"))); // NOI18N
 
-    etiquetaUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    etiquetaUsuario.setText("Folio:");
+    etiquetaFolio.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    etiquetaFolio.setText("Folio:");
 
-    etiquetaUsuario1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    etiquetaUsuario1.setText("Nombre:");
+    etiquetaNombre.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    etiquetaNombre.setText("Nombre:");
 
-    campoUsuario1.setBackground(new java.awt.Color(208, 208, 208));
-    campoUsuario1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoUsuario1.setForeground(new java.awt.Color(150, 150, 150));
-    campoUsuario1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoUsuario1.setBorder(null);
+    campoNombre.setBackground(new java.awt.Color(208, 208, 208));
+    campoNombre.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoNombre.setForeground(new java.awt.Color(150, 150, 150));
+    campoNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoNombre.setBorder(null);
 
-    campoUsuario2.setBackground(new java.awt.Color(208, 208, 208));
-    campoUsuario2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoUsuario2.setForeground(new java.awt.Color(150, 150, 150));
-    campoUsuario2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoUsuario2.setBorder(null);
+    campoDescripcion.setBackground(new java.awt.Color(208, 208, 208));
+    campoDescripcion.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoDescripcion.setForeground(new java.awt.Color(150, 150, 150));
+    campoDescripcion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoDescripcion.setBorder(null);
 
-    etiquetaUsuario2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    etiquetaUsuario2.setText("Descripción:");
+    etiquetaDescripcion.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    etiquetaDescripcion.setText("Descripción:");
+
+    botonregresar1.setBackground(new java.awt.Color(255, 255, 255));
+    botonregresar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
+    botonregresar1.setBorder(null);
+    botonregresar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     javax.swing.GroupLayout panelContenedorLayout = new javax.swing.GroupLayout(panelContenedor);
     panelContenedor.setLayout(panelContenedorLayout);
@@ -117,26 +123,29 @@ public class AgregarCategoria extends javax.swing.JFrame {
       .addGroup(panelContenedorLayout.createSequentialGroup()
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(panelContenedorLayout.createSequentialGroup()
-            .addGap(240, 240, 240)
-            .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(191, 191, 191)
+            .addComponent(botonregresar1))
           .addGroup(panelContenedorLayout.createSequentialGroup()
             .addGap(177, 177, 177)
             .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(etiquetaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addGroup(panelContenedorLayout.createSequentialGroup()
-                  .addComponent(etiquetaUsuario)
+                  .addComponent(etiquetaFolio)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                  .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addComponent(campoFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelContenedorLayout.createSequentialGroup()
-                  .addComponent(etiquetaUsuario1)
+                  .addComponent(etiquetaNombre)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                  .addComponent(campoUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelContenedorLayout.createSequentialGroup()
-                  .addComponent(etiquetaUsuario2)
+                  .addComponent(etiquetaDescripcion)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                  .addComponent(campoUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-        .addContainerGap(181, Short.MAX_VALUE))
+                  .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGap(0, 175, Short.MAX_VALUE)))
+        .addContainerGap())
     );
     panelContenedorLayout.setVerticalGroup(
       panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,19 +155,23 @@ public class AgregarCategoria extends javax.swing.JFrame {
         .addComponent(etiquetaTitulo)
         .addGap(29, 29, 29)
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(etiquetaUsuario))
+          .addComponent(campoFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(etiquetaFolio))
         .addGap(18, 18, 18)
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(campoUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(etiquetaUsuario1))
+          .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(etiquetaNombre))
         .addGap(18, 18, 18)
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(campoUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(etiquetaUsuario2))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+          .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(etiquetaDescripcion))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
         .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(29, 29, 29))
+        .addGap(35, 35, 35))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
+        .addGap(0, 0, Short.MAX_VALUE)
+        .addComponent(botonregresar1)
+        .addContainerGap())
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -226,14 +239,15 @@ public class AgregarCategoria extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton botonIngresar;
-  private javax.swing.JTextField campoUsuario;
-  private javax.swing.JTextField campoUsuario1;
-  private javax.swing.JTextField campoUsuario2;
+  private javax.swing.JButton botonregresar1;
+  private javax.swing.JTextField campoDescripcion;
+  private javax.swing.JTextField campoFolio;
+  private javax.swing.JTextField campoNombre;
+  private javax.swing.JLabel etiquetaDescripcion;
+  private javax.swing.JLabel etiquetaFolio;
   private javax.swing.JLabel etiquetaLogo;
+  private javax.swing.JLabel etiquetaNombre;
   private javax.swing.JLabel etiquetaTitulo;
-  private javax.swing.JLabel etiquetaUsuario;
-  private javax.swing.JLabel etiquetaUsuario1;
-  private javax.swing.JLabel etiquetaUsuario2;
   private javax.swing.JPanel panelContenedor;
   // End of variables declaration//GEN-END:variables
 

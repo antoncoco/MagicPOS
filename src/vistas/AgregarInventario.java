@@ -16,14 +16,14 @@ import javax.swing.JTextField;
  *
  * @author MagicPOS
  */
-public class AgregarUsuario extends javax.swing.JFrame {
+public class AgregarInventario extends javax.swing.JFrame {
 
   FondoPanel fondo = new FondoPanel();
 
   /**
    * Creates new form IniciarSesion
    */
-  public AgregarUsuario() {
+  public AgregarInventario() {
     this.setContentPane(fondo);
     initComponents();
   }
@@ -39,14 +39,18 @@ public class AgregarUsuario extends javax.swing.JFrame {
 
     panelContenedor = new javax.swing.JPanel();
     etiquetaTitulo = new javax.swing.JLabel();
-    campoUsuario = new RoundJTextField(7);
+    campoFolio = new RoundJTextField(7);
     botonIngresar = new RoundJButton(7);
     etiquetaLogo = new javax.swing.JLabel();
-    etiquetaUsuario = new javax.swing.JLabel();
-    etiquetaContrasena = new javax.swing.JLabel();
-    etiquetaRol = new javax.swing.JLabel();
-    comboRol = new RoundJComboBox(7);
-    campoContrasena = new RoundJPasswordField(7);
+    etiquetaFolio = new javax.swing.JLabel();
+    etiquetaProducto = new javax.swing.JLabel();
+    campoCantidad = new RoundJTextField(7);
+    etiquetaCantidad = new javax.swing.JLabel();
+    etiquetaFechaReg = new javax.swing.JLabel();
+    campoFechaReg = new RoundJTextField(7);
+    etiquetaCaducidad = new javax.swing.JLabel();
+    campoCaducidad = new RoundJTextField(7);
+    comboProducto = new javax.swing.JComboBox<>();
     botonregresar1 = new RoundJButton(7);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,13 +65,13 @@ public class AgregarUsuario extends javax.swing.JFrame {
 
     etiquetaTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 28)); // NOI18N
     etiquetaTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    etiquetaTitulo.setText("Agregar usuario");
+    etiquetaTitulo.setText("Agregar inventario");
 
-    campoUsuario.setBackground(new java.awt.Color(208, 208, 208));
-    campoUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoUsuario.setForeground(new java.awt.Color(150, 150, 150));
-    campoUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoUsuario.setBorder(null);
+    campoFolio.setBackground(new java.awt.Color(208, 208, 208));
+    campoFolio.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoFolio.setForeground(new java.awt.Color(150, 150, 150));
+    campoFolio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoFolio.setBorder(null);
 
     botonIngresar.setBackground(new java.awt.Color(254, 163, 88));
     botonIngresar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
@@ -87,26 +91,40 @@ public class AgregarUsuario extends javax.swing.JFrame {
 
     etiquetaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logoHorizontal.png"))); // NOI18N
 
-    etiquetaUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    etiquetaUsuario.setText("Usuario:");
+    etiquetaFolio.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    etiquetaFolio.setText("Folio:");
 
-    etiquetaContrasena.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    etiquetaContrasena.setText("Contraseña:");
+    etiquetaProducto.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    etiquetaProducto.setText("Producto");
 
-    etiquetaRol.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    etiquetaRol.setText("Rol:");
+    campoCantidad.setBackground(new java.awt.Color(208, 208, 208));
+    campoCantidad.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoCantidad.setForeground(new java.awt.Color(150, 150, 150));
+    campoCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoCantidad.setBorder(null);
 
-    comboRol.setBackground(new java.awt.Color(208, 208, 208));
-    comboRol.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    comboRol.setForeground(new java.awt.Color(150, 150, 150));
-    comboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-    comboRol.setBorder(null);
+    etiquetaCantidad.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    etiquetaCantidad.setText("Cantidad:");
 
-    campoContrasena.setBackground(new java.awt.Color(208, 208, 208));
-    campoContrasena.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoContrasena.setForeground(new java.awt.Color(150, 150, 150));
-    campoContrasena.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoContrasena.setBorder(null);
+    etiquetaFechaReg.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    etiquetaFechaReg.setText("Fecha de registro:");
+
+    campoFechaReg.setBackground(new java.awt.Color(208, 208, 208));
+    campoFechaReg.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoFechaReg.setForeground(new java.awt.Color(150, 150, 150));
+    campoFechaReg.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoFechaReg.setBorder(null);
+
+    etiquetaCaducidad.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    etiquetaCaducidad.setText("Caducidad");
+
+    campoCaducidad.setBackground(new java.awt.Color(208, 208, 208));
+    campoCaducidad.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoCaducidad.setForeground(new java.awt.Color(150, 150, 150));
+    campoCaducidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoCaducidad.setBorder(null);
+
+    comboProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
     botonregresar1.setBackground(new java.awt.Color(255, 255, 255));
     botonregresar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
@@ -123,54 +141,79 @@ public class AgregarUsuario extends javax.swing.JFrame {
       .addGroup(panelContenedorLayout.createSequentialGroup()
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(panelContenedorLayout.createSequentialGroup()
-            .addGap(199, 199, 199)
-            .addComponent(etiquetaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(240, 617, Short.MAX_VALUE)
+            .addComponent(botonregresar1))
           .addGroup(panelContenedorLayout.createSequentialGroup()
-            .addGap(172, 172, 172)
-            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(panelContenedorLayout.createSequentialGroup()
-                .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(etiquetaUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
-                  .addComponent(etiquetaContrasena))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                  .addComponent(campoUsuario)
-                  .addComponent(campoContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-              .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(panelContenedorLayout.createSequentialGroup()
-                  .addComponent(etiquetaRol)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                  .addComponent(comboRol, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
-            .addComponent(botonregresar1)))
+                .addGap(177, 177, 177)
+                .addComponent(etiquetaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(panelContenedorLayout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addGroup(panelContenedorLayout.createSequentialGroup()
+                    .addComponent(etiquetaFolio)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(campoFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGroup(panelContenedorLayout.createSequentialGroup()
+                    .addComponent(etiquetaProducto)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(comboProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGroup(panelContenedorLayout.createSequentialGroup()
+                    .addComponent(etiquetaCantidad)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(campoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGroup(panelContenedorLayout.createSequentialGroup()
+                    .addComponent(etiquetaFechaReg)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(campoFechaReg, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGroup(panelContenedorLayout.createSequentialGroup()
+                    .addComponent(etiquetaCaducidad)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(campoCaducidad, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+            .addGap(0, 0, Short.MAX_VALUE)))
         .addContainerGap())
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
+        .addGap(0, 0, Short.MAX_VALUE)
+        .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(231, 231, 231))
     );
     panelContenedorLayout.setVerticalGroup(
       panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelContenedorLayout.createSequentialGroup()
-        .addComponent(etiquetaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(18, 18, 18)
-        .addComponent(etiquetaTitulo)
-        .addGap(37, 37, 37)
-        .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(etiquetaUsuario))
-        .addGap(18, 18, 18)
-        .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(campoContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(etiquetaContrasena))
-        .addGap(18, 18, 18)
-        .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(etiquetaRol)
-          .addComponent(comboRol, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-        .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(33, 33, 33))
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
-        .addGap(0, 0, Short.MAX_VALUE)
-        .addComponent(botonregresar1)
+        .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(panelContenedorLayout.createSequentialGroup()
+            .addComponent(etiquetaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(etiquetaTitulo)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(campoFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(etiquetaFolio))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(etiquetaProducto)
+              .addComponent(comboProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(campoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGroup(panelContenedorLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(etiquetaCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(campoFechaReg, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(etiquetaFechaReg))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(campoCaducidad, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(etiquetaCaducidad))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 30, Short.MAX_VALUE))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(botonregresar1)))
         .addContainerGap())
     );
 
@@ -240,14 +283,18 @@ public class AgregarUsuario extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton botonIngresar;
   private javax.swing.JButton botonregresar1;
-  private javax.swing.JPasswordField campoContrasena;
-  private javax.swing.JTextField campoUsuario;
-  private javax.swing.JComboBox<String> comboRol;
-  private javax.swing.JLabel etiquetaContrasena;
+  private javax.swing.JTextField campoCaducidad;
+  private javax.swing.JTextField campoCantidad;
+  private javax.swing.JTextField campoFechaReg;
+  private javax.swing.JTextField campoFolio;
+  private javax.swing.JComboBox<String> comboProducto;
+  private javax.swing.JLabel etiquetaCaducidad;
+  private javax.swing.JLabel etiquetaCantidad;
+  private javax.swing.JLabel etiquetaFechaReg;
+  private javax.swing.JLabel etiquetaFolio;
   private javax.swing.JLabel etiquetaLogo;
-  private javax.swing.JLabel etiquetaRol;
+  private javax.swing.JLabel etiquetaProducto;
   private javax.swing.JLabel etiquetaTitulo;
-  private javax.swing.JLabel etiquetaUsuario;
   private javax.swing.JPanel panelContenedor;
   // End of variables declaration//GEN-END:variables
 

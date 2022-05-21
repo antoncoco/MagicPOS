@@ -6,6 +6,9 @@
 package magicpos;
 
 import vistas.AgregarCategoria;
+import vistas.AgregarInventario;
+import vistas.AgregarProducto;
+import vistas.AgregarProveedor;
 import vistas.AgregarUsuario;
 import vistas.IniciarSesion;
 import vistas.PanelAdmin;
@@ -26,7 +29,10 @@ public class Main {
 //    IniciarSesion iniciar = new IniciarSesion();
 //    PanelAdmin iniciar = new PanelAdmin();
 //    AgregarUsuario iniciar = new AgregarUsuario();
-    AgregarCategoria iniciar = new AgregarCategoria();
+//    AgregarCategoria iniciar = new AgregarCategoria();
+//    AgregarInventario iniciar = new AgregarInventario();
+//    AgregarProveedor iniciar = new AgregarProveedor();
+    AgregarProducto iniciar = new AgregarProducto();
     iniciar.setVisible(true);
   }
 
