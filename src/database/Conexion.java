@@ -11,19 +11,20 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author cocol
+ * @author MagicPOS
  */
 public class Conexion {
-  private String db = "";
-  private String url = "";
-  private String user = "";
-  private String pwd = "";
-  private String driver = "";
+  private String db = "bld9w4cxyecovqqpndrg";
+  private String user = "uch4ep8usc1dteku";
+  private String pwd = "e1L6iQOcwCspKYs4eQpt";
+  private String driver = "jdbc:mysql";
+  private String host = "bld9w4cxyecovqqpndrg-mysql.services.clever-cloud.com";
+  private String url = driver+"://"+host+"/"+db;
   private Connection con = null;
   
   public boolean conectar(){
     try {
-      Class.forName("com.mysql.jdbc.Driver");
+      Class.forName("com.mysql.cj.jdbc.Driver");
       con = DriverManager.getConnection(url,user, pwd);
       return true;
     } catch (ClassNotFoundException | SQLException e) {
