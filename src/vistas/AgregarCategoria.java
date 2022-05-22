@@ -1,35 +1,36 @@
 package vistas;
 
-import controladores.DAORolUsuarioImpl;
-import controladores.DAOUsuarioImpl;
-import dao.DAORolUsuario;
+import controladores.DAOCategoriaImpl;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
-import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import modelos.RolUsuario;
-import modelos.Usuario;
+import modelos.Categoria;
+import utils.Util;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author MagicPOS
  */
-public class IniciarSesion extends javax.swing.JFrame {
+public class AgregarCategoria extends javax.swing.JFrame {
 
   FondoPanel fondo = new FondoPanel();
 
   /**
    * Creates new form IniciarSesion
    */
-  public IniciarSesion() {
+  public AgregarCategoria() {
     this.setContentPane(fondo);
     initComponents();
   }
@@ -44,14 +45,16 @@ public class IniciarSesion extends javax.swing.JFrame {
   private void initComponents() {
 
     panelContenedor = new javax.swing.JPanel();
-    etiquetaLogo = new javax.swing.JLabel();
     etiquetaTitulo = new javax.swing.JLabel();
-    campoUsuario = new RoundJTextField(7);
-    campoContrasena = new RoundJPasswordField(7);
     botonIngresar = new RoundJButton(7);
+    etiquetaLogo = new javax.swing.JLabel();
+    etiquetaNombre = new javax.swing.JLabel();
+    campoNombre = new RoundJTextField(7);
+    campoDescripcion = new RoundJTextField(7);
+    etiquetaDescripcion = new javax.swing.JLabel();
+    botonRegresar = new RoundJButton(7);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    setMaximumSize(new java.awt.Dimension(800, 550));
     setMinimumSize(new java.awt.Dimension(800, 550));
     setResizable(false);
     setSize(new java.awt.Dimension(800, 550));
@@ -61,35 +64,9 @@ public class IniciarSesion extends javax.swing.JFrame {
     panelContenedor.setMinimumSize(new java.awt.Dimension(653, 363));
     panelContenedor.setPreferredSize(new java.awt.Dimension(653, 363));
 
-    etiquetaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logoVertical.png"))); // NOI18N
-
     etiquetaTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 28)); // NOI18N
     etiquetaTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    etiquetaTitulo.setText("Inicio de sesión");
-
-    campoUsuario.setBackground(new java.awt.Color(208, 208, 208));
-    campoUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoUsuario.setForeground(new java.awt.Color(150, 150, 150));
-    campoUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoUsuario.setText("Nombre de usuario");
-    campoUsuario.setBorder(null);
-    campoUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        campoUsuarioMousePressed(evt);
-      }
-    });
-
-    campoContrasena.setBackground(new java.awt.Color(208, 208, 208));
-    campoContrasena.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoContrasena.setForeground(new java.awt.Color(150, 150, 150));
-    campoContrasena.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoContrasena.setText("**********");
-    campoContrasena.setBorder(null);
-    campoContrasena.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        campoContrasenaMousePressed(evt);
-      }
-    });
+    etiquetaTitulo.setText("Agregar categoria");
 
     botonIngresar.setBackground(new java.awt.Color(254, 163, 88));
     botonIngresar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
@@ -112,37 +89,87 @@ public class IniciarSesion extends javax.swing.JFrame {
       }
     });
 
+    etiquetaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logoHorizontal.png"))); // NOI18N
+
+    etiquetaNombre.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    etiquetaNombre.setText("Nombre:");
+
+    campoNombre.setBackground(new java.awt.Color(208, 208, 208));
+    campoNombre.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoNombre.setForeground(new java.awt.Color(150, 150, 150));
+    campoNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoNombre.setBorder(null);
+
+    campoDescripcion.setBackground(new java.awt.Color(208, 208, 208));
+    campoDescripcion.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoDescripcion.setForeground(new java.awt.Color(150, 150, 150));
+    campoDescripcion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoDescripcion.setBorder(null);
+
+    etiquetaDescripcion.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    etiquetaDescripcion.setText("Descripción:");
+
+    botonRegresar.setBackground(new java.awt.Color(255, 255, 255));
+    botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
+    botonRegresar.setBorder(null);
+    botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonRegresarActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout panelContenedorLayout = new javax.swing.GroupLayout(panelContenedor);
     panelContenedor.setLayout(panelContenedorLayout);
     panelContenedorLayout.setHorizontalGroup(
       panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelContenedorLayout.createSequentialGroup()
-        .addComponent(etiquetaLogo)
+        .addComponent(etiquetaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(0, 0, Short.MAX_VALUE))
+      .addGroup(panelContenedorLayout.createSequentialGroup()
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(panelContenedorLayout.createSequentialGroup()
-            .addGap(57, 57, 57)
-            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-              .addComponent(botonIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(campoContrasena)
-              .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(191, 191, 191)
+            .addComponent(botonRegresar))
           .addGroup(panelContenedorLayout.createSequentialGroup()
-            .addGap(26, 26, 26)
-            .addComponent(etiquetaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addGap(0, 61, Short.MAX_VALUE))
+            .addGap(177, 177, 177)
+            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(etiquetaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(panelContenedorLayout.createSequentialGroup()
+                  .addComponent(etiquetaNombre)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                  .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelContenedorLayout.createSequentialGroup()
+                  .addComponent(etiquetaDescripcion)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                  .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGap(0, 171, Short.MAX_VALUE)))
+        .addContainerGap())
     );
     panelContenedorLayout.setVerticalGroup(
       panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(etiquetaLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
       .addGroup(panelContenedorLayout.createSequentialGroup()
-        .addGap(69, 69, 69)
+        .addComponent(etiquetaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
         .addComponent(etiquetaTitulo)
-        .addGap(31, 31, 31)
-        .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(27, 27, 27)
-        .addComponent(campoContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(32, 32, 32)
+        .addGap(47, 47, 47)
+        .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(etiquetaNombre))
+        .addGap(18, 18, 18)
+        .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(etiquetaDescripcion))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
         .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(80, Short.MAX_VALUE))
+        .addGap(35, 35, 35))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
+        .addGap(0, 0, Short.MAX_VALUE)
+        .addComponent(botonRegresar)
+        .addContainerGap())
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,16 +177,16 @@ public class IniciarSesion extends javax.swing.JFrame {
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(65, 65, 65)
+        .addGap(73, 73, 73)
         .addComponent(panelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(82, Short.MAX_VALUE))
+        .addContainerGap(74, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(91, 91, 91)
+        .addGap(82, 82, 82)
         .addComponent(panelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(96, Short.MAX_VALUE))
+        .addContainerGap(105, Short.MAX_VALUE))
     );
 
     pack();
@@ -173,46 +200,32 @@ public class IniciarSesion extends javax.swing.JFrame {
     botonIngresar.setBackground(new Color(254, 163, 88));
   }//GEN-LAST:event_botonIngresarMouseExited
 
-  private void campoUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoUsuarioMousePressed
-    if (campoUsuario.getText().equals("Nombre de usuario")) {
-      campoUsuario.setText("");
-      campoUsuario.setForeground(new Color(150, 150, 150));
-    }
-    if (String.valueOf(campoContrasena.getPassword()).isEmpty()) {
-      campoContrasena.setText("**********");
-      campoContrasena.setForeground(new Color(150, 150, 150));
-    }
-  }//GEN-LAST:event_campoUsuarioMousePressed
-
-  private void campoContrasenaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoContrasenaMousePressed
-    if (String.valueOf(campoContrasena.getPassword()).equals("**********")) {
-      campoContrasena.setText("");
-      campoContrasena.setForeground(new Color(150, 150, 150));
-    }
-    if (campoUsuario.getText().isEmpty()) {
-      campoUsuario.setText("Nombre de usuario");
-      campoUsuario.setForeground(new Color(150, 150, 150));
-    }
-  }//GEN-LAST:event_campoContrasenaMousePressed
+  private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+    Inventario inventario = new Inventario();
+    inventario.setLocationRelativeTo(this);
+    inventario.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonRegresarActionPerformed
 
   private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
-    // TODO add your handling code here:
-    String nombre = this.campoUsuario.getText();
-    String pwd = new String(this.campoContrasena.getPassword());
-    if(nombre.length() > 0 && pwd.length() > 0){
-      DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
-      Usuario usu = usuImpl.consultar(nombre, pwd);
-      if(usuImpl.login(usu)){
-        DAORolUsuarioImpl rolImpl = new DAORolUsuarioImpl();
-        RolUsuario rol = rolImpl.consultar(usu.getRol().getFolioRol());
-        rolImpl.accesoPorRol(rol, this);
-      }else{
-        JOptionPane.showMessageDialog(this, "No hay registros que coincidan con los datos", 
-                "Oh no!", JOptionPane.ERROR_MESSAGE);
-      }
-    }else{
-      JOptionPane.showMessageDialog(this, "Ambos campos deben ser llenados", 
-              "Ojo!", JOptionPane.WARNING_MESSAGE);
+    String nombre = this.campoNombre.getText();
+    String descripcion = this.campoDescripcion.getText();
+
+    DAOCategoriaImpl catImpl = new DAOCategoriaImpl();
+    List<Categoria> lista = catImpl.listarTodos();
+    int cantidadCategorias = lista.size();
+    int siguiente = cantidadCategorias + 1;
+    String folioCat = Util.generarFolio("CAT", String.valueOf(siguiente));
+    Categoria cat = new Categoria(folioCat, nombre, descripcion);
+
+    if (catImpl.insertar(cat)) {
+      JOptionPane.showMessageDialog(this, "Categoria agregado con éxito",
+        "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+      this.campoDescripcion.setText("");
+      this.campoNombre.setText("");
+    } else {
+      JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde",
+        "Oh no!", JOptionPane.ERROR_MESSAGE);
     }
   }//GEN-LAST:event_botonIngresarActionPerformed
 
@@ -253,9 +266,12 @@ public class IniciarSesion extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton botonIngresar;
-  private javax.swing.JPasswordField campoContrasena;
-  private javax.swing.JTextField campoUsuario;
+  private javax.swing.JButton botonRegresar;
+  private javax.swing.JTextField campoDescripcion;
+  private javax.swing.JTextField campoNombre;
+  private javax.swing.JLabel etiquetaDescripcion;
   private javax.swing.JLabel etiquetaLogo;
+  private javax.swing.JLabel etiquetaNombre;
   private javax.swing.JLabel etiquetaTitulo;
   private javax.swing.JPanel panelContenedor;
   // End of variables declaration//GEN-END:variables
@@ -307,6 +323,34 @@ public class IniciarSesion extends javax.swing.JFrame {
 
     public RoundJPasswordField(int size) {
       super(size);
+      setOpaque(false); // As suggested by @AVD in comment.
+    }
+
+    protected void paintComponent(Graphics g) {
+      g.setColor(getBackground());
+      g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+      super.paintComponent(g);
+    }
+
+    protected void paintBorder(Graphics g) {
+      g.setColor(new Color(208, 208, 208));
+      g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+    }
+
+    public boolean contains(int x, int y) {
+      if (shape == null || !shape.getBounds().equals(getBounds())) {
+        shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+      }
+      return shape.contains(x, y);
+    }
+  }
+
+  class RoundJComboBox extends JComboBox {
+
+    private Shape shape;
+
+    public RoundJComboBox(int size) {
+      super();
       setOpaque(false); // As suggested by @AVD in comment.
     }
 

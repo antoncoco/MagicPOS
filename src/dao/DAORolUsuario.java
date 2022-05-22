@@ -5,18 +5,13 @@
  */
 package dao;
 
-import java.sql.*;
-import database.Conexion;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JFrame;
 import modelos.RolUsuario;
-import modelos.Usuario;
 
 /**
  *
  * @author MagicPOS
  */
-public interface DAOUsuario extends DAO<Usuario, String>{
-  public boolean login(Usuario usuario);
+public interface DAORolUsuario extends DAO<RolUsuario,String>{
+  public void accesoPorRol(RolUsuario rol, JFrame anterior);
 }

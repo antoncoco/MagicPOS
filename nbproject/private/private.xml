@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group>
+            <file>file:/C:/MagicPOS/MagicPOS/src/dao/DAOUsuario.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/dao/DAOVenta.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/controladores/DAOProductoImpl.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/modelos/RolUsuario.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/vistas/IniciarSesion.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/controladores/DAOVentaImpl.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/dao/DAO.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/database/Conexion.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/dao/DAORolUsuario.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/utils/Util.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/modelos/Usuario.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/controladores/DAORolUsuarioImpl.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/controladores/DAOProveedorImpl.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/dao/DAOProducto.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/dao/DAOProveedor.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/magicpos/Main.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/vistas/AgregarCategoria.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/controladores/DAOUsuarioImpl.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/controladores/DAOCategoriaImpl.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/controladores/DAOProductoAlmacenImpl.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/dao/DAOProductoAlmacen.java</file>
+            <file>file:/C:/MagicPOS/MagicPOS/src/dao/DAOCategoria.java</file>
+        </group>
+        <group name="Lenguajes y automatas REGEX">
+            <file>file:/C:/Users/israe/magicPOS/MagicPOS/src/controladores/DAOUsuarioImpl.java</file>
+            <file>file:/C:/Users/israe/magicPOS/MagicPOS/src/vistas/AgregarUsuario.java</file>
+            <file>file:/C:/Users/israe/magicPOS/MagicPOS/src/vistas/Reportes.java</file>
+            <file>file:/C:/Users/israe/magicPOS/MagicPOS/src/vistas/SeleccionarProductos.java</file>
+            <file>file:/C:/Users/israe/magicPOS/MagicPOS/src/vistas/Venta.java</file>
+            <file>file:/C:/Users/israe/magicPOS/MagicPOS/src/controladores/DAOVentaImpl.java</file>
+        </group>
+=======
+        <group/>
+>>>>>>> 787017100cf404e61c0f5db144fdb04bae306493
+    </open-files>
+</project-private>

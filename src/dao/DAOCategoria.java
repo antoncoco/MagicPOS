@@ -6,18 +6,12 @@
 package dao;
 
 import java.util.List;
-
+import modelos.Categoria;
 
 /**
  *
  * @author MagicPOS
- * @param <T>
- * @param <K>
  */
-public interface DAO<T,K>{
-  public T consultar(K id);
-  public boolean eliminar(K id);
-  public boolean actualizar(T entidad);
-  public boolean insertar(T entidad);
-  public List<T> listarTodos();
+public interface DAOCategoria extends DAO<Categoria, String>{
+  
 }

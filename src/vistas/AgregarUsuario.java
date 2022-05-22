@@ -2,36 +2,46 @@ package vistas;
 
 import controladores.DAORolUsuarioImpl;
 import controladores.DAOUsuarioImpl;
-import dao.DAORolUsuario;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import modelos.RolUsuario;
 import modelos.Usuario;
+import utils.Util;
 
 /**
  *
  * @author MagicPOS
  */
-public class IniciarSesion extends javax.swing.JFrame {
+public class AgregarUsuario extends javax.swing.JFrame {
 
   FondoPanel fondo = new FondoPanel();
 
   /**
    * Creates new form IniciarSesion
    */
-  public IniciarSesion() {
+  public AgregarUsuario() {
     this.setContentPane(fondo);
     initComponents();
+    DAORolUsuarioImpl rolImpl = new DAORolUsuarioImpl();
+    List<RolUsuario> list = rolImpl.listarTodos();
+    ArrayList<String> arrlist = new ArrayList();
+    for(RolUsuario rol: list){
+      arrlist.add(rol.getNombre());
+    }
+    this.comboRol.setModel(new DefaultComboBoxModel(arrlist.toArray(new String[arrlist.size()])));
   }
 
   /**
@@ -44,14 +54,18 @@ public class IniciarSesion extends javax.swing.JFrame {
   private void initComponents() {
 
     panelContenedor = new javax.swing.JPanel();
-    etiquetaLogo = new javax.swing.JLabel();
     etiquetaTitulo = new javax.swing.JLabel();
     campoUsuario = new RoundJTextField(7);
-    campoContrasena = new RoundJPasswordField(7);
     botonIngresar = new RoundJButton(7);
+    etiquetaLogo = new javax.swing.JLabel();
+    etiquetaUsuario = new javax.swing.JLabel();
+    etiquetaContrasena = new javax.swing.JLabel();
+    etiquetaRol = new javax.swing.JLabel();
+    comboRol = new RoundJComboBox(7);
+    campoContrasena = new RoundJPasswordField(7);
+    botonRegresar = new RoundJButton(7);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    setMaximumSize(new java.awt.Dimension(800, 550));
     setMinimumSize(new java.awt.Dimension(800, 550));
     setResizable(false);
     setSize(new java.awt.Dimension(800, 550));
@@ -61,35 +75,15 @@ public class IniciarSesion extends javax.swing.JFrame {
     panelContenedor.setMinimumSize(new java.awt.Dimension(653, 363));
     panelContenedor.setPreferredSize(new java.awt.Dimension(653, 363));
 
-    etiquetaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logoVertical.png"))); // NOI18N
-
     etiquetaTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 28)); // NOI18N
     etiquetaTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    etiquetaTitulo.setText("Inicio de sesión");
+    etiquetaTitulo.setText("Agregar usuario");
 
     campoUsuario.setBackground(new java.awt.Color(208, 208, 208));
     campoUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     campoUsuario.setForeground(new java.awt.Color(150, 150, 150));
     campoUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoUsuario.setText("Nombre de usuario");
     campoUsuario.setBorder(null);
-    campoUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        campoUsuarioMousePressed(evt);
-      }
-    });
-
-    campoContrasena.setBackground(new java.awt.Color(208, 208, 208));
-    campoContrasena.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoContrasena.setForeground(new java.awt.Color(150, 150, 150));
-    campoContrasena.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoContrasena.setText("**********");
-    campoContrasena.setBorder(null);
-    campoContrasena.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        campoContrasenaMousePressed(evt);
-      }
-    });
 
     botonIngresar.setBackground(new java.awt.Color(254, 163, 88));
     botonIngresar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
@@ -112,37 +106,98 @@ public class IniciarSesion extends javax.swing.JFrame {
       }
     });
 
+    etiquetaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logoHorizontal.png"))); // NOI18N
+
+    etiquetaUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    etiquetaUsuario.setText("Usuario:");
+
+    etiquetaContrasena.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    etiquetaContrasena.setText("Contraseña:");
+
+    etiquetaRol.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    etiquetaRol.setText("Rol:");
+
+    comboRol.setBackground(new java.awt.Color(208, 208, 208));
+    comboRol.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    comboRol.setForeground(new java.awt.Color(150, 150, 150));
+    comboRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    comboRol.setBorder(null);
+
+    campoContrasena.setBackground(new java.awt.Color(208, 208, 208));
+    campoContrasena.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoContrasena.setForeground(new java.awt.Color(150, 150, 150));
+    campoContrasena.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoContrasena.setBorder(null);
+
+    botonRegresar.setBackground(getBackground());
+    botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
+    botonRegresar.setBorder(null);
+    botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonRegresarActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout panelContenedorLayout = new javax.swing.GroupLayout(panelContenedor);
     panelContenedor.setLayout(panelContenedorLayout);
     panelContenedorLayout.setHorizontalGroup(
       panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelContenedorLayout.createSequentialGroup()
-        .addComponent(etiquetaLogo)
+        .addComponent(etiquetaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(0, 0, Short.MAX_VALUE))
+      .addGroup(panelContenedorLayout.createSequentialGroup()
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(panelContenedorLayout.createSequentialGroup()
-            .addGap(57, 57, 57)
-            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-              .addComponent(botonIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(campoContrasena)
-              .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(199, 199, 199)
+            .addComponent(etiquetaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, Short.MAX_VALUE))
           .addGroup(panelContenedorLayout.createSequentialGroup()
-            .addGap(26, 26, 26)
-            .addComponent(etiquetaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addGap(0, 61, Short.MAX_VALUE))
+            .addGap(172, 172, 172)
+            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addGroup(panelContenedorLayout.createSequentialGroup()
+                .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(etiquetaUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addComponent(etiquetaContrasena))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                  .addComponent(campoUsuario)
+                  .addComponent(campoContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+              .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelContenedorLayout.createSequentialGroup()
+                  .addComponent(etiquetaRol)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                  .addComponent(comboRol, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+            .addComponent(botonRegresar)))
+        .addContainerGap())
     );
     panelContenedorLayout.setVerticalGroup(
       panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(etiquetaLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
       .addGroup(panelContenedorLayout.createSequentialGroup()
-        .addGap(69, 69, 69)
+        .addComponent(etiquetaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
         .addComponent(etiquetaTitulo)
-        .addGap(31, 31, 31)
-        .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(27, 27, 27)
-        .addComponent(campoContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(32, 32, 32)
+        .addGap(37, 37, 37)
+        .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(etiquetaUsuario))
+        .addGap(18, 18, 18)
+        .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(campoContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(etiquetaContrasena))
+        .addGap(18, 18, 18)
+        .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(etiquetaRol)
+          .addComponent(comboRol, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
         .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(80, Short.MAX_VALUE))
+        .addGap(33, 33, 33))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
+        .addGap(0, 0, Short.MAX_VALUE)
+        .addComponent(botonRegresar)
+        .addContainerGap())
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,16 +205,16 @@ public class IniciarSesion extends javax.swing.JFrame {
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(65, 65, 65)
+        .addGap(73, 73, 73)
         .addComponent(panelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(82, Short.MAX_VALUE))
+        .addContainerGap(74, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(91, 91, 91)
+        .addGap(82, 82, 82)
         .addComponent(panelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(96, Short.MAX_VALUE))
+        .addContainerGap(105, Short.MAX_VALUE))
     );
 
     pack();
@@ -173,41 +228,36 @@ public class IniciarSesion extends javax.swing.JFrame {
     botonIngresar.setBackground(new Color(254, 163, 88));
   }//GEN-LAST:event_botonIngresarMouseExited
 
-  private void campoUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoUsuarioMousePressed
-    if (campoUsuario.getText().equals("Nombre de usuario")) {
-      campoUsuario.setText("");
-      campoUsuario.setForeground(new Color(150, 150, 150));
-    }
-    if (String.valueOf(campoContrasena.getPassword()).isEmpty()) {
-      campoContrasena.setText("**********");
-      campoContrasena.setForeground(new Color(150, 150, 150));
-    }
-  }//GEN-LAST:event_campoUsuarioMousePressed
-
-  private void campoContrasenaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoContrasenaMousePressed
-    if (String.valueOf(campoContrasena.getPassword()).equals("**********")) {
-      campoContrasena.setText("");
-      campoContrasena.setForeground(new Color(150, 150, 150));
-    }
-    if (campoUsuario.getText().isEmpty()) {
-      campoUsuario.setText("Nombre de usuario");
-      campoUsuario.setForeground(new Color(150, 150, 150));
-    }
-  }//GEN-LAST:event_campoContrasenaMousePressed
+  private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+    // TODO add your handling code here:
+    GestionDeUsuarios gestion = new GestionDeUsuarios();
+    gestion.setLocationRelativeTo(this);
+    gestion.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonRegresarActionPerformed
 
   private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
     // TODO add your handling code here:
     String nombre = this.campoUsuario.getText();
     String pwd = new String(this.campoContrasena.getPassword());
+    String pwdEncriptado = Util.encriptar(pwd);
+    int rol = this.comboRol.getSelectedIndex() + 1;
+    String folioRol = Util.generarFolio("ROL", String.valueOf(rol));
+    
     if(nombre.length() > 0 && pwd.length() > 0){
       DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
-      Usuario usu = usuImpl.consultar(nombre, pwd);
-      if(usuImpl.login(usu)){
-        DAORolUsuarioImpl rolImpl = new DAORolUsuarioImpl();
-        RolUsuario rol = rolImpl.consultar(usu.getRol().getFolioRol());
-        rolImpl.accesoPorRol(rol, this);
+      List<Usuario> lista = usuImpl.listarTodos();
+      int cantidadUsuarios = lista.size();
+      int siguiente = cantidadUsuarios + 1;
+      String folioUsu = Util.generarFolio("USU", String.valueOf(siguiente));
+      Usuario usu = new Usuario(folioUsu, nombre, pwdEncriptado,new RolUsuario(folioRol));
+      if(usuImpl.insertar(usu)){
+        JOptionPane.showMessageDialog(this, "Usuario agragado con éxito", 
+                "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+        this.campoUsuario.setText("");
+        this.campoContrasena.setText("");
       }else{
-        JOptionPane.showMessageDialog(this, "No hay registros que coincidan con los datos", 
+        JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde", 
                 "Oh no!", JOptionPane.ERROR_MESSAGE);
       }
     }else{
@@ -253,10 +303,15 @@ public class IniciarSesion extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton botonIngresar;
+  private javax.swing.JButton botonRegresar;
   private javax.swing.JPasswordField campoContrasena;
   private javax.swing.JTextField campoUsuario;
+  private javax.swing.JComboBox<String> comboRol;
+  private javax.swing.JLabel etiquetaContrasena;
   private javax.swing.JLabel etiquetaLogo;
+  private javax.swing.JLabel etiquetaRol;
   private javax.swing.JLabel etiquetaTitulo;
+  private javax.swing.JLabel etiquetaUsuario;
   private javax.swing.JPanel panelContenedor;
   // End of variables declaration//GEN-END:variables
 
@@ -307,6 +362,34 @@ public class IniciarSesion extends javax.swing.JFrame {
 
     public RoundJPasswordField(int size) {
       super(size);
+      setOpaque(false); // As suggested by @AVD in comment.
+    }
+
+    protected void paintComponent(Graphics g) {
+      g.setColor(getBackground());
+      g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+      super.paintComponent(g);
+    }
+
+    protected void paintBorder(Graphics g) {
+      g.setColor(new Color(208, 208, 208));
+      g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+    }
+
+    public boolean contains(int x, int y) {
+      if (shape == null || !shape.getBounds().equals(getBounds())) {
+        shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+      }
+      return shape.contains(x, y);
+    }
+  }
+  
+  class RoundJComboBox extends JComboBox {
+
+    private Shape shape;
+
+    public RoundJComboBox(int size) {
+      super();
       setOpaque(false); // As suggested by @AVD in comment.
     }
 
