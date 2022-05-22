@@ -17,6 +17,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -262,29 +263,34 @@ public class AgregarInventario extends javax.swing.JFrame {
     SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
     int prd = this.comboProducto.getSelectedIndex() + 1;
-    String folioInv = Util.generarFolio("PRD", String.valueOf(prd));
+    String folioPrd = Util.generarFolio("PRD", String.valueOf(prd));
 
     DAOProductoAlmacenImpl prdAlmImpl = new DAOProductoAlmacenImpl();
     List<ProductoAlmacen> lista = prdAlmImpl.listarTodos();
     int cantidadAlmPrd = lista.size();
     int siguiente = cantidadAlmPrd + 1;
-    String folioAlmPrd = Util.generarFolio("PRD", String.valueOf(siguiente));
+    String folioAlma = Util.generarFolio("INV", String.valueOf(siguiente));
     ProductoAlmacen prdAlm = null;
     try {
       prdAlm = new ProductoAlmacen(
-        folioAlmPrd,
+        folioAlma,
         Integer.parseInt(cantidad),
         formato.parse(fechaReg),
         formato.parse(cad),
-        new Producto(folioInv));
+        new Producto(folioPrd));
     } catch (ParseException ex) {
       Logger.getLogger(AgregarInventario.class.getName()).log(Level.SEVERE, null, ex);
     }
 
     if (prdAlmImpl.insertar(prdAlm)) {
-      System.out.println("YES");
+      JOptionPane.showMessageDialog(this, "Producto agregado en almacen con éxito",
+        "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+      this.campoCaducidad.setText("");
+      this.campoCantidad.setText("");
+      this.campoFechaReg.setText("");
     } else {
-      System.out.println("Oh no");
+      JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde",
+        "Oh no!", JOptionPane.ERROR_MESSAGE);
     }
 
 

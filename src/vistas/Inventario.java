@@ -10,6 +10,10 @@ import java.awt.Image;
 import java.awt.Shape;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -17,6 +21,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import modelos.Categoria;
+import modelos.Proveedor;
+import modelos.Producto;
+import modelos.ProductoAlmacen;
 
 /**
  *
@@ -212,6 +220,11 @@ public class Inventario extends javax.swing.JFrame {
         botonActualizarMouseExited(evt);
       }
     });
+    botonActualizar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonActualizarActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 300, 40));
 
     botonRegresar.setBackground(new java.awt.Color(252, 168, 1));
@@ -241,6 +254,8 @@ public class Inventario extends javax.swing.JFrame {
 
     tabbedInventario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
 
+    jScrollPane1.setAutoscrolls(true);
+
     tablaCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 150, 150)));
     tablaCategoria.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
     tablaCategoria.setModel(new javax.swing.table.DefaultTableModel(
@@ -263,6 +278,10 @@ public class Inventario extends javax.swing.JFrame {
     jScrollPane1.setViewportView(tablaCategoria);
 
     tabbedInventario.addTab("Categorias", jScrollPane1);
+
+    jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+    jScrollPane2.setAutoscrolls(true);
+    jScrollPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
     tablaProveedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 150, 150)));
     tablaProveedor.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -464,7 +483,6 @@ public class Inventario extends javax.swing.JFrame {
 
   private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
     int index = tabbedInventario.getSelectedIndex();
-    System.out.println(index);
 
     switch (index) {
       case 0:
@@ -532,7 +550,6 @@ public class Inventario extends javax.swing.JFrame {
 
   private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
     int index = tabbedInventario.getSelectedIndex();
-    System.out.println(index);
 
     switch (index) {
       case 0:
@@ -565,7 +582,6 @@ public class Inventario extends javax.swing.JFrame {
 
   private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
     int index = tabbedInventario.getSelectedIndex();
-    System.out.println(index);
 
     switch (index) {
       case 0:
@@ -654,6 +670,120 @@ public class Inventario extends javax.swing.JFrame {
     panelAdmin.setVisible(true);
     this.dispose();
   }//GEN-LAST:event_botonRegresarActionPerformed
+
+  private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+    int index = tabbedInventario.getSelectedIndex();
+
+    switch (index) {
+      case 0:
+        int filaSeleccionadaC = this.tablaCategoria.getSelectedRow();
+        if (filaSeleccionadaC == -1) {
+          JOptionPane.showMessageDialog(this, "Seleccione una fila para realizar esta operación",
+            "Upsi!", JOptionPane.WARNING_MESSAGE);
+        } else {
+          String folioCat = this.tablaCategoria.getValueAt(filaSeleccionadaC, 0).toString();
+          String nombreCat = this.tablaCategoria.getValueAt(filaSeleccionadaC, 1).toString();
+          String descrip = this.tablaCategoria.getValueAt(filaSeleccionadaC, 2).toString();
+
+          Categoria cat = new Categoria(folioCat, nombreCat, descrip);
+          DAOCategoriaImpl catImpl = new DAOCategoriaImpl();
+          if (catImpl.actualizar(cat)) {
+            JOptionPane.showMessageDialog(this, "Categoria actualizada con éxito",
+              "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+          } else {
+            JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde",
+              "Oh no!", JOptionPane.ERROR_MESSAGE);
+          }
+        }
+
+        break;
+      case 1:
+        int filaSeleccionadaPv = this.tablaProveedor.getSelectedRow();
+        if (filaSeleccionadaPv == -1) {
+          JOptionPane.showMessageDialog(this, "Seleccione una fila para realizar esta operación",
+            "Upsi!", JOptionPane.WARNING_MESSAGE);
+        } else {
+          String rfcPv = this.tablaProveedor.getValueAt(filaSeleccionadaPv, 0).toString();
+          String nombre = this.tablaProveedor.getValueAt(filaSeleccionadaPv, 1).toString();
+          String conNom = this.tablaProveedor.getValueAt(filaSeleccionadaPv, 2).toString();
+          String conDesc = this.tablaProveedor.getValueAt(filaSeleccionadaPv, 3).toString();
+          String calle = this.tablaProveedor.getValueAt(filaSeleccionadaPv, 4).toString();
+          String numExt = this.tablaProveedor.getValueAt(filaSeleccionadaPv, 5).toString();
+          String numInt = this.tablaProveedor.getValueAt(filaSeleccionadaPv, 6).toString();
+          String estado = this.tablaProveedor.getValueAt(filaSeleccionadaPv, 7).toString();
+          String ciudad = this.tablaProveedor.getValueAt(filaSeleccionadaPv, 8).toString();
+          String cp = this.tablaProveedor.getValueAt(filaSeleccionadaPv, 9).toString();
+          String correo = this.tablaProveedor.getValueAt(filaSeleccionadaPv, 10).toString();
+          String telefono = this.tablaProveedor.getValueAt(filaSeleccionadaPv, 11).toString();
+          String sitio = this.tablaProveedor.getValueAt(filaSeleccionadaPv, 12).toString();
+
+          Proveedor prv = new Proveedor(
+            rfcPv,
+            nombre,
+            conNom,
+            conDesc,
+            calle,
+            numExt,
+            numInt,
+            estado,
+            ciudad,
+            cp,
+            correo,
+            telefono,
+            sitio);
+          DAOProveedorImpl prvImpl = new DAOProveedorImpl();
+          if (prvImpl.actualizar(prv)) {
+            JOptionPane.showMessageDialog(this, "Proveedor actualizada con éxito",
+              "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+          } else {
+            JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde",
+              "Oh no!", JOptionPane.ERROR_MESSAGE);
+          }
+        }
+        break;
+      case 2:
+        int filaSeleccionadaPd = this.tablaProducto.getSelectedRow();
+        if (filaSeleccionadaPd == -1) {
+          JOptionPane.showMessageDialog(this, "Seleccione una fila para realizar esta operación",
+            "Upsi!", JOptionPane.WARNING_MESSAGE);
+        } else {
+          String clavePrd = this.tablaProducto.getValueAt(filaSeleccionadaPd, 0).toString();
+          String nombre = this.tablaProducto.getValueAt(filaSeleccionadaPd, 1).toString();
+          String medida = this.tablaProducto.getValueAt(filaSeleccionadaPd, 2).toString();
+          String precio = this.tablaProducto.getValueAt(filaSeleccionadaPd, 3).toString();
+          String cantPv = this.tablaProducto.getValueAt(filaSeleccionadaPd, 4).toString();
+          String cantLi = this.tablaProducto.getValueAt(filaSeleccionadaPd, 5).toString();
+          String descontinuado = this.tablaProducto.getValueAt(filaSeleccionadaPd, 6).toString();
+          String rfc = this.tablaProducto.getValueAt(filaSeleccionadaPd, 7).toString();
+          String folioCat = this.tablaProducto.getValueAt(filaSeleccionadaPd, 8).toString();
+
+          Producto prd = new Producto(clavePrd,
+            nombre,
+            medida,
+            Double.parseDouble(precio),
+            Integer.parseInt(cantPv),
+            Integer.parseInt(cantLi),
+            Short.parseShort(descontinuado),
+            new Proveedor(rfc),
+            new Categoria(folioCat)
+          );
+          DAOProductoImpl prdImpl = new DAOProductoImpl();
+          if (prdImpl.actualizar(prd)) {
+            JOptionPane.showMessageDialog(this, "Producto actualizada con éxito",
+              "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+          } else {
+            JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde",
+              "Oh no!", JOptionPane.ERROR_MESSAGE);
+          }
+        }
+        break;
+      case 3:
+        JOptionPane.showMessageDialog(this, "Inventario no se puede moficar",
+          "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        break;
+    }
+
+  }//GEN-LAST:event_botonActualizarActionPerformed
 
   /**
    * @param args the command line arguments

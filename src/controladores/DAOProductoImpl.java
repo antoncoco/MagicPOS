@@ -54,7 +54,23 @@ public class DAOProductoImpl implements DAOProducto {
 
   @Override
   public boolean actualizar(Producto entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      stmt.executeUpdate("UPDATE Producto SET Prod_precio = '" + entidad.getPrecio() + "', "
+        + "Prod_cantidadProveedor = '" + entidad.getCantidadProveedor() + "', "
+        + "Prod_cantidadLimite = '" + entidad.getCantidadLimite() + "', "
+        + "Prod_descontinuado = '" + entidad.isDescontinuado() + "' "
+        + "WHERE Prod_clave = '" + entidad.getClave() + "'");
+      con.close();
+      return true;
+    } catch (SQLException ex) {
+      Logger.getLogger(DAOProveedorImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return false;
   }
 
   @Override
@@ -144,7 +160,18 @@ public class DAOProductoImpl implements DAOProducto {
         data.add(vector);
       }
       con.close();
-      return new DefaultTableModel(data, columnNames);
+      return new DefaultTableModel(data, columnNames) {
+        boolean[] canEdit = new boolean[]{
+          false, false, false,
+          true, true, true, true,
+          false, false
+        };
+
+        @Override
+        public boolean isCellEditable(int row, int column) {
+          return canEdit[column];
+        }
+      };
     } catch (SQLException ex) {
       Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -178,9 +205,15 @@ public class DAOProductoImpl implements DAOProducto {
       }
       con.close();
       return new DefaultTableModel(data, columnNames) {
+        boolean[] canEdit = new boolean[]{
+          false, false, false,
+          true, true, true, true,
+          false, false
+        };
+
         @Override
         public boolean isCellEditable(int row, int column) {
-          return column == 1;
+          return canEdit[column];
         }
       };
     } catch (SQLException ex) {

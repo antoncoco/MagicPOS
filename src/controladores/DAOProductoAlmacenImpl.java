@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -79,15 +80,17 @@ public class DAOProductoAlmacenImpl implements DAOProductoAlmacen {
     Conexion conexion = new Conexion();
     conexion.conectar();
     Connection con = conexion.getCon();
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
     try {
       Statement stmt;
       stmt = con.createStatement();
       stmt.executeUpdate("INSERT INTO Producto_almacen "
         + "VALUES ('" + entidad.getFolio() + "', "
         + "'" + entidad.getCantidad() + "', "
-        + "'" + entidad.getFechaReg() + "', "
-        + "'" + entidad.getCaducidad() + "', "
-        + "'" + entidad.getProducto() + "')"
+        + "'" + formato.format(entidad.getFechaReg()) + "', "
+        + "'" + formato.format(entidad.getCaducidad()) + "', "
+        + "'" + entidad.getProducto().getClave() + "')"
       );
 
       return true;
@@ -151,7 +154,12 @@ public class DAOProductoAlmacenImpl implements DAOProductoAlmacen {
         data.add(vector);
       }
       con.close();
-      return new DefaultTableModel(data, columnNames);
+      return new DefaultTableModel(data, columnNames) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+          return false;
+        }
+      };
     } catch (SQLException ex) {
       Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -187,7 +195,7 @@ public class DAOProductoAlmacenImpl implements DAOProductoAlmacen {
       return new DefaultTableModel(data, columnNames) {
         @Override
         public boolean isCellEditable(int row, int column) {
-          return column == 1;
+          return false;
         }
       };
     } catch (SQLException ex) {
