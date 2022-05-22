@@ -1,5 +1,6 @@
 package vistas;
 
+import controladores.DAOProveedorImpl;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import modelos.Proveedor;
 
 /**
  *
@@ -98,6 +100,11 @@ public class AgregarProveedor extends javax.swing.JFrame {
         botonIngresarMouseExited(evt);
       }
     });
+    botonIngresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonIngresarActionPerformed(evt);
+      }
+    });
 
     etiquetaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logoHorizontal.png"))); // NOI18N
 
@@ -136,22 +143,12 @@ public class AgregarProveedor extends javax.swing.JFrame {
     campoCalle.setForeground(new java.awt.Color(150, 150, 150));
     campoCalle.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     campoCalle.setBorder(null);
-    campoCalle.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        campoCalleActionPerformed(evt);
-      }
-    });
 
     campoNumExt.setBackground(new java.awt.Color(208, 208, 208));
     campoNumExt.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     campoNumExt.setForeground(new java.awt.Color(150, 150, 150));
     campoNumExt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     campoNumExt.setBorder(null);
-    campoNumExt.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        campoNumExtActionPerformed(evt);
-      }
-    });
 
     etiquetaNumExt.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     etiquetaNumExt.setText("Número exterior:");
@@ -188,11 +185,6 @@ public class AgregarProveedor extends javax.swing.JFrame {
     campoCorreo.setForeground(new java.awt.Color(150, 150, 150));
     campoCorreo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     campoCorreo.setBorder(null);
-    campoCorreo.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        campoCorreoActionPerformed(evt);
-      }
-    });
 
     etiquetaCorreo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     etiquetaCorreo.setText("Correo:");
@@ -205,11 +197,6 @@ public class AgregarProveedor extends javax.swing.JFrame {
     campoTelefono.setForeground(new java.awt.Color(150, 150, 150));
     campoTelefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     campoTelefono.setBorder(null);
-    campoTelefono.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        campoTelefonoActionPerformed(evt);
-      }
-    });
 
     campoEstado.setBackground(new java.awt.Color(208, 208, 208));
     campoEstado.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
@@ -234,11 +221,6 @@ public class AgregarProveedor extends javax.swing.JFrame {
     campoSitioWeb.setForeground(new java.awt.Color(150, 150, 150));
     campoSitioWeb.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     campoSitioWeb.setBorder(null);
-    campoSitioWeb.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        campoSitioWebActionPerformed(evt);
-      }
-    });
 
     etiquetaSitioWeb.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     etiquetaSitioWeb.setText("Sitio web:");
@@ -247,6 +229,11 @@ public class AgregarProveedor extends javax.swing.JFrame {
     botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonRegresarActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout panelContenedorLayout = new javax.swing.GroupLayout(panelContenedor);
     panelContenedor.setLayout(panelContenedorLayout);
@@ -301,7 +288,7 @@ public class AgregarProveedor extends javax.swing.JFrame {
                     .addComponent(campoEstado)
                     .addComponent(campoCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addComponent(campoCP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-        .addContainerGap(34, Short.MAX_VALUE))
+        .addContainerGap(38, Short.MAX_VALUE))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
         .addGap(0, 0, Short.MAX_VALUE)
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,26 +394,6 @@ public class AgregarProveedor extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  private void campoSitioWebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoSitioWebActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_campoSitioWebActionPerformed
-
-  private void campoTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTelefonoActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_campoTelefonoActionPerformed
-
-  private void campoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCorreoActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_campoCorreoActionPerformed
-
-  private void campoNumExtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNumExtActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_campoNumExtActionPerformed
-
-  private void campoCalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCalleActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_campoCalleActionPerformed
-
   private void botonIngresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIngresarMouseExited
     botonIngresar.setBackground(new Color(254, 163, 88));
   }//GEN-LAST:event_botonIngresarMouseExited
@@ -434,6 +401,42 @@ public class AgregarProveedor extends javax.swing.JFrame {
   private void botonIngresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIngresarMouseEntered
     botonIngresar.setBackground(new Color(255, 109, 0));
   }//GEN-LAST:event_botonIngresarMouseEntered
+
+  private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+    String rfc = this.campoRFC.getText();
+    String nombre = this.campoNombre.getText();
+    String contNombre = this.campoNombreCont.getText();
+    String contDescrip = this.campoDescripCont.getText();
+    String calle = this.campoCalle.getText();
+    String numExt = this.campoNumExt.getText();
+    String numInt = this.campoNumInt.getText();
+    String estado = this.campoEstado.getText();
+    String ciudad = this.campoCiudad.getText();
+    String cp = this.campoCP.getText();
+    String correo = this.campoCorreo.getText();
+    String telefono = this.campoTelefono.getText();
+    String sitioW = this.campoSitioWeb.getText();
+
+    DAOProveedorImpl provImpl = new DAOProveedorImpl();
+    Proveedor prov = new Proveedor(rfc, nombre, contNombre,
+      contDescrip, calle, numExt, numInt, estado, ciudad,
+      cp, correo, telefono, sitioW);
+
+    if (provImpl.insertar(prov)) {
+      System.out.println("YES");
+    } else {
+      System.out.println("Oh no");
+    }
+
+
+  }//GEN-LAST:event_botonIngresarActionPerformed
+
+  private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+    Inventario inventario = new Inventario();
+    inventario.setLocationRelativeTo(this);
+    inventario.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonRegresarActionPerformed
 
   /**
    * @param args the command line arguments
@@ -572,7 +575,7 @@ public class AgregarProveedor extends javax.swing.JFrame {
       return shape.contains(x, y);
     }
   }
-  
+
   class RoundJComboBox extends JComboBox {
 
     private Shape shape;

@@ -1,16 +1,26 @@
 package vistas;
 
+import controladores.DAOCategoriaImpl;
+import controladores.DAOProductoImpl;
+import controladores.DAOProveedorImpl;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import modelos.Categoria;
+import modelos.Producto;
+import modelos.Proveedor;
+import utils.Util;
 
 /**
  *
@@ -26,6 +36,21 @@ public class AgregarProducto extends javax.swing.JFrame {
   public AgregarProducto() {
     this.setContentPane(fondo);
     initComponents();
+    DAOProveedorImpl provImpl = new DAOProveedorImpl();
+    List<Proveedor> list = provImpl.listarTodos();
+    ArrayList<String> arrlist = new ArrayList();
+    for (Proveedor prov : list) {
+      arrlist.add(prov.getRfc());
+    }
+    this.comboProveedor.setModel(new DefaultComboBoxModel(arrlist.toArray(new String[arrlist.size()])));
+
+    DAOCategoriaImpl catImpl = new DAOCategoriaImpl();
+    List<Categoria> list2 = catImpl.listarTodos();
+    ArrayList<String> arrlist2 = new ArrayList();
+    for (Categoria cat : list2) {
+      arrlist2.add(cat.getNombre());
+    }
+    this.comboCategoria.setModel(new DefaultComboBoxModel(arrlist2.toArray(new String[arrlist2.size()])));
   }
 
   /**
@@ -43,11 +68,9 @@ public class AgregarProducto extends javax.swing.JFrame {
     etiquetaLogo = new javax.swing.JLabel();
     etiquetaPrecio = new javax.swing.JLabel();
     etiquetaCantPedProv = new javax.swing.JLabel();
-    etiquetaClave = new javax.swing.JLabel();
     etiquetaMedidaDesc = new javax.swing.JLabel();
     campoPrecio = new RoundJTextField(7);
     campoMedidaDesc = new RoundJTextField(7);
-    campoClave = new RoundJTextField(7);
     campoCantPedProv = new RoundJTextField(7);
     campoNombre = new RoundJTextField(7);
     etiquetaNombre = new javax.swing.JLabel();
@@ -90,6 +113,11 @@ public class AgregarProducto extends javax.swing.JFrame {
         botonIngresarMouseExited(evt);
       }
     });
+    botonIngresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonIngresarActionPerformed(evt);
+      }
+    });
 
     etiquetaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logoHorizontal.png"))); // NOI18N
 
@@ -98,9 +126,6 @@ public class AgregarProducto extends javax.swing.JFrame {
 
     etiquetaCantPedProv.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     etiquetaCantPedProv.setText("Cantidad pedida al proveedor:");
-
-    etiquetaClave.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    etiquetaClave.setText("Clave:");
 
     etiquetaMedidaDesc.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     etiquetaMedidaDesc.setText("Medida de descripción:");
@@ -116,12 +141,6 @@ public class AgregarProducto extends javax.swing.JFrame {
     campoMedidaDesc.setForeground(new java.awt.Color(150, 150, 150));
     campoMedidaDesc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     campoMedidaDesc.setBorder(null);
-
-    campoClave.setBackground(new java.awt.Color(208, 208, 208));
-    campoClave.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoClave.setForeground(new java.awt.Color(150, 150, 150));
-    campoClave.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoClave.setBorder(null);
 
     campoCantPedProv.setBackground(new java.awt.Color(208, 208, 208));
     campoCantPedProv.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
@@ -142,7 +161,7 @@ public class AgregarProducto extends javax.swing.JFrame {
     etiquetaProveedor.setText("Proveedor:");
 
     etiquetaCategoria.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    etiquetaCategoria.setText("Categotia:");
+    etiquetaCategoria.setText("Categoria:");
 
     campoDescont.setBackground(new java.awt.Color(208, 208, 208));
     campoDescont.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
@@ -166,6 +185,11 @@ public class AgregarProducto extends javax.swing.JFrame {
     botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonRegresarActionPerformed(evt);
+      }
+    });
 
     comboProveedor.setBackground(new java.awt.Color(208, 208, 208));
     comboProveedor.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
@@ -190,7 +214,6 @@ public class AgregarProducto extends javax.swing.JFrame {
         .addContainerGap()
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
           .addComponent(etiquetaCantPedProv)
-          .addComponent(etiquetaClave)
           .addComponent(etiquetaMedidaDesc)
           .addComponent(etiquetaPrecio)
           .addComponent(etiquetaNombre))
@@ -206,7 +229,6 @@ public class AgregarProducto extends javax.swing.JFrame {
               .addComponent(campoPrecio)
               .addComponent(campoCantPedProv)
               .addComponent(campoMedidaDesc, javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(campoClave)
               .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
             .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,15 +258,11 @@ public class AgregarProducto extends javax.swing.JFrame {
       panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelContenedorLayout.createSequentialGroup()
         .addComponent(etiquetaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
         .addComponent(etiquetaTitulo)
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(panelContenedorLayout.createSequentialGroup()
-            .addGap(26, 26, 26)
-            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(campoClave, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(etiquetaClave))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGap(44, 44, 44)
             .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(etiquetaNombre))
@@ -279,7 +297,7 @@ public class AgregarProducto extends javax.swing.JFrame {
               .addComponent(etiquetaCategoria)
               .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(0, 0, Short.MAX_VALUE)))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
             .addComponent(botonRegresar)
@@ -316,6 +334,48 @@ public class AgregarProducto extends javax.swing.JFrame {
   private void botonIngresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIngresarMouseEntered
     botonIngresar.setBackground(new Color(255, 109, 0));
   }//GEN-LAST:event_botonIngresarMouseEntered
+
+  private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+    String nombre = this.campoNombre.getText();
+    String medidaDes = this.campoMedidaDesc.getText();
+    String precio = this.campoPrecio.getText();
+    String cantProv = this.campoCantPedProv.getText();
+    String cantLim = this.campoCantLim.getText();
+    String desc = this.campoDescont.getText();
+    String rfc = this.comboProveedor.getSelectedItem().toString();
+    int cat = this.comboCategoria.getSelectedIndex() + 1;
+
+    String folioCat = Util.generarFolio("CAT", String.valueOf(cat));
+
+    DAOProductoImpl prodImpl = new DAOProductoImpl();
+    List<Producto> lista = prodImpl.listarTodos();
+    int cantidadProductos = lista.size();
+    int siguiente = cantidadProductos + 1;
+    String clave = Util.generarFolio("PRD", String.valueOf(siguiente));
+    Producto prd = new Producto(clave,
+      nombre, medidaDes, Double.parseDouble(precio),
+      Integer.parseInt(cantProv),
+      Integer.parseInt(cantLim),
+      Short.parseShort(desc),
+      new Proveedor(rfc),
+      new Categoria(folioCat)
+    );
+
+    if (prodImpl.insertar(prd)) {
+      System.out.println("YES");
+    } else {
+      System.out.println("Oh no");
+    }
+
+
+  }//GEN-LAST:event_botonIngresarActionPerformed
+
+  private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+    Inventario inventario = new Inventario();
+    inventario.setLocationRelativeTo(this);
+    inventario.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonRegresarActionPerformed
 
   /**
    * @param args the command line arguments
@@ -357,7 +417,6 @@ public class AgregarProducto extends javax.swing.JFrame {
   private javax.swing.JButton botonRegresar;
   private javax.swing.JTextField campoCantLim;
   private javax.swing.JTextField campoCantPedProv;
-  private javax.swing.JTextField campoClave;
   private javax.swing.JTextField campoDescont;
   private javax.swing.JTextField campoMedidaDesc;
   private javax.swing.JTextField campoNombre;
@@ -367,7 +426,6 @@ public class AgregarProducto extends javax.swing.JFrame {
   private javax.swing.JLabel etiquetaCantLim;
   private javax.swing.JLabel etiquetaCantPedProv;
   private javax.swing.JLabel etiquetaCategoria;
-  private javax.swing.JLabel etiquetaClave;
   private javax.swing.JLabel etiquetaDescont;
   private javax.swing.JLabel etiquetaLogo;
   private javax.swing.JLabel etiquetaMedidaDesc;
@@ -446,7 +504,7 @@ public class AgregarProducto extends javax.swing.JFrame {
       return shape.contains(x, y);
     }
   }
-  
+
   class RoundJComboBox extends JComboBox {
 
     private Shape shape;

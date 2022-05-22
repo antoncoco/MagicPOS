@@ -6,9 +6,11 @@ import java.awt.Image;
 import java.awt.Shape;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -171,6 +173,11 @@ public class Reportes extends javax.swing.JFrame {
         botonDescargarMouseExited(evt);
       }
     });
+    botonDescargar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonDescargarActionPerformed(evt);
+      }
+    });
     panelContenedor.add(botonDescargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 230, 60));
 
     botonGuardar.setBackground(new java.awt.Color(255, 255, 255));
@@ -215,6 +222,12 @@ public class Reportes extends javax.swing.JFrame {
   private void botonDescargarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDescargarMouseExited
     botonDescargar.setBackground(new Color(255,185,102));
   }//GEN-LAST:event_botonDescargarMouseExited
+
+  private void botonDescargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDescargarActionPerformed
+    Icon icono = new ImageIcon(getClass().getResource("/assets/bobReportes.png"));
+    
+    JOptionPane.showMessageDialog(rootPane, "Este apartado se encuentra en desarrollo", "Alerta", JOptionPane.PLAIN_MESSAGE, icono);
+  }//GEN-LAST:event_botonDescargarActionPerformed
 
   /**
    * @param args the command line arguments

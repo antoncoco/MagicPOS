@@ -1,5 +1,6 @@
 package vistas;
 
+import controladores.DAOCategoriaImpl;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,6 +12,11 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import modelos.Categoria;
+import utils.Util;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -39,10 +45,8 @@ public class AgregarCategoria extends javax.swing.JFrame {
 
     panelContenedor = new javax.swing.JPanel();
     etiquetaTitulo = new javax.swing.JLabel();
-    campoFolio = new RoundJTextField(7);
     botonIngresar = new RoundJButton(7);
     etiquetaLogo = new javax.swing.JLabel();
-    etiquetaFolio = new javax.swing.JLabel();
     etiquetaNombre = new javax.swing.JLabel();
     campoNombre = new RoundJTextField(7);
     campoDescripcion = new RoundJTextField(7);
@@ -63,12 +67,6 @@ public class AgregarCategoria extends javax.swing.JFrame {
     etiquetaTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     etiquetaTitulo.setText("Agregar categoria");
 
-    campoFolio.setBackground(new java.awt.Color(208, 208, 208));
-    campoFolio.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoFolio.setForeground(new java.awt.Color(150, 150, 150));
-    campoFolio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoFolio.setBorder(null);
-
     botonIngresar.setBackground(new java.awt.Color(254, 163, 88));
     botonIngresar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     botonIngresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,11 +82,13 @@ public class AgregarCategoria extends javax.swing.JFrame {
         botonIngresarMouseExited(evt);
       }
     });
+    botonIngresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonIngresarActionPerformed(evt);
+      }
+    });
 
     etiquetaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logoHorizontal.png"))); // NOI18N
-
-    etiquetaFolio.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    etiquetaFolio.setText("Folio:");
 
     etiquetaNombre.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     etiquetaNombre.setText("Nombre:");
@@ -112,6 +112,11 @@ public class AgregarCategoria extends javax.swing.JFrame {
     botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonRegresarActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout panelContenedorLayout = new javax.swing.GroupLayout(panelContenedor);
     panelContenedor.setLayout(panelContenedorLayout);
@@ -133,10 +138,6 @@ public class AgregarCategoria extends javax.swing.JFrame {
               .addComponent(etiquetaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addGroup(panelContenedorLayout.createSequentialGroup()
-                  .addComponent(etiquetaFolio)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                  .addComponent(campoFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(panelContenedorLayout.createSequentialGroup()
                   .addComponent(etiquetaNombre)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                   .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -144,7 +145,7 @@ public class AgregarCategoria extends javax.swing.JFrame {
                   .addComponent(etiquetaDescripcion)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                   .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGap(0, 175, Short.MAX_VALUE)))
+            .addGap(0, 171, Short.MAX_VALUE)))
         .addContainerGap())
     );
     panelContenedorLayout.setVerticalGroup(
@@ -153,11 +154,7 @@ public class AgregarCategoria extends javax.swing.JFrame {
         .addComponent(etiquetaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(18, 18, 18)
         .addComponent(etiquetaTitulo)
-        .addGap(29, 29, 29)
-        .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(campoFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(etiquetaFolio))
-        .addGap(18, 18, 18)
+        .addGap(47, 47, 47)
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(etiquetaNombre))
@@ -165,7 +162,7 @@ public class AgregarCategoria extends javax.swing.JFrame {
         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(etiquetaDescripcion))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
         .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(35, 35, 35))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
@@ -201,6 +198,31 @@ public class AgregarCategoria extends javax.swing.JFrame {
   private void botonIngresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIngresarMouseExited
     botonIngresar.setBackground(new Color(254, 163, 88));
   }//GEN-LAST:event_botonIngresarMouseExited
+
+  private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+    Inventario inventario = new Inventario();
+    inventario.setLocationRelativeTo(this);
+    inventario.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonRegresarActionPerformed
+
+  private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+    String nombre = this.campoNombre.getText();
+    String descripcion = this.campoDescripcion.getText();
+
+    DAOCategoriaImpl catImpl = new DAOCategoriaImpl();
+    List<Categoria> lista = catImpl.listarTodos();
+    int cantidadCategorias = lista.size();
+    int siguiente = cantidadCategorias + 1;
+    String folioCat = Util.generarFolio("CAT", String.valueOf(siguiente));
+    Categoria cat = new Categoria(folioCat, nombre, descripcion);
+
+    if (catImpl.insertar(cat)) {
+      System.out.println("YES");
+    } else {
+      System.out.println("Oh no");
+    }
+  }//GEN-LAST:event_botonIngresarActionPerformed
 
   /**
    * @param args the command line arguments
@@ -241,10 +263,8 @@ public class AgregarCategoria extends javax.swing.JFrame {
   private javax.swing.JButton botonIngresar;
   private javax.swing.JButton botonRegresar;
   private javax.swing.JTextField campoDescripcion;
-  private javax.swing.JTextField campoFolio;
   private javax.swing.JTextField campoNombre;
   private javax.swing.JLabel etiquetaDescripcion;
-  private javax.swing.JLabel etiquetaFolio;
   private javax.swing.JLabel etiquetaLogo;
   private javax.swing.JLabel etiquetaNombre;
   private javax.swing.JLabel etiquetaTitulo;
@@ -319,7 +339,7 @@ public class AgregarCategoria extends javax.swing.JFrame {
       return shape.contains(x, y);
     }
   }
-  
+
   class RoundJComboBox extends JComboBox {
 
     private Shape shape;

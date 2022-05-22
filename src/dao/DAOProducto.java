@@ -5,10 +5,12 @@
  */
 package dao;
 
+import modelos.Producto;
+
 /**
  *
  * @author MagicPOS
  */
-public interface DAOProducto extends DAO<DAOProducto, String>{
+public interface DAOProducto extends DAO<Producto, String>{
   
 }
