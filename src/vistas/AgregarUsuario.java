@@ -13,6 +13,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -249,11 +250,13 @@ public class AgregarUsuario extends javax.swing.JFrame {
     int siguiente = cantidadUsuarios + 1;
     String folioUsu = Util.generarFolio("USU", String.valueOf(siguiente));
     Usuario usu = new Usuario(folioUsu, nombre, pwdEncriptado,new RolUsuario(folioRol));
-    
+
     if(usuImpl.insertar(usu)){
-      System.out.println("YES");
+      JOptionPane.showMessageDialog(this, "Usuario agragado con éxito", 
+              "Eureka!", JOptionPane.INFORMATION_MESSAGE);
     }else{
-      System.out.println("Oh no");
+      JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde", 
+              "Oh no!", JOptionPane.ERROR_MESSAGE);
     }
     
   }//GEN-LAST:event_botonIngresarActionPerformed

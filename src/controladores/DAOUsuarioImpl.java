@@ -56,7 +56,6 @@ public class DAOUsuarioImpl implements DAOUsuario{
   
   public Usuario consultar(String nombre, String password){
     String pwdEncrypt = Util.encriptar(password);
-    System.out.println(pwdEncrypt);
     Conexion conexion = new Conexion();
     conexion.conectar();
     Connection con = conexion.getCon();
@@ -65,9 +64,6 @@ public class DAOUsuarioImpl implements DAOUsuario{
       stmt = con.createStatement();
       ResultSet resultado = stmt.executeQuery("SELECT * FROM Usuario WHERE "
               + "Usu_nombre='"+nombre+"' and Usu_pwd='"+pwdEncrypt+"'");
-      System.out.println("SELECT * FROM Usuario WHERE "
-              + "Usu_nombre='"+nombre+"' and Usu_pwd='"+pwdEncrypt+"'");
-      System.out.println("hola");
       if(resultado.next()){
         return new Usuario(
           resultado.getString("Usu_folio"),

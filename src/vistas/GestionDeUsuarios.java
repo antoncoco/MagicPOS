@@ -8,10 +8,12 @@ import java.awt.Image;
 import java.awt.Shape;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -328,16 +330,19 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
     // TODO add your handling code here:
     int filaSeleccionada = this.tablaUsuario.getSelectedRow();
     if(filaSeleccionada == -1){
-      System.out.println("No se seleccionó nada");
+      JOptionPane.showMessageDialog(this, "Seleccione una fila para realizar esta operación", 
+              "Upsi!", JOptionPane.WARNING_MESSAGE);
     }else{
       String folioUsu = this.tablaUsuario.getValueAt(filaSeleccionada, 0).toString();
       DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
       if(usuImpl.eliminar(folioUsu)){
-        System.out.println("Funado");
         DefaultTableModel dftable = (DefaultTableModel) this.tablaUsuario.getModel();
         dftable.removeRow(filaSeleccionada);
+        JOptionPane.showMessageDialog(this, "Usuario eliminado con éxito", 
+              "Eureka!", JOptionPane.INFORMATION_MESSAGE);
       }else{
-        System.out.println("No se funó");
+        JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde", 
+              "Oh no!", JOptionPane.ERROR_MESSAGE);
       }
     }
     
@@ -347,7 +352,8 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
     // TODO add your handling code here:
     int filaSeleccionada = this.tablaUsuario.getSelectedRow();
     if(filaSeleccionada == -1){
-      System.out.println("No se seleccionó nada");
+      JOptionPane.showMessageDialog(this, "Seleccione una fila para realizar esta operación", 
+              "Upsi!", JOptionPane.WARNING_MESSAGE);
     }else{
       String folioUsu = this.tablaUsuario.getValueAt(filaSeleccionada, 0).toString();
       String nombreUsu = this.tablaUsuario.getValueAt(filaSeleccionada, 1).toString();
@@ -356,9 +362,11 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
       Usuario usu = new Usuario(folioUsu, nombreUsu, pwdUsu, new RolUsuario(rolUsu));
       DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
       if(usuImpl.actualizar(usu)){
-        System.out.println("Actualizado");
+        JOptionPane.showMessageDialog(this, "Usuario actualizado con éxito", 
+              "Eureka!", JOptionPane.INFORMATION_MESSAGE);
       }else{
-        System.out.println("No se actualizó");
+        JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde", 
+              "Oh no!", JOptionPane.ERROR_MESSAGE);
       }
     }
   }//GEN-LAST:event_botonActualizarActionPerformed
@@ -369,6 +377,12 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
     String nombreMatch = this.campoBuscar.getText().trim();
     if(nombreMatch.length() > 0){
       this.tablaUsuario.setModel(usuImpl.listar(nombreMatch));
+      if(this.tablaUsuario.getModel().getRowCount() == 0){
+        JOptionPane.showMessageDialog(this, "Se encontraron cero coincidencias", 
+              "Upsi!", JOptionPane.WARNING_MESSAGE);
+        this.tablaUsuario.setModel(usuImpl.listar());
+        this.campoBuscar.setText("");
+      }
     }else{
       this.tablaUsuario.setModel(usuImpl.listar());
     }
