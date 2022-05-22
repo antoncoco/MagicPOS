@@ -263,9 +263,9 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     
     
     if(filaSeleccionada == -1){
-      JOptionPane.showMessageDialog(rootPane, "No se seleccionó ningún producto", "Alerta", JOptionPane.PLAIN_MESSAGE);
+      JOptionPane.showMessageDialog(rootPane, "No se seleccionó ningún producto", "Alerta", JOptionPane.WARNING_MESSAGE);
     }else if(cantidad.length() == 0 || cantidad.equals("0")){
-      JOptionPane.showMessageDialog(rootPane, "La cantidad no puede ser 0", "Alerta", JOptionPane.PLAIN_MESSAGE);
+      JOptionPane.showMessageDialog(rootPane, "La cantidad no puede ser 0", "Alerta", JOptionPane.WARNING_MESSAGE);
     }else {
       String folioInv = this.tablaListaProd.getValueAt(filaSeleccionada, 0).toString();
       String prodNombre = this.tablaListaProd.getValueAt(filaSeleccionada, 1).toString();
