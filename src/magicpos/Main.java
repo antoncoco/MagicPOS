@@ -5,6 +5,8 @@
  */
 package magicpos;
 
+import vistas.IniciarSesion;
+
 /**
  *
  * @author MagicPOS
@@ -16,7 +18,9 @@ public class Main {
    */
   public static void main(String[] args) {
     // TODO code application logic here
-    System.out.println("MagicPOS is amazing!");
+    IniciarSesion login = new IniciarSesion();
+    login.setLocationRelativeTo(null);
+    login.setVisible(true);
   }
-  
+
 }
