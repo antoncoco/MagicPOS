@@ -386,7 +386,7 @@ public class Venta extends javax.swing.JFrame {
 
   private void botonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeleccionarActionPerformed
     // TODO add your handling code here:
-    SeleccionarProductos seleccionarProd = new SeleccionarProductos(this.tablaVenta);
+    SeleccionarProductos seleccionarProd = new SeleccionarProductos(this.tablaVenta, this.etiquetaTotalPag);
     seleccionarProd.setLocationRelativeTo(this);
     seleccionarProd.setVisible(true);
   }//GEN-LAST:event_botonSeleccionarActionPerformed
