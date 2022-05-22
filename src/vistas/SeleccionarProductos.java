@@ -168,11 +168,16 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     etiquetaCantidad.setText("Cantidad:");
     panelOpciones.add(etiquetaCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 213, 90, 40));
 
-    botonRegresar.setBackground(getBackground());
+    botonRegresar.setBackground(new java.awt.Color(252, 168, 1));
     botonRegresar.setForeground(new java.awt.Color(252, 168, 1));
     botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonRegresarActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
 
     campoCantidad.setBackground(new java.awt.Color(208, 208, 208));
@@ -315,6 +320,10 @@ public class SeleccionarProductos extends javax.swing.JFrame {
       this.tablaListaProd.setModel(ventaImpl.listarProd());
     }
   }//GEN-LAST:event_botonBuscarActionPerformed
+
+  private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+    this.dispose();
+  }//GEN-LAST:event_botonRegresarActionPerformed
 
   /**
    * @param args the command line arguments

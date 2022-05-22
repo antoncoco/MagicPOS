@@ -257,7 +257,10 @@ public class PanelAdmin extends javax.swing.JFrame {
   }//GEN-LAST:event_botonReporteMouseExited
 
   private void botonregresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonregresarActionPerformed
-    // TODO add your handling code here:
+    IniciarSesion iniciarSesion = new IniciarSesion();
+    iniciarSesion.setLocationRelativeTo(this);
+    iniciarSesion.setVisible(true);
+    this.dispose();
   }//GEN-LAST:event_botonregresarActionPerformed
 
   private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed

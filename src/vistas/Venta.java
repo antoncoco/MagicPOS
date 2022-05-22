@@ -9,6 +9,7 @@ import java.awt.Shape;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
 import java.util.List;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -69,8 +70,6 @@ public class Venta extends javax.swing.JFrame {
     jPanel1 = new javax.swing.JPanel();
     Separador1 = new javax.swing.JTextField();
     etiquetaTicket = new javax.swing.JLabel();
-    etiquetaTotalTick = new javax.swing.JLabel();
-    campoTotal = new RoundJPasswordField(7);
     etiquetaEfectivo = new javax.swing.JLabel();
     campoEfectivo = new RoundJPasswordField(7);
     etiquetaCambio = new javax.swing.JLabel();
@@ -140,6 +139,11 @@ public class Venta extends javax.swing.JFrame {
         botonTerminarCompMouseExited(evt);
       }
     });
+    botonTerminarComp.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonTerminarCompActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonTerminarComp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 260, 30));
 
     etiquetaTotalPag.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 40)); // NOI18N
@@ -159,19 +163,8 @@ public class Venta extends javax.swing.JFrame {
 
     etiquetaTicket.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
     etiquetaTicket.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    etiquetaTicket.setText("Ticket");
+    etiquetaTicket.setText("Pago");
     etiquetaTicket.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-    etiquetaTotalTick.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-    etiquetaTotalTick.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    etiquetaTotalTick.setText("Total MXN $:");
-    etiquetaTotalTick.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-    campoTotal.setBackground(new java.awt.Color(208, 208, 208));
-    campoTotal.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoTotal.setForeground(new java.awt.Color(150, 150, 150));
-    campoTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoTotal.setBorder(null);
 
     etiquetaEfectivo.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
     etiquetaEfectivo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -207,7 +200,7 @@ public class Venta extends javax.swing.JFrame {
         .addComponent(etiquetaTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(24, 24, 24))
       .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGap(21, 21, 21)
+        .addGap(22, 22, 22)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addComponent(etiquetaCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -216,11 +209,7 @@ public class Venta extends javax.swing.JFrame {
           .addGroup(jPanel1Layout.createSequentialGroup()
             .addComponent(etiquetaEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(campoEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addGroup(jPanel1Layout.createSequentialGroup()
-            .addComponent(etiquetaTotalTick, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(campoEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
@@ -230,11 +219,7 @@ public class Venta extends javax.swing.JFrame {
         .addComponent(etiquetaTicket)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(Separador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(etiquetaTotalTick)
-          .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addGap(18, 18, 18)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(etiquetaEfectivo)
           .addComponent(campoEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -245,7 +230,7 @@ public class Venta extends javax.swing.JFrame {
         .addContainerGap(23, Short.MAX_VALUE))
     );
 
-    panelOpciones.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 300, 170));
+    panelOpciones.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 300, 140));
 
     etiquetaTotal.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 40)); // NOI18N
     etiquetaTotal.setForeground(new java.awt.Color(255, 255, 255));
@@ -278,6 +263,11 @@ public class Venta extends javax.swing.JFrame {
     botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonRegresarActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
 
     panelContenedor.setBackground(new java.awt.Color(255, 255, 255));
@@ -415,6 +405,19 @@ public class Venta extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_botonEliminarActionPerformed
 
+  private void botonTerminarCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminarCompActionPerformed
+    Icon icono = new ImageIcon(getClass().getResource("/assets/bobReportes.png"));
+
+    JOptionPane.showMessageDialog(rootPane, "Este apartado se encuentra en desarrollo", "Alerta", JOptionPane.PLAIN_MESSAGE, icono);
+  }//GEN-LAST:event_botonTerminarCompActionPerformed
+
+  private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+    IniciarSesion iniciarSesion = new IniciarSesion();
+    iniciarSesion.setLocationRelativeTo(this);
+    iniciarSesion.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonRegresarActionPerformed
+
   /**
    * @param args the command line arguments
    */
@@ -461,7 +464,6 @@ public class Venta extends javax.swing.JFrame {
   private javax.swing.JPasswordField campoEfectivo;
   private javax.swing.JPasswordField campoFechaReg;
   private javax.swing.JPasswordField campoFolio;
-  private javax.swing.JPasswordField campoTotal;
   private javax.swing.JLabel etiquetaCambio;
   private javax.swing.JLabel etiquetaEfectivo;
   private javax.swing.JLabel etiquetaFechaReg;
@@ -471,7 +473,6 @@ public class Venta extends javax.swing.JFrame {
   private javax.swing.JLabel etiquetaTitulo;
   private javax.swing.JLabel etiquetaTotal;
   private javax.swing.JLabel etiquetaTotalPag;
-  private javax.swing.JLabel etiquetaTotalTick;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JPanel panelContenedor;

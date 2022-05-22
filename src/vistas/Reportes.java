@@ -94,6 +94,11 @@ public class Reportes extends javax.swing.JFrame {
     botonregresar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonregresar2.setBorder(null);
     botonregresar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonregresar2.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonregresar2ActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonregresar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
 
     etiquetaTipo.setBackground(new java.awt.Color(252, 168, 1));
@@ -243,9 +248,16 @@ public class Reportes extends javax.swing.JFrame {
       File file = fileChooser.getSelectedFile();
       campoRuta.setText(file.getAbsolutePath());
     } else {
-      JOptionPane.showMessageDialog(rootPane, "No se seleccionó ninguna ruta de almacenamiento", "Alerta", JOptionPane.PLAIN_MESSAGE);
+      JOptionPane.showMessageDialog(this, "No se seleccionó ninguna ruta de almacenamiento", "Alerta", JOptionPane.WARNING_MESSAGE);
     }
   }//GEN-LAST:event_botonGuardarActionPerformed
+
+  private void botonregresar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonregresar2ActionPerformed
+    PanelAdmin panelAdmin = new PanelAdmin();
+    panelAdmin.setLocationRelativeTo(this);
+    panelAdmin.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonregresar2ActionPerformed
 
   /**
    * @param args the command line arguments
