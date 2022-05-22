@@ -11,10 +11,12 @@ import java.awt.geom.RoundRectangle2D;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -24,8 +26,6 @@ import javax.swing.border.MatteBorder;
 public class Venta extends javax.swing.JFrame {
 
   FondoPanel fondo = new FondoPanel();
-  List<Venta> productVentas;
-  
 
   /**
    * Creates new form IniciarSesion
@@ -34,6 +34,17 @@ public class Venta extends javax.swing.JFrame {
     this.setContentPane(fondo);
     initComponents();
     DAOVentaImpl ventaImpl = new DAOVentaImpl();
+    tablaVenta.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {},
+      new String [] {
+        "Cantidad", "Producto", "Precio unitario", "Descuento", "Importe"
+      }
+    ){
+      @Override 
+        public boolean isCellEditable(int row, int column){
+          return column == 3;
+        }
+    });
     tablaVenta.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
     tablaVenta.getTableHeader().setOpaque(false);
     tablaVenta.getTableHeader().setBackground(Color.WHITE);
@@ -256,6 +267,11 @@ public class Venta extends javax.swing.JFrame {
         botonEliminarMouseExited(evt);
       }
     });
+    botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonEliminarActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 300, 40));
 
     botonRegresar.setBackground(new java.awt.Color(252, 168, 1));
@@ -377,11 +393,27 @@ public class Venta extends javax.swing.JFrame {
 
   private void botonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeleccionarActionPerformed
     // TODO add your handling code here:
-    SeleccionarProductos seleccionarProd = new SeleccionarProductos(productVentas);
+    SeleccionarProductos seleccionarProd = new SeleccionarProductos(this.tablaVenta, this.etiquetaTotalPag);
     seleccionarProd.setLocationRelativeTo(this);
     seleccionarProd.setVisible(true);
-    
   }//GEN-LAST:event_botonSeleccionarActionPerformed
+
+  private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+    // TODO add your handling code here:
+    int filaSeleccionada = this.tablaVenta.getSelectedRow();
+    if(filaSeleccionada == -1){
+      JOptionPane.showMessageDialog(this, "Seleccione una fila para realizar esta operación", 
+              "Upsi!", JOptionPane.WARNING_MESSAGE);
+    }else{
+        DefaultTableModel dftable = (DefaultTableModel) this.tablaVenta.getModel();
+        double importeRestado = Double.parseDouble(this.tablaVenta.getValueAt(filaSeleccionada, 4).toString());
+        double nuevoTotal = Double.parseDouble(this.etiquetaTotalPag.getText()) - importeRestado;
+        this.etiquetaTotalPag.setText(String.valueOf(nuevoTotal));
+        dftable.removeRow(filaSeleccionada);
+        JOptionPane.showMessageDialog(this, "Producto eliminado con éxito de la venta", 
+              "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+    }
+  }//GEN-LAST:event_botonEliminarActionPerformed
 
   /**
    * @param args the command line arguments

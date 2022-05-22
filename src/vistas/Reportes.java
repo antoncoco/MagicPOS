@@ -5,16 +5,19 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Shape;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
+import java.io.File;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 
 /**
  *
@@ -22,6 +25,7 @@ import javax.swing.JTextField;
  */
 public class Reportes extends javax.swing.JFrame {
 
+  public Color colorLetra = new Color(0, 0, 0);
   FondoPanel fondo = new FondoPanel();
 
   /**
@@ -30,8 +34,7 @@ public class Reportes extends javax.swing.JFrame {
   public Reportes() {
     this.setContentPane(fondo);
     initComponents();
-    
-    
+
   }
 
   /**
@@ -148,7 +151,6 @@ public class Reportes extends javax.swing.JFrame {
 
     campoRuta.setBackground(new java.awt.Color(231, 231, 231));
     campoRuta.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoRuta.setForeground(new java.awt.Color(150, 150, 150));
     campoRuta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     campoRuta.setBorder(null);
     campoRuta.setEnabled(false);
@@ -184,6 +186,11 @@ public class Reportes extends javax.swing.JFrame {
     botonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/guardar.png"))); // NOI18N
     botonGuardar.setBorder(null);
     botonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonGuardarActionPerformed(evt);
+      }
+    });
     panelContenedor.add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, -1, -1));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -211,7 +218,7 @@ public class Reportes extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void campoRutaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoRutaMousePressed
-    
+
   }//GEN-LAST:event_campoRutaMousePressed
 
   private void botonDescargarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDescargarMouseEntered
@@ -220,14 +227,25 @@ public class Reportes extends javax.swing.JFrame {
   }//GEN-LAST:event_botonDescargarMouseEntered
 
   private void botonDescargarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDescargarMouseExited
-    botonDescargar.setBackground(new Color(255,185,102));
+    botonDescargar.setBackground(new Color(255, 185, 102));
   }//GEN-LAST:event_botonDescargarMouseExited
 
   private void botonDescargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDescargarActionPerformed
     Icon icono = new ImageIcon(getClass().getResource("/assets/bobReportes.png"));
-    
+
     JOptionPane.showMessageDialog(rootPane, "Este apartado se encuentra en desarrollo", "Alerta", JOptionPane.PLAIN_MESSAGE, icono);
   }//GEN-LAST:event_botonDescargarActionPerformed
+
+  private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+    JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    if (fileChooser.showSaveDialog(dateFF) == JFileChooser.APPROVE_OPTION) {
+      File file = fileChooser.getSelectedFile();
+      campoRuta.setText(file.getAbsolutePath());
+    } else {
+      JOptionPane.showMessageDialog(rootPane, "No se seleccionó ninguna ruta de almacenamiento", "Alerta", JOptionPane.PLAIN_MESSAGE);
+    }
+  }//GEN-LAST:event_botonGuardarActionPerformed
 
   /**
    * @param args the command line arguments
@@ -381,7 +399,6 @@ public class Reportes extends javax.swing.JFrame {
     }
   }
 
-  
   class RoundJComboBox extends JComboBox {
 
     private Shape shape;
@@ -409,5 +426,5 @@ public class Reportes extends javax.swing.JFrame {
       return shape.contains(x, y);
     }
   }
-  
+
 }

@@ -13,11 +13,14 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -27,15 +30,19 @@ import javax.swing.border.MatteBorder;
 public class SeleccionarProductos extends javax.swing.JFrame {
 
   FondoPanel fondo = new FondoPanel();
-  List<Venta> productVentas;
+  JTable tablaVentas;
+  JLabel ventaTotal;
 
   /**
    * Creates new form IniciarSesion
+   * @param ventaTotal
+   * @param tablaVentas
    */
   
 
-  public SeleccionarProductos(List<Venta> productVentas) {
-    this.productVentas=productVentas;
+  public SeleccionarProductos(JTable tablaVentas, JLabel ventaTotal) {
+    this.tablaVentas = tablaVentas;
+    this.ventaTotal = ventaTotal;
     this.setContentPane(fondo);
     initComponents();
     DAOVentaImpl selectVent = new DAOVentaImpl();
@@ -64,7 +71,6 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     campoBuscar = new RoundJTextField(7);
     botonAgregarProd = new RoundJButton(7);
     etiquetaCantidad = new javax.swing.JLabel();
-    botonAceptar = new RoundJButton(7);
     botonRegresar = new RoundJButton(7);
     campoCantidad = new RoundJTextField(7);
     panelContenedor = new javax.swing.JPanel();
@@ -107,6 +113,11 @@ public class SeleccionarProductos extends javax.swing.JFrame {
         botonBuscarMouseExited(evt);
       }
     });
+    botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonBuscarActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 40, 40));
 
     Separador.setEditable(false);
@@ -129,8 +140,9 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     });
     panelOpciones.add(campoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 300, 40));
 
-    botonAgregarProd.setBackground(new java.awt.Color(255, 255, 255));
+    botonAgregarProd.setBackground(new java.awt.Color(174, 33, 0));
     botonAgregarProd.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+    botonAgregarProd.setForeground(new java.awt.Color(255, 255, 255));
     botonAgregarProd.setText("Agregar producto");
     botonAgregarProd.setBorder(null);
     botonAgregarProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -155,23 +167,6 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     etiquetaCantidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     etiquetaCantidad.setText("Cantidad:");
     panelOpciones.add(etiquetaCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 213, 90, 40));
-
-    botonAceptar.setBackground(new java.awt.Color(174, 33, 0));
-    botonAceptar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    botonAceptar.setForeground(new java.awt.Color(255, 255, 255));
-    botonAceptar.setText("Aceptar");
-    botonAceptar.setBorder(null);
-    botonAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    botonAceptar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    botonAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        botonAceptarMouseEntered(evt);
-      }
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        botonAceptarMouseExited(evt);
-      }
-    });
-    panelOpciones.add(botonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 260, 30));
 
     botonRegresar.setBackground(getBackground());
     botonRegresar.setForeground(new java.awt.Color(252, 168, 1));
@@ -254,14 +249,6 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  private void botonAceptarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAceptarMouseExited
-    botonAceptar.setBackground(new Color(174, 33, 0));
-  }//GEN-LAST:event_botonAceptarMouseExited
-
-  private void botonAceptarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAceptarMouseEntered
-    botonAceptar.setBackground(new Color(208, 75, 42));
-  }//GEN-LAST:event_botonAceptarMouseEntered
-
   private void botonAgregarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarProdActionPerformed
     // TODO add your handling code here:
     String cantidad = this.campoCantidad.getText();
@@ -271,39 +258,30 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     
     
     if(filaSeleccionada == -1){
-      System.out.println("No se seleccionó ningún producto");
+      JOptionPane.showMessageDialog(rootPane, "No se seleccionó ningún producto", "Alerta", JOptionPane.PLAIN_MESSAGE);
     }else if(cantidad.length() == 0 || cantidad.equals("0")){
-      System.out.println("La cantidad no puede ser 0");
+      JOptionPane.showMessageDialog(rootPane, "La cantidad no puede ser 0", "Alerta", JOptionPane.PLAIN_MESSAGE);
     }else {
-      
-      while (filaSeleccionada != 0) {
-        for(int columIndex = 1; columIndex <= 6; columIndex++){
-          productVentas.add((Venta) this.tablaListaProd.getValueAt(0, columIndex));
-        }
-        for (Venta str: productVentas){
-          System.out.println(str);
-        }
-        
-//        List<SeleccionarProductos> prodSel = new ArrayList<>();
-//        for (int columnIndex = 1; columnIndex <= 6; columnIndex++) {
-//            prodSel = tablaListaProd.getse;
-//        }
-//        this.productVentas.add(prodSel);
-      }
-      
-//      Venta agregarProd = new Venta();
-//      agregarProd.setLocationRelativeTo(this);
-//      agregarProd.setVisible(true);
+      String folioInv = this.tablaListaProd.getValueAt(filaSeleccionada, 0).toString();
+      String prodNombre = this.tablaListaProd.getValueAt(filaSeleccionada, 1).toString();
+      double precio = Double.parseDouble(this.tablaListaProd.getValueAt(filaSeleccionada, 3).toString());
+      DefaultTableModel dftable =(DefaultTableModel) this.tablaVentas.getModel();
+      int cantidadEntero = Integer.parseInt(cantidad);
+      double totalTmp = cantidadEntero*precio;
+      Object[] arr = {cantidadEntero, prodNombre,precio, 0.0, totalTmp};
+      dftable.addRow(arr);
+      double precioFinal = Double.parseDouble(this.ventaTotal.getText()) + totalTmp;
+      this.ventaTotal.setText(String.valueOf(precioFinal));
       this.dispose();
     }
   }//GEN-LAST:event_botonAgregarProdActionPerformed
 
   private void botonAgregarProdMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarProdMouseExited
-    botonAgregarProd.setBackground(Color.WHITE);
+    botonAgregarProd.setBackground(new Color(174, 33, 0));
   }//GEN-LAST:event_botonAgregarProdMouseExited
 
   private void botonAgregarProdMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarProdMouseEntered
-    botonAgregarProd.setBackground(new Color(254, 163, 88));
+    botonAgregarProd.setBackground(new Color(208, 75, 42));
   }//GEN-LAST:event_botonAgregarProdMouseEntered
 
   private void campoBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoBuscarMousePressed
@@ -320,6 +298,23 @@ public class SeleccionarProductos extends javax.swing.JFrame {
   private void botonBuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMouseEntered
     botonBuscar.setBackground(new Color(254, 163, 88));
   }//GEN-LAST:event_botonBuscarMouseEntered
+
+  private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+    // TODO add your handling code here:
+    DAOVentaImpl ventaImpl = new DAOVentaImpl();
+    String nombreMatch = this.campoBuscar.getText().trim();
+    if(nombreMatch.length() > 0){
+      this.tablaListaProd.setModel(ventaImpl.listarProd(nombreMatch));
+      if(this.tablaListaProd.getModel().getRowCount() == 0){
+        JOptionPane.showMessageDialog(this, "Se encontraron cero coincidencias", 
+              "Upsi!", JOptionPane.WARNING_MESSAGE);
+        this.tablaListaProd.setModel(ventaImpl.listarProd());
+        this.campoBuscar.setText("");
+      }
+    }else{
+      this.tablaListaProd.setModel(ventaImpl.listarProd());
+    }
+  }//GEN-LAST:event_botonBuscarActionPerformed
 
   /**
    * @param args the command line arguments
@@ -358,7 +353,6 @@ public class SeleccionarProductos extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTextField Separador;
-  private javax.swing.JButton botonAceptar;
   private javax.swing.JButton botonAgregarProd;
   private javax.swing.JButton botonBuscar;
   private javax.swing.JButton botonRegresar;
