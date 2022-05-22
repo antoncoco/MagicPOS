@@ -17,6 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
+import modelos.RolUsuario;
 import modelos.Usuario;
 
 
@@ -102,6 +103,11 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
         botonBuscarMouseExited(evt);
       }
     });
+    botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonBuscarActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 40, 40));
 
     Separador.setEditable(false);
@@ -181,6 +187,11 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
       }
       public void mouseExited(java.awt.event.MouseEvent evt) {
         botonActualizarMouseExited(evt);
+      }
+    });
+    botonActualizar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonActualizarActionPerformed(evt);
       }
     });
     panelOpciones.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 300, 40));
@@ -330,6 +341,37 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
     }
     
   }//GEN-LAST:event_botonEliminarActionPerformed
+
+  private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+    // TODO add your handling code here:
+    int filaSeleccionada = this.tablaUsuario.getSelectedRow();
+    if(filaSeleccionada == -1){
+      System.out.println("No se seleccionó nada");
+    }else{
+      String folioUsu = this.tablaUsuario.getValueAt(filaSeleccionada, 0).toString();
+      String nombreUsu = this.tablaUsuario.getValueAt(filaSeleccionada, 1).toString();
+      String rolUsu = this.tablaUsuario.getValueAt(filaSeleccionada, 2).toString();
+      String pwdUsu = this.tablaUsuario.getValueAt(filaSeleccionada, 3).toString();
+      Usuario usu = new Usuario(folioUsu, nombreUsu, pwdUsu, new RolUsuario(rolUsu));
+      DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
+      if(usuImpl.actualizar(usu)){
+        System.out.println("Actualizado");
+      }else{
+        System.out.println("No se actualizó");
+      }
+    }
+  }//GEN-LAST:event_botonActualizarActionPerformed
+
+  private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+    // TODO add your handling code here:
+    DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
+    String nombreMatch = this.campoBuscar.getText().trim();
+    if(nombreMatch.length() > 0){
+      this.tablaUsuario.setModel(usuImpl.listar(nombreMatch));
+    }else{
+      this.tablaUsuario.setModel(usuImpl.listar());
+    }
+  }//GEN-LAST:event_botonBuscarActionPerformed
 
   /**
    * @param args the command line arguments
