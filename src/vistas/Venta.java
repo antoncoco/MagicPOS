@@ -406,6 +406,9 @@ public class Venta extends javax.swing.JFrame {
               "Upsi!", JOptionPane.WARNING_MESSAGE);
     }else{
         DefaultTableModel dftable = (DefaultTableModel) this.tablaVenta.getModel();
+        double importeRestado = Double.parseDouble(this.tablaVenta.getValueAt(filaSeleccionada, 4).toString());
+        double nuevoTotal = Double.parseDouble(this.etiquetaTotalPag.getText()) - importeRestado;
+        this.etiquetaTotalPag.setText(String.valueOf(nuevoTotal));
         dftable.removeRow(filaSeleccionada);
         JOptionPane.showMessageDialog(this, "Producto eliminado con éxito de la venta", 
               "Eureka!", JOptionPane.INFORMATION_MESSAGE);
