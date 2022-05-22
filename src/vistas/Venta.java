@@ -11,10 +11,12 @@ import java.awt.geom.RoundRectangle2D;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -265,6 +267,11 @@ public class Venta extends javax.swing.JFrame {
         botonEliminarMouseExited(evt);
       }
     });
+    botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonEliminarActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 300, 40));
 
     botonRegresar.setBackground(new java.awt.Color(252, 168, 1));
@@ -390,6 +397,20 @@ public class Venta extends javax.swing.JFrame {
     seleccionarProd.setLocationRelativeTo(this);
     seleccionarProd.setVisible(true);
   }//GEN-LAST:event_botonSeleccionarActionPerformed
+
+  private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+    // TODO add your handling code here:
+    int filaSeleccionada = this.tablaVenta.getSelectedRow();
+    if(filaSeleccionada == -1){
+      JOptionPane.showMessageDialog(this, "Seleccione una fila para realizar esta operación", 
+              "Upsi!", JOptionPane.WARNING_MESSAGE);
+    }else{
+        DefaultTableModel dftable = (DefaultTableModel) this.tablaVenta.getModel();
+        dftable.removeRow(filaSeleccionada);
+        JOptionPane.showMessageDialog(this, "Producto eliminado con éxito de la venta", 
+              "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+    }
+  }//GEN-LAST:event_botonEliminarActionPerformed
 
   /**
    * @param args the command line arguments
