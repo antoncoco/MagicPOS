@@ -56,7 +56,6 @@ public class DAOUsuarioImpl implements DAOUsuario{
   
   public Usuario consultar(String nombre, String password){
     String pwdEncrypt = Util.encriptar(password);
-    System.out.println(pwdEncrypt);
     Conexion conexion = new Conexion();
     conexion.conectar();
     Connection con = conexion.getCon();
@@ -65,9 +64,6 @@ public class DAOUsuarioImpl implements DAOUsuario{
       stmt = con.createStatement();
       ResultSet resultado = stmt.executeQuery("SELECT * FROM Usuario WHERE "
               + "Usu_nombre='"+nombre+"' and Usu_pwd='"+pwdEncrypt+"'");
-      System.out.println("SELECT * FROM Usuario WHERE "
-              + "Usu_nombre='"+nombre+"' and Usu_pwd='"+pwdEncrypt+"'");
-      System.out.println("hola");
       if(resultado.next()){
         return new Usuario(
           resultado.getString("Usu_folio"),
@@ -94,6 +90,7 @@ public class DAOUsuarioImpl implements DAOUsuario{
       Statement stmt;
       stmt = con.createStatement();
       stmt.executeUpdate("DELETE FROM Usuario WHERE Usu_folio='"+id+"'");
+      con.close();
       return true;
     } catch (SQLException ex) {
       Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -103,7 +100,20 @@ public class DAOUsuarioImpl implements DAOUsuario{
 
   @Override
   public boolean actualizar(Usuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      stmt.executeUpdate("UPDATE Usuario SET Usu_nombre = '"+entidad.getNombre()+"'"
+              + "WHERE Usu_folio = '"+entidad.getFolio()+"'");
+      con.close();
+      return true;
+    } catch (SQLException ex) {
+      Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return false;
   }
 
   @Override
@@ -119,7 +129,7 @@ public class DAOUsuarioImpl implements DAOUsuario{
               + "'"+entidad.getNombre()+"', "
               + "'"+entidad.getRol().getFolioRol()+"', "
               + "'"+entidad.getPwd()+"')");
-      
+      con.close();
       return true;
     } catch (SQLException ex) {
       Logger.getLogger(DAORolUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -180,10 +190,54 @@ public class DAOUsuarioImpl implements DAOUsuario{
         data.add(vector);
       }
       con.close();
-      return new DefaultTableModel(data, columnNames);
+      return new DefaultTableModel(data, columnNames){
+        @Override 
+        public boolean isCellEditable(int row, int column){
+          return column == 1;
+        }
+      };
     } catch (SQLException ex) {
       Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
     }  
     return null;
   }
+  
+  public DefaultTableModel listar(String nombreMatch){
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      ResultSet resultado = stmt.executeQuery("SELECT * FROM Usuario "
+              + "WHERE Usu_nombre LIKE '%"+nombreMatch+"%'");
+      
+      ResultSetMetaData metaData = resultado.getMetaData();
+      Vector<String> columnNames = new Vector<String>();
+      int columnCount = metaData.getColumnCount();
+      for (int column = 1; column <= columnCount; column++) {
+          columnNames.add(metaData.getColumnName(column));
+      }
+
+      Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+      while (resultado.next()) {
+        Vector<Object> vector = new Vector<Object>();
+        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+            vector.add(resultado.getObject(columnIndex));
+        }
+        data.add(vector);
+      }
+      con.close();
+      return new DefaultTableModel(data, columnNames){
+        @Override 
+        public boolean isCellEditable(int row, int column){
+          return column == 1;
+        }
+      };
+    } catch (SQLException ex) {
+      Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }  
+    return null;
+  }
+  
 }

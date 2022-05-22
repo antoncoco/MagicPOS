@@ -1,5 +1,6 @@
 package vistas;
 
+import controladores.DAOVentaImpl;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,6 +8,7 @@ import java.awt.Image;
 import java.awt.Shape;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -22,6 +24,8 @@ import javax.swing.border.MatteBorder;
 public class Venta extends javax.swing.JFrame {
 
   FondoPanel fondo = new FondoPanel();
+  List<Venta> productVentas;
+  
 
   /**
    * Creates new form IniciarSesion
@@ -29,7 +33,7 @@ public class Venta extends javax.swing.JFrame {
   public Venta() {
     this.setContentPane(fondo);
     initComponents();
-    
+    DAOVentaImpl ventaImpl = new DAOVentaImpl();
     tablaVenta.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
     tablaVenta.getTableHeader().setOpaque(false);
     tablaVenta.getTableHeader().setBackground(Color.WHITE);
@@ -101,6 +105,11 @@ public class Venta extends javax.swing.JFrame {
       }
       public void mouseExited(java.awt.event.MouseEvent evt) {
         botonSeleccionarMouseExited(evt);
+      }
+    });
+    botonSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonSeleccionarActionPerformed(evt);
       }
     });
     panelOpciones.add(botonSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 300, 40));
@@ -365,6 +374,14 @@ public class Venta extends javax.swing.JFrame {
   private void botonEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMouseExited
     botonEliminar.setBackground(Color.WHITE);
   }//GEN-LAST:event_botonEliminarMouseExited
+
+  private void botonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeleccionarActionPerformed
+    // TODO add your handling code here:
+    SeleccionarProductos seleccionarProd = new SeleccionarProductos(productVentas);
+    seleccionarProd.setLocationRelativeTo(this);
+    seleccionarProd.setVisible(true);
+    
+  }//GEN-LAST:event_botonSeleccionarActionPerformed
 
   /**
    * @param args the command line arguments
