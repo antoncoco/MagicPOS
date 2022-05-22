@@ -35,7 +35,19 @@ public class DAOProveedorImpl implements DAOProveedor {
 
   @Override
   public boolean eliminar(String id) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      stmt.executeUpdate("DELETE FROM Proveedor WHERE Prov_RFC='" + id + "'");
+      con.close();
+      return true;
+    } catch (SQLException ex) {
+      Logger.getLogger(DAOProveedorImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return false;
   }
 
   @Override
@@ -64,7 +76,7 @@ public class DAOProveedorImpl implements DAOProveedor {
         + "'" + entidad.getCp() + "', "
         + "'" + entidad.getCorreo() + "', "
         + "'" + entidad.getTelefono() + "', "
-        + "'" + entidad.getSitioWeb() +"');");
+        + "'" + entidad.getSitioWeb() + "');");
 
       return true;
     } catch (SQLException ex) {
@@ -134,6 +146,44 @@ public class DAOProveedorImpl implements DAOProveedor {
       }
       con.close();
       return new DefaultTableModel(data, columnNames);
+    } catch (SQLException ex) {
+      Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return null;
+  }
+
+  public DefaultTableModel listar(String nombreMatch) {
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      ResultSet resultado = stmt.executeQuery("SELECT * FROM Proveedor "
+        + "WHERE Prov_nombre LIKE '%" + nombreMatch + "%'");
+
+      ResultSetMetaData metaData = resultado.getMetaData();
+      Vector<String> columnNames = new Vector<String>();
+      int columnCount = metaData.getColumnCount();
+      for (int column = 1; column <= columnCount; column++) {
+        columnNames.add(metaData.getColumnName(column));
+      }
+
+      Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+      while (resultado.next()) {
+        Vector<Object> vector = new Vector<Object>();
+        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+          vector.add(resultado.getObject(columnIndex));
+        }
+        data.add(vector);
+      }
+      con.close();
+      return new DefaultTableModel(data, columnNames) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+          return column == 1;
+        }
+      };
     } catch (SQLException ex) {
       Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
     }
