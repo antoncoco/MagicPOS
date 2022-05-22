@@ -10,6 +10,7 @@ package modelos;
  * @author MagicPOS
  */
 public class Categoria {
+
   private String folio;
   private String nombre;
   private String descripcion;
@@ -19,5 +20,23 @@ public class Categoria {
     this.nombre = nombre;
     this.descripcion = descripcion;
   }
-  
+
+  public Categoria(String folio) {
+    this.folio = folio;
+    this.nombre = "";
+    this.descripcion = "";
+  }
+
+  public String getFolio() {
+    return folio;
+  }
+
+  public String getNombre() {
+    return nombre;
+  }
+
+  public String getDescripcion() {
+    return descripcion;
+  }
+
 }

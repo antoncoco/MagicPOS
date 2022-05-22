@@ -18,12 +18,33 @@ public class ProductoAlmacen {
   private Date fechaReg;
   private Date caducidad;
 
-  public ProductoAlmacen(String folio, Producto producto, int cantidad, Date fechaReg, Date caducidad) {
+  public ProductoAlmacen(String folio, int cantidad, Date fechaReg, Date caducidad, Producto producto) {
     this.folio = folio;
-    this.producto = producto;
     this.cantidad = cantidad;
     this.fechaReg = fechaReg;
     this.caducidad = caducidad;
+    this.producto = producto;
   }
+
+  public String getFolio() {
+    return folio;
+  }
+
+  public Producto getProducto() {
+    return producto;
+  }
+
+  public int getCantidad() {
+    return cantidad;
+  }
+
+  public Date getFechaReg() {
+    return fechaReg;
+  }
+
+  public Date getCaducidad() {
+    return caducidad;
+  }
+  
   
 }

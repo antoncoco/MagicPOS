@@ -166,6 +166,11 @@ public class Inventario extends javax.swing.JFrame {
         botonAgregarMouseExited(evt);
       }
     });
+    botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonAgregarActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 300, 40));
 
     botonEliminar.setBackground(new java.awt.Color(255, 255, 255));
@@ -454,6 +459,39 @@ public class Inventario extends javax.swing.JFrame {
 //      tablaCategoria.setModel(catImpl.consultar(""));
     }
   }//GEN-LAST:event_botonBuscarActionPerformed
+
+  private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+    int index = tabbedInventario.getSelectedIndex();
+    System.out.println(index);
+
+    switch (index) {
+      case 0:
+        AgregarCategoria agregarCat = new AgregarCategoria();
+        agregarCat.setLocationRelativeTo(this);
+        agregarCat.setVisible(true);
+        this.dispose();
+        break;
+      case 1:
+        AgregarProveedor agregarProv = new AgregarProveedor();
+        agregarProv.setLocationRelativeTo(this);
+        agregarProv.setVisible(true);
+        this.dispose();
+        break;
+      case 2:
+        AgregarProducto agregarProd = new AgregarProducto();
+        agregarProd.setLocationRelativeTo(this);
+        agregarProd.setVisible(true);
+        this.dispose();
+        break;
+      case 3:
+        AgregarInventario agregarInv = new AgregarInventario();
+        agregarInv.setLocationRelativeTo(this);
+        agregarInv.setVisible(true);
+        this.dispose();
+        break;
+    }
+
+  }//GEN-LAST:event_botonAgregarActionPerformed
 
   /**
    * @param args the command line arguments

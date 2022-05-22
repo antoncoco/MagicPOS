@@ -12,22 +12,26 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import modelos.Categoria;
 import modelos.Producto;
+import modelos.Proveedor;
 
 /**
  *
  * @author MagicPOS
  */
-public class DAOProductoImpl implements DAOProducto{
+public class DAOProductoImpl implements DAOProducto {
+
   private Producto producto;
 
   @Override
-  public DAOProducto consultar(String id) {
+  public Producto consultar(String id) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 
@@ -37,20 +41,72 @@ public class DAOProductoImpl implements DAOProducto{
   }
 
   @Override
-  public boolean actualizar(DAOProducto entidad) {
+  public boolean actualizar(Producto entidad) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 
   @Override
-  public boolean insertar(DAOProducto entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  public boolean insertar(Producto entidad) {
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      stmt.executeUpdate("INSERT INTO Producto "
+        + "VALUES ('" + entidad.getClave() + "', "
+        + "'" + entidad.getNombre() + "', "
+        + "'" + entidad.getMedidaDesc() + "', "
+        + "'" + entidad.getPrecio() + "', "
+        + "'" + entidad.getCantidadProveedor() + "', "
+        + "'" + entidad.getCantidadLimite() + "', "
+        + "'" + entidad.isDescontinuado() + "', "
+        + "'" + entidad.getProveedor().getRfc() + "', "
+        + "'" + entidad.getCategoria().getFolio() + "')"
+      );
+
+      return true;
+    } catch (SQLException ex) {
+      Logger.getLogger(DAOProductoImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return false;
   }
 
   @Override
-  public List<DAOProducto> listarTodos() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  public List<Producto> listarTodos() {
+    LinkedList<Producto> lista = new LinkedList<>();
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      ResultSet resultado = stmt.executeQuery("SELECT * FROM Producto");
+      while (resultado.next()) {
+        lista.add(new Producto(
+          resultado.getString("Prod_clave"),
+          resultado.getString("Prod_nombre"),
+          resultado.getString("Prod_medidaDescripcion"),
+          resultado.getDouble("Prod_precio"),
+          resultado.getInt("Prod_cantidadProveedor"),
+          resultado.getInt("Prod_cantidadLimite"),
+          resultado.getShort("Prod_descontinuado"),
+          new Proveedor(
+            resultado.getString("Prov_RFC")
+          ),
+          new Categoria(
+            resultado.getString("Cat_folio")
+          )
+        ));
+      }
+      con.close();
+      return lista;
+    } catch (SQLException ex) {
+      Logger.getLogger(DAOProductoImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return null;
   }
-  
+
   public DefaultTableModel listar() {
     Conexion conexion = new Conexion();
     conexion.conectar();
@@ -82,4 +138,5 @@ public class DAOProductoImpl implements DAOProducto{
     }
     return null;
   }
+
 }
