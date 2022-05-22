@@ -8,8 +8,12 @@ import java.awt.Image;
 import java.awt.Shape;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -23,11 +27,15 @@ import javax.swing.border.MatteBorder;
 public class SeleccionarProductos extends javax.swing.JFrame {
 
   FondoPanel fondo = new FondoPanel();
+  List<Venta> productVentas;
 
   /**
    * Creates new form IniciarSesion
    */
-  public SeleccionarProductos() {
+  
+
+  public SeleccionarProductos(List<Venta> productVentas) {
+    this.productVentas=productVentas;
     this.setContentPane(fondo);
     initComponents();
     DAOVentaImpl selectVent = new DAOVentaImpl();
@@ -55,10 +63,10 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     Separador = new javax.swing.JTextField();
     campoBuscar = new RoundJTextField(7);
     botonAgregarProd = new RoundJButton(7);
-    campoCantidad = new RoundJPasswordField(7);
     etiquetaCantidad = new javax.swing.JLabel();
     botonAceptar = new RoundJButton(7);
     botonRegresar = new RoundJButton(7);
+    campoCantidad = new RoundJTextField(7);
     panelContenedor = new javax.swing.JPanel();
     etiquetaLogo = new javax.swing.JLabel();
     etiquetaTitulo = new javax.swing.JLabel();
@@ -136,14 +144,12 @@ public class SeleccionarProductos extends javax.swing.JFrame {
         botonAgregarProdMouseExited(evt);
       }
     });
+    botonAgregarProd.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonAgregarProdActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonAgregarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 300, 40));
-
-    campoCantidad.setBackground(new java.awt.Color(208, 208, 208));
-    campoCantidad.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoCantidad.setForeground(new java.awt.Color(150, 150, 150));
-    campoCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoCantidad.setBorder(null);
-    panelOpciones.add(campoCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 140, 30));
 
     etiquetaCantidad.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
     etiquetaCantidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -173,6 +179,13 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     panelOpciones.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
+
+    campoCantidad.setBackground(new java.awt.Color(208, 208, 208));
+    campoCantidad.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+    campoCantidad.setForeground(new java.awt.Color(150, 150, 150));
+    campoCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+    campoCantidad.setBorder(null);
+    panelOpciones.add(campoCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 140, 30));
 
     panelContenedor.setBackground(new java.awt.Color(255, 255, 255));
     panelContenedor.setMaximumSize(new java.awt.Dimension(653, 363));
@@ -241,6 +254,58 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  private void botonAceptarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAceptarMouseExited
+    botonAceptar.setBackground(new Color(174, 33, 0));
+  }//GEN-LAST:event_botonAceptarMouseExited
+
+  private void botonAceptarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAceptarMouseEntered
+    botonAceptar.setBackground(new Color(208, 75, 42));
+  }//GEN-LAST:event_botonAceptarMouseEntered
+
+  private void botonAgregarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarProdActionPerformed
+    // TODO add your handling code here:
+    String cantidad = this.campoCantidad.getText();
+    int filaSeleccionada = this.tablaListaProd.getSelectedRow();
+    //    int cantidadProd = Integer.parseInt(cantidad);
+    int aux = 1;
+    
+    
+    if(filaSeleccionada == -1){
+      System.out.println("No se seleccionó ningún producto");
+    }else if(cantidad.length() == 0 || cantidad.equals("0")){
+      System.out.println("La cantidad no puede ser 0");
+    }else {
+      
+      while (filaSeleccionada != 0) {
+        for(int columIndex = 1; columIndex <= 6; columIndex++){
+          productVentas.add((Venta) this.tablaListaProd.getValueAt(0, columIndex));
+        }
+        for (Venta str: productVentas){
+          System.out.println(str);
+        }
+        
+//        List<SeleccionarProductos> prodSel = new ArrayList<>();
+//        for (int columnIndex = 1; columnIndex <= 6; columnIndex++) {
+//            prodSel = tablaListaProd.getse;
+//        }
+//        this.productVentas.add(prodSel);
+      }
+      
+//      Venta agregarProd = new Venta();
+//      agregarProd.setLocationRelativeTo(this);
+//      agregarProd.setVisible(true);
+      this.dispose();
+    }
+  }//GEN-LAST:event_botonAgregarProdActionPerformed
+
+  private void botonAgregarProdMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarProdMouseExited
+    botonAgregarProd.setBackground(Color.WHITE);
+  }//GEN-LAST:event_botonAgregarProdMouseExited
+
+  private void botonAgregarProdMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarProdMouseEntered
+    botonAgregarProd.setBackground(new Color(254, 163, 88));
+  }//GEN-LAST:event_botonAgregarProdMouseEntered
+
   private void campoBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoBuscarMousePressed
     if (campoBuscar.getText().equals("Buscar producto")) {
       campoBuscar.setText("");
@@ -248,29 +313,13 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_campoBuscarMousePressed
 
-  private void botonBuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMouseEntered
-    botonBuscar.setBackground(new Color(254, 163, 88));
-  }//GEN-LAST:event_botonBuscarMouseEntered
-
   private void botonBuscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMouseExited
     botonBuscar.setBackground(new Color(196, 196, 196));
   }//GEN-LAST:event_botonBuscarMouseExited
 
-  private void botonAgregarProdMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarProdMouseEntered
-    botonAgregarProd.setBackground(new Color(254, 163, 88));
-  }//GEN-LAST:event_botonAgregarProdMouseEntered
-
-  private void botonAgregarProdMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarProdMouseExited
-    botonAgregarProd.setBackground(Color.WHITE);
-  }//GEN-LAST:event_botonAgregarProdMouseExited
-
-  private void botonAceptarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAceptarMouseEntered
-    botonAceptar.setBackground(new Color(208, 75, 42));
-  }//GEN-LAST:event_botonAceptarMouseEntered
-
-  private void botonAceptarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAceptarMouseExited
-    botonAceptar.setBackground(new Color(174, 33, 0));
-  }//GEN-LAST:event_botonAceptarMouseExited
+  private void botonBuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMouseEntered
+    botonBuscar.setBackground(new Color(254, 163, 88));
+  }//GEN-LAST:event_botonBuscarMouseEntered
 
   /**
    * @param args the command line arguments
@@ -314,7 +363,7 @@ public class SeleccionarProductos extends javax.swing.JFrame {
   private javax.swing.JButton botonBuscar;
   private javax.swing.JButton botonRegresar;
   private javax.swing.JTextField campoBuscar;
-  private javax.swing.JPasswordField campoCantidad;
+  private javax.swing.JTextField campoCantidad;
   private javax.swing.JLabel etiquetaCantidad;
   private javax.swing.JLabel etiquetaLista;
   private javax.swing.JLabel etiquetaLogo;

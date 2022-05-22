@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.Shape;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -23,6 +24,8 @@ import javax.swing.border.MatteBorder;
 public class Venta extends javax.swing.JFrame {
 
   FondoPanel fondo = new FondoPanel();
+  List<Venta> productVentas;
+  
 
   /**
    * Creates new form IniciarSesion
@@ -374,10 +377,10 @@ public class Venta extends javax.swing.JFrame {
 
   private void botonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeleccionarActionPerformed
     // TODO add your handling code here:
-    SeleccionarProductos seleccionarProd = new SeleccionarProductos();
+    SeleccionarProductos seleccionarProd = new SeleccionarProductos(productVentas);
     seleccionarProd.setLocationRelativeTo(this);
     seleccionarProd.setVisible(true);
-    this.dispose();
+    
   }//GEN-LAST:event_botonSeleccionarActionPerformed
 
   /**

@@ -42,6 +42,41 @@ public class DAOVentaImpl {
   public static void generarReporte(List<Venta> ventas) {
   }
 
+  public DefaultTableModel agregar() {
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      ResultSet resultado = stmt.executeQuery("SELECT * FROM selectVenta");
+
+      ResultSetMetaData metaData = resultado.getMetaData();
+      Vector<String> columnNames = new Vector<String>();
+      int columnCount = metaData.getColumnCount();
+      columnNames.add("Folio");
+      columnNames.add("Producto");
+      columnNames.add("Cantidad");
+      columnNames.add("Precio");
+      columnNames.add("Fecha Registro");
+      columnNames.add("Caducidad");
+
+      Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+      while (resultado.next()) {
+        Vector<Object> vector = new Vector<Object>();
+        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+          vector.add(resultado.getObject(columnIndex));
+        }
+        data.add(vector);
+      }
+      con.close();
+      return new DefaultTableModel(data, columnNames);
+    } catch (SQLException ex) {
+      Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return null;
+  }
+  
   public DefaultTableModel listarProd() {
     Conexion conexion = new Conexion();
     conexion.conectar();
