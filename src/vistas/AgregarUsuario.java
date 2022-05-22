@@ -244,21 +244,26 @@ public class AgregarUsuario extends javax.swing.JFrame {
     int rol = this.comboRol.getSelectedIndex() + 1;
     String folioRol = Util.generarFolio("ROL", String.valueOf(rol));
     
-    DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
-    List<Usuario> lista = usuImpl.listarTodos();
-    int cantidadUsuarios = lista.size();
-    int siguiente = cantidadUsuarios + 1;
-    String folioUsu = Util.generarFolio("USU", String.valueOf(siguiente));
-    Usuario usu = new Usuario(folioUsu, nombre, pwdEncriptado,new RolUsuario(folioRol));
-
-    if(usuImpl.insertar(usu)){
-      JOptionPane.showMessageDialog(this, "Usuario agragado con éxito", 
-              "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+    if(nombre.length() > 0 && pwd.length() > 0){
+      DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
+      List<Usuario> lista = usuImpl.listarTodos();
+      int cantidadUsuarios = lista.size();
+      int siguiente = cantidadUsuarios + 1;
+      String folioUsu = Util.generarFolio("USU", String.valueOf(siguiente));
+      Usuario usu = new Usuario(folioUsu, nombre, pwdEncriptado,new RolUsuario(folioRol));
+      if(usuImpl.insertar(usu)){
+        JOptionPane.showMessageDialog(this, "Usuario agragado con éxito", 
+                "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+        this.campoUsuario.setText("");
+        this.campoContrasena.setText("");
+      }else{
+        JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde", 
+                "Oh no!", JOptionPane.ERROR_MESSAGE);
+      }
     }else{
-      JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde", 
-              "Oh no!", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "Ambos campos deben ser llenados", 
+              "Ojo!", JOptionPane.WARNING_MESSAGE);
     }
-    
   }//GEN-LAST:event_botonIngresarActionPerformed
 
   /**

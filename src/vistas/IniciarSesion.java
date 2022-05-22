@@ -199,15 +199,20 @@ public class IniciarSesion extends javax.swing.JFrame {
     // TODO add your handling code here:
     String nombre = this.campoUsuario.getText();
     String pwd = new String(this.campoContrasena.getPassword());
-    DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
-    Usuario usu = usuImpl.consultar(nombre, pwd);
-    if(usuImpl.login(usu)){
-      DAORolUsuarioImpl rolImpl = new DAORolUsuarioImpl();
-      RolUsuario rol = rolImpl.consultar(usu.getRol().getFolioRol());
-      rolImpl.accesoPorRol(rol, this);
+    if(nombre.length() > 0 && pwd.length() > 0){
+      DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
+      Usuario usu = usuImpl.consultar(nombre, pwd);
+      if(usuImpl.login(usu)){
+        DAORolUsuarioImpl rolImpl = new DAORolUsuarioImpl();
+        RolUsuario rol = rolImpl.consultar(usu.getRol().getFolioRol());
+        rolImpl.accesoPorRol(rol, this);
+      }else{
+        JOptionPane.showMessageDialog(this, "No hay registros que coincidan con los datos", 
+                "Oh no!", JOptionPane.ERROR_MESSAGE);
+      }
     }else{
-      JOptionPane.showMessageDialog(this, "No hay registros que coincidan con los datos", 
-              "Oh no!", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "Ambos campos deben ser llenados", 
+              "Ojo!", JOptionPane.WARNING_MESSAGE);
     }
   }//GEN-LAST:event_botonIngresarActionPerformed
 
