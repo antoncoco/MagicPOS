@@ -319,7 +319,14 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
       System.out.println("No se seleccionó nada");
     }else{
       String folioUsu = this.tablaUsuario.getValueAt(filaSeleccionada, 0).toString();
-      System.out.println(folioUsu);
+      DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
+      if(usuImpl.eliminar(folioUsu)){
+        System.out.println("Funado");
+        DefaultTableModel dftable = (DefaultTableModel) this.tablaUsuario.getModel();
+        dftable.removeRow(filaSeleccionada);
+      }else{
+        System.out.println("No se funó");
+      }
     }
     
   }//GEN-LAST:event_botonEliminarActionPerformed
