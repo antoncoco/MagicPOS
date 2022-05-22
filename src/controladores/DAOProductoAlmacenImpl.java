@@ -12,11 +12,13 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import modelos.Producto;
 import modelos.ProductoAlmacen;
 
 /**
@@ -62,14 +64,56 @@ public class DAOProductoAlmacenImpl implements DAOProductoAlmacen {
 
   @Override
   public boolean insertar(ProductoAlmacen entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      stmt.executeUpdate("INSERT INTO Producto_almacen "
+        + "VALUES ('" + entidad.getFolio() + "', "
+        + "'" + entidad.getCantidad() + "', "
+        + "'" + entidad.getFechaReg() + "', "
+        + "'" + entidad.getCaducidad() + "', "
+        + "'" + entidad.getProducto() + "')"
+      );
+
+      return true;
+    } catch (SQLException ex) {
+      Logger.getLogger(DAOProductoAlmacenImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return false;
   }
 
   @Override
   public List<ProductoAlmacen> listarTodos() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    LinkedList<ProductoAlmacen> lista = new LinkedList<>();
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      ResultSet resultado = stmt.executeQuery("SELECT * FROM Producto_almacen");
+      while (resultado.next()) {
+        lista.add(new ProductoAlmacen(
+          resultado.getString("ProdAlmacen_folio"),
+          resultado.getInt("ProdAlmacen_cantidad"),
+          resultado.getDate("ProdAlmacen_fechaReg"),
+          resultado.getDate("ProdAlmacen_caducidad"),
+          new Producto(
+            resultado.getString("Prod_clave")
+          )
+        ));
+      }
+      con.close();
+      return lista;
+    } catch (SQLException ex) {
+      Logger.getLogger(DAOProductoAlmacenImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return null;
   }
-  
+
   public DefaultTableModel listar() {
     Conexion conexion = new Conexion();
     conexion.conectar();
@@ -77,7 +121,7 @@ public class DAOProductoAlmacenImpl implements DAOProductoAlmacen {
     try {
       Statement stmt;
       stmt = con.createStatement();
-      ResultSet resultado = stmt.executeQuery("SELECT * FROM Producto");
+      ResultSet resultado = stmt.executeQuery("SELECT * FROM Producto_almacen");
 
       ResultSetMetaData metaData = resultado.getMetaData();
       Vector<String> columnNames = new Vector<String>();
@@ -101,5 +145,5 @@ public class DAOProductoAlmacenImpl implements DAOProductoAlmacen {
     }
     return null;
   }
-  
+
 }

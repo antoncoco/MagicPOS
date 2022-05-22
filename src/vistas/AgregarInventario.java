@@ -1,16 +1,28 @@
 package vistas;
 
+import controladores.DAOProductoAlmacenImpl;
+import controladores.DAOProductoImpl;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import modelos.Producto;
+import modelos.ProductoAlmacen;
+import utils.Util;
 
 /**
  *
@@ -26,6 +38,13 @@ public class AgregarInventario extends javax.swing.JFrame {
   public AgregarInventario() {
     this.setContentPane(fondo);
     initComponents();
+    DAOProductoImpl prodImpl = new DAOProductoImpl();
+    List<Producto> list = prodImpl.listarTodos();
+    ArrayList<String> arrlist = new ArrayList();
+    for (Producto prod : list) {
+      arrlist.add(prod.getNombre());
+    }
+    this.comboProducto.setModel(new DefaultComboBoxModel(arrlist.toArray(new String[arrlist.size()])));
   }
 
   /**
@@ -39,10 +58,8 @@ public class AgregarInventario extends javax.swing.JFrame {
 
     panelContenedor = new javax.swing.JPanel();
     etiquetaTitulo = new javax.swing.JLabel();
-    campoFolio = new RoundJTextField(7);
     botonIngresar = new RoundJButton(7);
     etiquetaLogo = new javax.swing.JLabel();
-    etiquetaFolio = new javax.swing.JLabel();
     etiquetaProducto = new javax.swing.JLabel();
     campoCantidad = new RoundJTextField(7);
     etiquetaCantidad = new javax.swing.JLabel();
@@ -67,12 +84,6 @@ public class AgregarInventario extends javax.swing.JFrame {
     etiquetaTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     etiquetaTitulo.setText("Agregar inventario");
 
-    campoFolio.setBackground(new java.awt.Color(208, 208, 208));
-    campoFolio.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoFolio.setForeground(new java.awt.Color(150, 150, 150));
-    campoFolio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-    campoFolio.setBorder(null);
-
     botonIngresar.setBackground(new java.awt.Color(254, 163, 88));
     botonIngresar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     botonIngresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -88,11 +99,13 @@ public class AgregarInventario extends javax.swing.JFrame {
         botonIngresarMouseExited(evt);
       }
     });
+    botonIngresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonIngresarActionPerformed(evt);
+      }
+    });
 
     etiquetaLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logoHorizontal.png"))); // NOI18N
-
-    etiquetaFolio.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    etiquetaFolio.setText("Folio:");
 
     etiquetaProducto.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
     etiquetaProducto.setText("Producto");
@@ -130,6 +143,11 @@ public class AgregarInventario extends javax.swing.JFrame {
     botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonRegresarActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout panelContenedorLayout = new javax.swing.GroupLayout(panelContenedor);
     panelContenedor.setLayout(panelContenedorLayout);
@@ -144,39 +162,34 @@ public class AgregarInventario extends javax.swing.JFrame {
             .addGap(240, 617, Short.MAX_VALUE)
             .addComponent(botonRegresar))
           .addGroup(panelContenedorLayout.createSequentialGroup()
-            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(panelContenedorLayout.createSequentialGroup()
-                .addGap(177, 177, 177)
-                .addComponent(etiquetaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-              .addGroup(panelContenedorLayout.createSequentialGroup()
-                .addGap(161, 161, 161)
-                .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                  .addGroup(panelContenedorLayout.createSequentialGroup()
-                    .addComponent(etiquetaFolio)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(campoFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGroup(panelContenedorLayout.createSequentialGroup()
-                    .addComponent(etiquetaProducto)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(comboProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGroup(panelContenedorLayout.createSequentialGroup()
-                    .addComponent(etiquetaCantidad)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(campoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGroup(panelContenedorLayout.createSequentialGroup()
-                    .addComponent(etiquetaFechaReg)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(campoFechaReg, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGroup(panelContenedorLayout.createSequentialGroup()
-                    .addComponent(etiquetaCaducidad)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(campoCaducidad, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-            .addGap(0, 0, Short.MAX_VALUE)))
+            .addGap(177, 177, 177)
+            .addComponent(etiquetaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 171, Short.MAX_VALUE)))
         .addContainerGap())
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
         .addGap(0, 0, Short.MAX_VALUE)
         .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(231, 231, 231))
+      .addGroup(panelContenedorLayout.createSequentialGroup()
+        .addGap(162, 162, 162)
+        .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(panelContenedorLayout.createSequentialGroup()
+            .addComponent(etiquetaProducto)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(comboProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(panelContenedorLayout.createSequentialGroup()
+            .addComponent(etiquetaCantidad)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(campoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(panelContenedorLayout.createSequentialGroup()
+            .addComponent(etiquetaFechaReg)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(campoFechaReg, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(panelContenedorLayout.createSequentialGroup()
+            .addComponent(etiquetaCaducidad)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(campoCaducidad, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     panelContenedorLayout.setVerticalGroup(
       panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,11 +199,7 @@ public class AgregarInventario extends javax.swing.JFrame {
             .addComponent(etiquetaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(etiquetaTitulo)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(campoFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(etiquetaFolio))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGap(26, 26, 26)
             .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(etiquetaProducto)
               .addComponent(comboProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -208,9 +217,9 @@ public class AgregarInventario extends javax.swing.JFrame {
             .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
               .addComponent(campoCaducidad, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(etiquetaCaducidad))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGap(28, 28, 28)
             .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(0, 30, Short.MAX_VALUE))
+            .addGap(0, 27, Short.MAX_VALUE))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
             .addGap(0, 0, Short.MAX_VALUE)
             .addComponent(botonRegresar)))
@@ -244,6 +253,49 @@ public class AgregarInventario extends javax.swing.JFrame {
   private void botonIngresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIngresarMouseExited
     botonIngresar.setBackground(new Color(254, 163, 88));
   }//GEN-LAST:event_botonIngresarMouseExited
+
+  private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+    String cantidad = this.campoCantidad.getText();
+    String fechaReg = this.campoFechaReg.getText();
+    String cad = this.campoCaducidad.getText();
+
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
+    int prd = this.comboProducto.getSelectedIndex() + 1;
+    String folioInv = Util.generarFolio("PRD", String.valueOf(prd));
+
+    DAOProductoAlmacenImpl prdAlmImpl = new DAOProductoAlmacenImpl();
+    List<ProductoAlmacen> lista = prdAlmImpl.listarTodos();
+    int cantidadAlmPrd = lista.size();
+    int siguiente = cantidadAlmPrd + 1;
+    String folioAlmPrd = Util.generarFolio("PRD", String.valueOf(siguiente));
+    ProductoAlmacen prdAlm = null;
+    try {
+      prdAlm = new ProductoAlmacen(
+        folioAlmPrd,
+        Integer.parseInt(cantidad),
+        formato.parse(fechaReg),
+        formato.parse(cad),
+        new Producto(folioInv));
+    } catch (ParseException ex) {
+      Logger.getLogger(AgregarInventario.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    if (prdAlmImpl.insertar(prdAlm)) {
+      System.out.println("YES");
+    } else {
+      System.out.println("Oh no");
+    }
+
+
+  }//GEN-LAST:event_botonIngresarActionPerformed
+
+  private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+    Inventario inv = new Inventario();
+    inv.setLocationRelativeTo(this);
+    inv.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonRegresarActionPerformed
 
   /**
    * @param args the command line arguments
@@ -286,12 +338,10 @@ public class AgregarInventario extends javax.swing.JFrame {
   private javax.swing.JTextField campoCaducidad;
   private javax.swing.JTextField campoCantidad;
   private javax.swing.JTextField campoFechaReg;
-  private javax.swing.JTextField campoFolio;
   private javax.swing.JComboBox<String> comboProducto;
   private javax.swing.JLabel etiquetaCaducidad;
   private javax.swing.JLabel etiquetaCantidad;
   private javax.swing.JLabel etiquetaFechaReg;
-  private javax.swing.JLabel etiquetaFolio;
   private javax.swing.JLabel etiquetaLogo;
   private javax.swing.JLabel etiquetaProducto;
   private javax.swing.JLabel etiquetaTitulo;
@@ -366,7 +416,7 @@ public class AgregarInventario extends javax.swing.JFrame {
       return shape.contains(x, y);
     }
   }
-  
+
   class RoundJComboBox extends JComboBox {
 
     private Shape shape;
