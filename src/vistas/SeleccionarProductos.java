@@ -1,5 +1,6 @@
 package vistas;
 
+import controladores.DAOVentaImpl;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -29,7 +30,8 @@ public class SeleccionarProductos extends javax.swing.JFrame {
   public SeleccionarProductos() {
     this.setContentPane(fondo);
     initComponents();
-    
+    DAOVentaImpl selectVent = new DAOVentaImpl();
+    tablaListaProd.setModel(selectVent.listarProd());
     tablaListaProd.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
     tablaListaProd.getTableHeader().setOpaque(false);
     tablaListaProd.getTableHeader().setBackground(Color.WHITE);
@@ -196,7 +198,7 @@ public class SeleccionarProductos extends javax.swing.JFrame {
         {null, null, null, null, null, null}
       },
       new String [] {
-        "Folio", "Producto", "Cantidad", "Precio", "FechaRegistro", "Caducidad"
+        "Folio", "Producto", "Cantidad", "Precio", "Fecha de registro", "Caducidad"
       }
     ));
     tablaListaProd.setFocusable(false);
@@ -240,7 +242,7 @@ public class SeleccionarProductos extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void campoBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoBuscarMousePressed
-    if (campoBuscar.getText().equals("Buscar")) {
+    if (campoBuscar.getText().equals("Buscar producto")) {
       campoBuscar.setText("");
       campoBuscar.setForeground(new Color(150, 150, 150));
     }
