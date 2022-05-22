@@ -70,7 +70,21 @@ public class DAOCategoriaImpl implements DAOCategoria {
 
   @Override
   public boolean actualizar(Categoria entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      stmt.executeUpdate("UPDATE Categoria_producto SET Cat_descripcion = '" + entidad.getDescripcion() + "'"
+        + "WHERE Cat_folio = '" + entidad.getFolio() + "'");
+      con.close();
+      return true;
+    } catch (SQLException ex) {
+      Logger.getLogger(DAOCategoriaImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return false;
+
   }
 
   @Override
@@ -142,7 +156,12 @@ public class DAOCategoriaImpl implements DAOCategoria {
         data.add(vector);
       }
       con.close();
-      return new DefaultTableModel(data, columnNames);
+      return new DefaultTableModel(data, columnNames) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+          return column == 2;
+        }
+      };
     } catch (SQLException ex) {
       Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -178,7 +197,7 @@ public class DAOCategoriaImpl implements DAOCategoria {
       return new DefaultTableModel(data, columnNames) {
         @Override
         public boolean isCellEditable(int row, int column) {
-          return column == 1;
+          return column == 2;
         }
       };
     } catch (SQLException ex) {

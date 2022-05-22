@@ -9,6 +9,7 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -423,9 +424,24 @@ public class AgregarProveedor extends javax.swing.JFrame {
       cp, correo, telefono, sitioW);
 
     if (provImpl.insertar(prov)) {
-      System.out.println("YES");
+      JOptionPane.showMessageDialog(this, "Usuario agragado con éxito",
+        "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+      this.campoCP.setText("");
+      this.campoCalle.setText("");
+      this.campoCiudad.setText("");
+      this.campoCorreo.setText("");
+      this.campoDescripCont.setText("");
+      this.campoEstado.setText("");
+      this.campoNombre.setText("");
+      this.campoNombreCont.setText("");
+      this.campoNumInt.setText("");
+      this.campoNumExt.setText("");
+      this.campoRFC.setText("");
+      this.campoSitioWeb.setText("");
+      this.campoTelefono.setText("");
     } else {
-      System.out.println("Oh no");
+      JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde",
+        "Oh no!", JOptionPane.ERROR_MESSAGE);
     }
 
 

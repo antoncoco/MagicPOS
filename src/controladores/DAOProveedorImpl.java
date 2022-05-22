@@ -52,7 +52,30 @@ public class DAOProveedorImpl implements DAOProveedor {
 
   @Override
   public boolean actualizar(Proveedor entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      stmt.executeUpdate("UPDATE Proveedor SET Prov_contactoNombre = '" + entidad.getContactoNombre() + "', "
+        + "Prov_contactoDescripcion = '" + entidad.getContactoDesc() + "', "
+        + "Prov_calle = '" + entidad.getCalle() + "', "
+        + "Prov_numExt = '" + entidad.getNumExt() + "', "
+        + "Prov_numInt = '" + entidad.getNumInt() + "', "
+        + "Prov_estado = '" + entidad.getEstado() + "', "
+        + "Prov_ciudad = '" + entidad.getCiudad() + "', "
+        + "Prov_CP = '" + entidad.getCp() + "', "
+        + "Prov_correo = '" + entidad.getCorreo() + "', "
+        + "Prov_telefono = '" + entidad.getTelefono() + "', "
+        + "Prov_sitioWeb = '" + entidad.getSitioWeb() + "' "
+        + "WHERE Prov_RFC = '" + entidad.getRfc() + "'");
+      con.close();
+      return true;
+    } catch (SQLException ex) {
+      Logger.getLogger(DAOProveedorImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return false;
   }
 
   @Override
@@ -145,7 +168,18 @@ public class DAOProveedorImpl implements DAOProveedor {
         data.add(vector);
       }
       con.close();
-      return new DefaultTableModel(data, columnNames);
+      return new DefaultTableModel(data, columnNames) {
+        boolean[] canEdit = new boolean[]{
+          false, false,
+          true, true, true, true,
+          true, true, true, true,
+          true, true, true,};
+
+        @Override
+        public boolean isCellEditable(int row, int column) {
+          return canEdit[column];
+        }
+      };
     } catch (SQLException ex) {
       Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -179,9 +213,15 @@ public class DAOProveedorImpl implements DAOProveedor {
       }
       con.close();
       return new DefaultTableModel(data, columnNames) {
+        boolean[] canEdit = new boolean[]{
+          false, false,
+          true, true, true, true,
+          true, true, true, true,
+          true, true, true,};
+
         @Override
         public boolean isCellEditable(int row, int column) {
-          return column == 1;
+          return canEdit[column];
         }
       };
     } catch (SQLException ex) {

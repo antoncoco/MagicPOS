@@ -14,6 +14,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -362,9 +363,17 @@ public class AgregarProducto extends javax.swing.JFrame {
     );
 
     if (prodImpl.insertar(prd)) {
-      System.out.println("YES");
+      JOptionPane.showMessageDialog(this, "Producto agregado con éxito",
+        "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+      this.campoCantLim.setText("");
+      this.campoCantPedProv.setText("");
+      this.campoDescont.setText("");
+      this.campoMedidaDesc.setText("");
+      this.campoNombre.setText("");
+      this.campoPrecio.setText("");
     } else {
-      System.out.println("Oh no");
+      JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde",
+        "Oh no!", JOptionPane.ERROR_MESSAGE);
     }
 
 

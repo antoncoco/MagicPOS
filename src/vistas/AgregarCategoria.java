@@ -17,6 +17,7 @@ import utils.Util;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -218,9 +219,13 @@ public class AgregarCategoria extends javax.swing.JFrame {
     Categoria cat = new Categoria(folioCat, nombre, descripcion);
 
     if (catImpl.insertar(cat)) {
-      System.out.println("YES");
+      JOptionPane.showMessageDialog(this, "Categoria agregado con éxito",
+        "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+      this.campoDescripcion.setText("");
+      this.campoNombre.setText("");
     } else {
-      System.out.println("Oh no");
+      JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde",
+        "Oh no!", JOptionPane.ERROR_MESSAGE);
     }
   }//GEN-LAST:event_botonIngresarActionPerformed
 
