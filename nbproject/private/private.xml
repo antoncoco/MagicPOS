@@ -26,5 +26,13 @@
             <file>file:/C:/MagicPOS/MagicPOS/src/dao/DAOProductoAlmacen.java</file>
             <file>file:/C:/MagicPOS/MagicPOS/src/dao/DAOCategoria.java</file>
         </group>
+        <group name="Lenguajes y automatas REGEX">
+            <file>file:/C:/Users/israe/magicPOS/MagicPOS/src/controladores/DAOUsuarioImpl.java</file>
+            <file>file:/C:/Users/israe/magicPOS/MagicPOS/src/vistas/AgregarUsuario.java</file>
+            <file>file:/C:/Users/israe/magicPOS/MagicPOS/src/vistas/Reportes.java</file>
+            <file>file:/C:/Users/israe/magicPOS/MagicPOS/src/vistas/SeleccionarProductos.java</file>
+            <file>file:/C:/Users/israe/magicPOS/MagicPOS/src/vistas/Venta.java</file>
+            <file>file:/C:/Users/israe/magicPOS/MagicPOS/src/controladores/DAOVentaImpl.java</file>
+        </group>
     </open-files>
 </project-private>

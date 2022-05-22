@@ -5,11 +5,13 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Shape;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -21,7 +23,7 @@ import javax.swing.JTextField;
  * @author MagicPOS
  */
 public class Reportes extends javax.swing.JFrame {
-
+  public Color colorLetra = new Color(0,0,0);
   FondoPanel fondo = new FondoPanel();
 
   /**
@@ -148,7 +150,6 @@ public class Reportes extends javax.swing.JFrame {
 
     campoRuta.setBackground(new java.awt.Color(231, 231, 231));
     campoRuta.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
-    campoRuta.setForeground(new java.awt.Color(150, 150, 150));
     campoRuta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     campoRuta.setBorder(null);
     campoRuta.setEnabled(false);
@@ -184,6 +185,11 @@ public class Reportes extends javax.swing.JFrame {
     botonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/guardar.png"))); // NOI18N
     botonGuardar.setBorder(null);
     botonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonGuardarActionPerformed(evt);
+      }
+    });
     panelContenedor.add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, -1, -1));
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -228,6 +234,15 @@ public class Reportes extends javax.swing.JFrame {
     
     JOptionPane.showMessageDialog(rootPane, "Este apartado se encuentra en desarrollo", "Alerta", JOptionPane.PLAIN_MESSAGE, icono);
   }//GEN-LAST:event_botonDescargarActionPerformed
+
+  private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+    JFileChooser dig = new JFileChooser();
+    int opt = dig.showOpenDialog(this);
+    if (opt == JFileChooser.APPROVE_OPTION){
+      String file = dig.getSelectedFile().getPath();
+      campoRuta.setText(file);
+    }
+  }//GEN-LAST:event_botonGuardarActionPerformed
 
   /**
    * @param args the command line arguments
