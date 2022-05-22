@@ -12,9 +12,11 @@ import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -188,6 +190,11 @@ public class Inventario extends javax.swing.JFrame {
         botonEliminarMouseExited(evt);
       }
     });
+    botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonEliminarActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 300, 40));
 
     botonActualizar.setBackground(new java.awt.Color(255, 255, 255));
@@ -211,6 +218,11 @@ public class Inventario extends javax.swing.JFrame {
     botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/regresar.png"))); // NOI18N
     botonRegresar.setBorder(null);
     botonRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonRegresarActionPerformed(evt);
+      }
+    });
     panelOpciones.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
 
     panelContenedor.setBackground(new java.awt.Color(255, 255, 255));
@@ -454,9 +466,67 @@ public class Inventario extends javax.swing.JFrame {
     int index = tabbedInventario.getSelectedIndex();
     System.out.println(index);
 
-    if (index == 1) {
-      DAOCategoriaImpl catImpl = new DAOCategoriaImpl();
-//      tablaCategoria.setModel(catImpl.consultar(""));
+    switch (index) {
+      case 0:
+        DAOCategoriaImpl catImpl = new DAOCategoriaImpl();
+        String nombreMatchC = this.campoBuscar.getText().trim();
+        if (nombreMatchC.length() > 0) {
+          this.tablaCategoria.setModel(catImpl.listar(nombreMatchC));
+          if (this.tablaCategoria.getModel().getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Se encontraron cero coincidencias",
+              "Upsi!", JOptionPane.WARNING_MESSAGE);
+            this.tablaCategoria.setModel(catImpl.listar());
+            this.campoBuscar.setText("");
+          }
+        } else {
+          this.tablaCategoria.setModel(catImpl.listar());
+        }
+        break;
+      case 1:
+        DAOProveedorImpl provImpl = new DAOProveedorImpl();
+        String nombreMatchPv = this.campoBuscar.getText().trim();
+        if (nombreMatchPv.length() > 0) {
+          this.tablaProveedor.setModel(provImpl.listar(nombreMatchPv));
+          if (this.tablaProveedor.getModel().getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Se encontraron cero coincidencias",
+              "Upsi!", JOptionPane.WARNING_MESSAGE);
+            this.tablaProveedor.setModel(provImpl.listar());
+            this.campoBuscar.setText("");
+          }
+        } else {
+          this.tablaProveedor.setModel(provImpl.listar());
+        }
+        break;
+      case 2:
+        DAOProductoImpl prodImpl = new DAOProductoImpl();
+        String nombreMatchPd = this.campoBuscar.getText().trim();
+        if (nombreMatchPd.length() > 0) {
+          this.tablaProducto.setModel(prodImpl.listar(nombreMatchPd));
+          if (this.tablaProducto.getModel().getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Se encontraron cero coincidencias",
+              "Upsi!", JOptionPane.WARNING_MESSAGE);
+            this.tablaProducto.setModel(prodImpl.listar());
+            this.campoBuscar.setText("");
+          }
+        } else {
+          this.tablaProducto.setModel(prodImpl.listar());
+        }
+        break;
+      case 3:
+        DAOProductoAlmacenImpl prdAldImpl = new DAOProductoAlmacenImpl();
+        String nombreMatchPdAl = this.campoBuscar.getText().trim();
+        if (nombreMatchPdAl.length() > 0) {
+          this.tablaInventario.setModel(prdAldImpl.listar(nombreMatchPdAl));
+          if (this.tablaInventario.getModel().getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Se encontraron cero coincidencias",
+              "Upsi!", JOptionPane.WARNING_MESSAGE);
+            this.tablaInventario.setModel(prdAldImpl.listar());
+            this.campoBuscar.setText("");
+          }
+        } else {
+          this.tablaInventario.setModel(prdAldImpl.listar());
+        }
+        break;
     }
   }//GEN-LAST:event_botonBuscarActionPerformed
 
@@ -492,6 +562,98 @@ public class Inventario extends javax.swing.JFrame {
     }
 
   }//GEN-LAST:event_botonAgregarActionPerformed
+
+  private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+    int index = tabbedInventario.getSelectedIndex();
+    System.out.println(index);
+
+    switch (index) {
+      case 0:
+        int filaSeleccionadaC = this.tablaCategoria.getSelectedRow();
+        if (filaSeleccionadaC == -1) {
+          JOptionPane.showMessageDialog(this, "Seleccione una fila para realizar esta operación",
+            "Upsi!", JOptionPane.WARNING_MESSAGE);
+        } else {
+          String folioCat = this.tablaCategoria.getValueAt(filaSeleccionadaC, 0).toString();
+          DAOCategoriaImpl catImpl = new DAOCategoriaImpl();
+          if (catImpl.eliminar(folioCat)) {
+            DefaultTableModel dftable = (DefaultTableModel) this.tablaCategoria.getModel();
+            dftable.removeRow(filaSeleccionadaC);
+            JOptionPane.showMessageDialog(this, "Categoria eliminada con éxito",
+              "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+          } else {
+            JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde",
+              "Oh no!", JOptionPane.ERROR_MESSAGE);
+          }
+        }
+
+        break;
+      case 1:
+        int filaSeleccionadaP = this.tablaProveedor.getSelectedRow();
+        if (filaSeleccionadaP == -1) {
+          JOptionPane.showMessageDialog(this, "Seleccione una fila para realizar esta operación",
+            "Upsi!", JOptionPane.WARNING_MESSAGE);
+        } else {
+          String folioProv = this.tablaProveedor.getValueAt(filaSeleccionadaP, 0).toString();
+          DAOProveedorImpl prvImpl = new DAOProveedorImpl();
+          if (prvImpl.eliminar(folioProv)) {
+            DefaultTableModel dftable = (DefaultTableModel) this.tablaProveedor.getModel();
+            dftable.removeRow(filaSeleccionadaP);
+            JOptionPane.showMessageDialog(this, "Proveedor eliminado con éxito",
+              "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+          } else {
+            JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde",
+              "Oh no!", JOptionPane.ERROR_MESSAGE);
+          }
+        }
+        break;
+      case 2:
+        int filaSeleccionadaPv = this.tablaProducto.getSelectedRow();
+        if (filaSeleccionadaPv == -1) {
+          JOptionPane.showMessageDialog(this, "Seleccione una fila para realizar esta operación",
+            "Upsi!", JOptionPane.WARNING_MESSAGE);
+        } else {
+          String folioProd = this.tablaProducto.getValueAt(filaSeleccionadaPv, 0).toString();
+          DAOProductoImpl prdImpl = new DAOProductoImpl();
+          if (prdImpl.eliminar(folioProd)) {
+            DefaultTableModel dftable = (DefaultTableModel) this.tablaProducto.getModel();
+            dftable.removeRow(filaSeleccionadaPv);
+            JOptionPane.showMessageDialog(this, "Producto eliminado con éxito",
+              "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+          } else {
+            JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde",
+              "Oh no!", JOptionPane.ERROR_MESSAGE);
+          }
+        }
+        break;
+      case 3:
+        int filaSeleccionadaPA = this.tablaInventario.getSelectedRow();
+        if (filaSeleccionadaPA == -1) {
+          JOptionPane.showMessageDialog(this, "Seleccione una fila para realizar esta operación",
+            "Upsi!", JOptionPane.WARNING_MESSAGE);
+        } else {
+          String folioProdAl = this.tablaInventario.getValueAt(filaSeleccionadaPA, 0).toString();
+          DAOProductoAlmacenImpl prdAlImpl = new DAOProductoAlmacenImpl();
+          if (prdAlImpl.eliminar(folioProdAl)) {
+            DefaultTableModel dftable = (DefaultTableModel) this.tablaInventario.getModel();
+            dftable.removeRow(filaSeleccionadaPA);
+            JOptionPane.showMessageDialog(this, "Producto en almacen eliminado con éxito",
+              "Eureka!", JOptionPane.INFORMATION_MESSAGE);
+          } else {
+            JOptionPane.showMessageDialog(this, "Algo salió mal, intente más tarde",
+              "Oh no!", JOptionPane.ERROR_MESSAGE);
+          }
+        }
+        break;
+    }
+  }//GEN-LAST:event_botonEliminarActionPerformed
+
+  private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+    PanelAdmin panelAdmin = new PanelAdmin();
+    panelAdmin.setLocationRelativeTo(this);
+    panelAdmin.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_botonRegresarActionPerformed
 
   /**
    * @param args the command line arguments
