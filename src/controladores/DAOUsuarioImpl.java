@@ -87,7 +87,18 @@ public class DAOUsuarioImpl implements DAOUsuario{
 
   @Override
   public boolean eliminar(String id) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      stmt.executeUpdate("DELETE FROM Usuario WHERE Usu_folio='"+id+"'");
+      return true;
+    } catch (SQLException ex) {
+      Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return false;
   }
 
   @Override
@@ -97,7 +108,23 @@ public class DAOUsuarioImpl implements DAOUsuario{
 
   @Override
   public boolean insertar(Usuario entidad) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Conexion conexion = new Conexion();
+    conexion.conectar();
+    Connection con = conexion.getCon();
+    try {
+      Statement stmt;
+      stmt = con.createStatement();
+      stmt.executeUpdate("INSERT INTO Usuario "
+              + "VALUES ('"+entidad.getFolio()+"', "
+              + "'"+entidad.getNombre()+"', "
+              + "'"+entidad.getRol().getFolioRol()+"', "
+              + "'"+entidad.getPwd()+"')");
+      
+      return true;
+    } catch (SQLException ex) {
+      Logger.getLogger(DAORolUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return false;
   }
 
   @Override
