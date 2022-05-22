@@ -36,6 +36,7 @@ public class GestionDeUsuarios extends javax.swing.JFrame {
     initComponents();
     DAOUsuarioImpl usuImpl = new DAOUsuarioImpl();
     tablaUsuario.setModel(usuImpl.listar());
+    
     tablaUsuario.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
     tablaUsuario.getTableHeader().setOpaque(false);
     tablaUsuario.getTableHeader().setBackground(Color.WHITE);

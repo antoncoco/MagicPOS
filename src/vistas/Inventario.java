@@ -1,5 +1,9 @@
 package vistas;
 
+import controladores.DAOCategoriaImpl;
+import controladores.DAOProductoAlmacenImpl;
+import controladores.DAOProductoImpl;
+import controladores.DAOProveedorImpl;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 
 /**
  *
@@ -27,22 +30,30 @@ public class Inventario extends javax.swing.JFrame {
   public Inventario() {
     this.setContentPane(fondo);
     initComponents();
-    
+    DAOCategoriaImpl catImpl = new DAOCategoriaImpl();
+    tablaCategoria.setModel(catImpl.listar());
+    DAOProveedorImpl prvImpl = new DAOProveedorImpl();
+    tablaProveedor.setModel(prvImpl.listar());
+    DAOProductoImpl prdImpl = new DAOProductoImpl();
+    tablaProducto.setModel(prdImpl.listar());
+    DAOProductoAlmacenImpl prdAImpl = new DAOProductoAlmacenImpl();
+    tablaInventario.setModel(prdAImpl.listar());
+
     tablaCategoria.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 14));
     tablaCategoria.getTableHeader().setOpaque(false);
     tablaCategoria.getTableHeader().setBackground(Color.WHITE);
-    
+
     tablaProveedor.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 14));
     tablaProveedor.getTableHeader().setOpaque(false);
     tablaProveedor.getTableHeader().setBackground(Color.WHITE);
-    
+
     tablaProducto.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 14));
     tablaProducto.getTableHeader().setOpaque(false);
     tablaProducto.getTableHeader().setBackground(Color.WHITE);
-    
+
     tablaInventario.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 14));
     tablaInventario.getTableHeader().setOpaque(false);
-    tablaInventario.getTableHeader().setBackground(Color.WHITE);    
+    tablaInventario.getTableHeader().setBackground(Color.WHITE);
   }
 
   /**
@@ -111,6 +122,11 @@ public class Inventario extends javax.swing.JFrame {
       }
       public void mouseExited(java.awt.event.MouseEvent evt) {
         botonBuscarMouseExited(evt);
+      }
+    });
+    botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        botonBuscarActionPerformed(evt);
       }
     });
     panelOpciones.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 40, 40));
@@ -428,6 +444,16 @@ public class Inventario extends javax.swing.JFrame {
   private void botonActualizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseExited
     botonActualizar.setBackground(Color.WHITE);
   }//GEN-LAST:event_botonActualizarMouseExited
+
+  private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+    int index = tabbedInventario.getSelectedIndex();
+    System.out.println(index);
+
+    if (index == 1) {
+      DAOCategoriaImpl catImpl = new DAOCategoriaImpl();
+//      tablaCategoria.setModel(catImpl.consultar(""));
+    }
+  }//GEN-LAST:event_botonBuscarActionPerformed
 
   /**
    * @param args the command line arguments
