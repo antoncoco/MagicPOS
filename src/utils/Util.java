@@ -14,8 +14,11 @@ import java.security.NoSuchAlgorithmException;
  * @author MagicPOS
  */
 public final class Util {
-  public static String generarFolio(String sufijo, int numReg){
-    return "";
+  public static String generarFolio(String sufijo, String numReg){
+    String num = "00000";
+    int pos = num.length() - numReg.length();
+    
+    return sufijo+"-"+num.substring(0,pos) + numReg;
   }
   
   public static String encriptar(String pwd){
