@@ -140,8 +140,9 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     });
     panelOpciones.add(campoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 300, 40));
 
-    botonAgregarProd.setBackground(new java.awt.Color(255, 255, 255));
+    botonAgregarProd.setBackground(new java.awt.Color(174, 33, 0));
     botonAgregarProd.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+    botonAgregarProd.setForeground(new java.awt.Color(255, 255, 255));
     botonAgregarProd.setText("Agregar producto");
     botonAgregarProd.setBorder(null);
     botonAgregarProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -257,9 +258,9 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     
     
     if(filaSeleccionada == -1){
-      System.out.println("No se seleccionó ningún producto");
+      JOptionPane.showMessageDialog(rootPane, "No se seleccionó ningún producto", "Alerta", JOptionPane.PLAIN_MESSAGE);
     }else if(cantidad.length() == 0 || cantidad.equals("0")){
-      System.out.println("La cantidad no puede ser 0");
+      JOptionPane.showMessageDialog(rootPane, "La cantidad no puede ser 0", "Alerta", JOptionPane.PLAIN_MESSAGE);
     }else {
       String folioInv = this.tablaListaProd.getValueAt(filaSeleccionada, 0).toString();
       String prodNombre = this.tablaListaProd.getValueAt(filaSeleccionada, 1).toString();
@@ -276,11 +277,11 @@ public class SeleccionarProductos extends javax.swing.JFrame {
   }//GEN-LAST:event_botonAgregarProdActionPerformed
 
   private void botonAgregarProdMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarProdMouseExited
-    botonAgregarProd.setBackground(Color.WHITE);
+    botonAgregarProd.setBackground(new Color(174, 33, 0));
   }//GEN-LAST:event_botonAgregarProdMouseExited
 
   private void botonAgregarProdMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarProdMouseEntered
-    botonAgregarProd.setBackground(new Color(254, 163, 88));
+    botonAgregarProd.setBackground(new Color(208, 75, 42));
   }//GEN-LAST:event_botonAgregarProdMouseEntered
 
   private void campoBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoBuscarMousePressed
