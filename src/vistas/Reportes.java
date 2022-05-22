@@ -7,23 +7,25 @@ import java.awt.Shape;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
+import java.io.File;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 
 /**
  *
  * @author MagicPOS
  */
 public class Reportes extends javax.swing.JFrame {
-  public Color colorLetra = new Color(0,0,0);
+
+  public Color colorLetra = new Color(0, 0, 0);
   FondoPanel fondo = new FondoPanel();
 
   /**
@@ -32,8 +34,7 @@ public class Reportes extends javax.swing.JFrame {
   public Reportes() {
     this.setContentPane(fondo);
     initComponents();
-    
-    
+
   }
 
   /**
@@ -217,7 +218,7 @@ public class Reportes extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void campoRutaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoRutaMousePressed
-    
+
   }//GEN-LAST:event_campoRutaMousePressed
 
   private void botonDescargarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDescargarMouseEntered
@@ -226,21 +227,23 @@ public class Reportes extends javax.swing.JFrame {
   }//GEN-LAST:event_botonDescargarMouseEntered
 
   private void botonDescargarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDescargarMouseExited
-    botonDescargar.setBackground(new Color(255,185,102));
+    botonDescargar.setBackground(new Color(255, 185, 102));
   }//GEN-LAST:event_botonDescargarMouseExited
 
   private void botonDescargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDescargarActionPerformed
     Icon icono = new ImageIcon(getClass().getResource("/assets/bobReportes.png"));
-    
+
     JOptionPane.showMessageDialog(rootPane, "Este apartado se encuentra en desarrollo", "Alerta", JOptionPane.PLAIN_MESSAGE, icono);
   }//GEN-LAST:event_botonDescargarActionPerformed
 
   private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-    JFileChooser dig = new JFileChooser();
-    int opt = dig.showOpenDialog(this);
-    if (opt == JFileChooser.APPROVE_OPTION){
-      String file = dig.getSelectedFile().getPath();
-      campoRuta.setText(file);
+    JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    if (fileChooser.showSaveDialog(dateFF) == JFileChooser.APPROVE_OPTION) {
+      File file = fileChooser.getSelectedFile();
+      campoRuta.setText(file.getAbsolutePath());
+    } else {
+      JOptionPane.showMessageDialog(rootPane, "No se seleccionó ninguna ruta de almacenamiento", "Alerta", JOptionPane.PLAIN_MESSAGE);
     }
   }//GEN-LAST:event_botonGuardarActionPerformed
 
@@ -396,7 +399,6 @@ public class Reportes extends javax.swing.JFrame {
     }
   }
 
-  
   class RoundJComboBox extends JComboBox {
 
     private Shape shape;
@@ -424,5 +426,5 @@ public class Reportes extends javax.swing.JFrame {
       return shape.contains(x, y);
     }
   }
-  
+
 }
