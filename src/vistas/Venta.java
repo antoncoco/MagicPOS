@@ -24,8 +24,6 @@ import javax.swing.border.MatteBorder;
 public class Venta extends javax.swing.JFrame {
 
   FondoPanel fondo = new FondoPanel();
-  List<Venta> productVentas;
-  
 
   /**
    * Creates new form IniciarSesion
@@ -34,6 +32,17 @@ public class Venta extends javax.swing.JFrame {
     this.setContentPane(fondo);
     initComponents();
     DAOVentaImpl ventaImpl = new DAOVentaImpl();
+    tablaVenta.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {},
+      new String [] {
+        "Cantidad", "Producto", "Precio unitario", "Descuento", "Importe"
+      }
+    ){
+      @Override 
+        public boolean isCellEditable(int row, int column){
+          return column == 3;
+        }
+    });
     tablaVenta.getTableHeader().setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 16));
     tablaVenta.getTableHeader().setOpaque(false);
     tablaVenta.getTableHeader().setBackground(Color.WHITE);
@@ -377,10 +386,9 @@ public class Venta extends javax.swing.JFrame {
 
   private void botonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeleccionarActionPerformed
     // TODO add your handling code here:
-    SeleccionarProductos seleccionarProd = new SeleccionarProductos(productVentas);
+    SeleccionarProductos seleccionarProd = new SeleccionarProductos(this.tablaVenta);
     seleccionarProd.setLocationRelativeTo(this);
     seleccionarProd.setVisible(true);
-    
   }//GEN-LAST:event_botonSeleccionarActionPerformed
 
   /**

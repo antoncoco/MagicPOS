@@ -16,8 +16,10 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -27,15 +29,17 @@ import javax.swing.border.MatteBorder;
 public class SeleccionarProductos extends javax.swing.JFrame {
 
   FondoPanel fondo = new FondoPanel();
-  List<Venta> productVentas;
+  JTable tablaVentas;
 
   /**
    * Creates new form IniciarSesion
+   * @param productVentas
+   * @param tablaVentas
    */
   
 
-  public SeleccionarProductos(List<Venta> productVentas) {
-    this.productVentas=productVentas;
+  public SeleccionarProductos(JTable tablaVentas) {
+    this.tablaVentas = tablaVentas;
     this.setContentPane(fondo);
     initComponents();
     DAOVentaImpl selectVent = new DAOVentaImpl();
@@ -275,25 +279,13 @@ public class SeleccionarProductos extends javax.swing.JFrame {
     }else if(cantidad.length() == 0 || cantidad.equals("0")){
       System.out.println("La cantidad no puede ser 0");
     }else {
-      
-      while (filaSeleccionada != 0) {
-        for(int columIndex = 1; columIndex <= 6; columIndex++){
-          productVentas.add((Venta) this.tablaListaProd.getValueAt(0, columIndex));
-        }
-        for (Venta str: productVentas){
-          System.out.println(str);
-        }
-        
-//        List<SeleccionarProductos> prodSel = new ArrayList<>();
-//        for (int columnIndex = 1; columnIndex <= 6; columnIndex++) {
-//            prodSel = tablaListaProd.getse;
-//        }
-//        this.productVentas.add(prodSel);
-      }
-      
-//      Venta agregarProd = new Venta();
-//      agregarProd.setLocationRelativeTo(this);
-//      agregarProd.setVisible(true);
+      String folioInv = this.tablaListaProd.getValueAt(filaSeleccionada, 0).toString();
+      String prodNombre = this.tablaListaProd.getValueAt(filaSeleccionada, 1).toString();
+      double precio = Double.parseDouble(this.tablaListaProd.getValueAt(filaSeleccionada, 3).toString());
+      DefaultTableModel dftable =(DefaultTableModel) this.tablaVentas.getModel();
+      int cantidadEntero = Integer.parseInt(cantidad);
+      Object[] arr = {cantidadEntero, prodNombre,precio, 0.0, cantidadEntero*precio};
+      dftable.addRow(arr);
       this.dispose();
     }
   }//GEN-LAST:event_botonAgregarProdActionPerformed

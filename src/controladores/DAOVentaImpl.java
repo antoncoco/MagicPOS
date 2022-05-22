@@ -105,7 +105,12 @@ public class DAOVentaImpl {
         data.add(vector);
       }
       con.close();
-      return new DefaultTableModel(data, columnNames);
+      return new DefaultTableModel(data, columnNames){
+         @Override 
+        public boolean isCellEditable(int row, int column){
+          return false;
+        }
+      };
     } catch (SQLException ex) {
       Logger.getLogger(DAOUsuarioImpl.class.getName()).log(Level.SEVERE, null, ex);
     }
